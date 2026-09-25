@@ -426,3 +426,8 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 .recht .hinweis { margin-bottom: var(--space-l); }
 .recht .hinweis p { margin-bottom: var(--space-2xs); }
+
+.zeiten { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.zeiten th { text-align: left; font-weight: 400; color: var(--sabi); padding: 0 var(--space-m) var(--space-2xs) 0; vertical-align: top; white-space: nowrap; }
+.zeiten td { padding: 0 0 var(--space-2xs); }
+.feld select:disabled { color: var(--sabi-on-paper); cursor: not-allowed; }

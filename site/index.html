@@ -47,6 +47,17 @@
             <dd><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></dd>
           </div>
           <div>
+            <dt>Öffnungszeiten</dt>
+            <dd>
+              <table class="zeiten">
+                <tr><th scope="row">Mo – Do</th><td>12:00 – 14:30<br>17:00 – 22:00</td></tr>
+                <tr><th scope="row">Freitag</th><td>12:00 – 14:30<br>17:00 – 23:30</td></tr>
+                <tr><th scope="row">Samstag</th><td>17:00 – 23:30</td></tr>
+                <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
+              </table>
+            </dd>
+          </div>
+          <div>
             <dt>Gruppen ab 9 Personen</dt>
             <dd>Ruf uns am besten direkt an, dann planen wir den Abend gemeinsam.</dd>
           </div>
@@ -82,15 +93,13 @@
               </div>
               <div class="feld">
                 <label for="uhrzeit">Uhrzeit</label>
-                <!-- Zeiten an die Öffnungszeiten anpassen. Letzte Reservierung 90 Minuten vor Küchenschluss. -->
+                <!-- Ohne JavaScript alle Zeiten. Mit JavaScript passend zum Wochentag, siehe OEFFNUNGSZEITEN in js/reservierung.js. -->
                 <select id="uhrzeit" name="uhrzeit" required aria-describedby="uhrzeit-fehler">
                   <option value="">Bitte wählen</option>
-                  <option>11:30</option><option>12:00</option><option>12:30</option>
-                  <option>13:00</option><option>13:30</option><option>14:00</option>
-                  <option>17:00</option><option>17:30</option><option>18:00</option>
-                  <option>18:30</option><option>19:00</option><option>19:30</option>
-                  <option>20:00</option><option>20:30</option><option>21:00</option>
-                  <option>21:30</option><option>22:00</option>
+                  <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+                  <option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option>
+                  <option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option>
+                  <option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option>
                 </select>
                 <p class="feld__fehler" id="uhrzeit-fehler" hidden></p>
               </div>

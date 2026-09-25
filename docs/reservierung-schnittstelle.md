@@ -76,4 +76,4 @@ Fragen an das Restaurant bzw. an den Support des Systems:
 1. Gibt es eine API oder Schnittstelle, um Reservierungen von außen anzulegen?
 2. Gibt es ein einbettbares Buchungs-Widget?
 3. Sollen Anfragen an info@akashi-bremen.de gehen oder an eine andere Adresse?
-4. Öffnungszeiten, Ruhetag, Küchenschluss, ab wann Gruppen anrufen sollen?
+4. Bis wann vor Schluss nehmt ihr Reservierungen an? Voreingestellt sind 60 Minuten.

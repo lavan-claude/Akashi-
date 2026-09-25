@@ -4,13 +4,27 @@
 (function () {
   "use strict";
 
+  // Öffnungszeiten je Wochentag, 0 = Sonntag. Leere Liste = geschlossen.
+  // Stand: Angaben des Restaurants, September 2026.
+  const OEFFNUNGSZEITEN = {
+    0: [],
+    1: [["12:00", "14:30"], ["17:00", "22:00"]],
+    2: [["12:00", "14:30"], ["17:00", "22:00"]],
+    3: [["12:00", "14:30"], ["17:00", "22:00"]],
+    4: [["12:00", "14:30"], ["17:00", "22:00"]],
+    5: [["12:00", "14:30"], ["17:00", "23:30"]],
+    6: [["17:00", "23:30"]],
+  };
+
   const EINSTELLUNGEN = {
     // Wie weit im Voraus reserviert werden kann.
     maxTageImVoraus: 90,
     // Heute nur Uhrzeiten, die mindestens so viele Minuten in der Zukunft liegen.
     vorlaufMinuten: 60,
-    // Ruhetage als Wochentag, 0 = Sonntag. Noch mit dem Restaurant klären.
-    ruhetage: [],
+    // Letzte Reservierung so viele Minuten vor Schluss.
+    letzteVorSchlussMinuten: 60,
+    // Abstand der wählbaren Uhrzeiten.
+    rasterMinuten: 30,
     telefon: "0421 43093028",
     telefonLink: "tel:+4942143093028",
   };
@@ -41,20 +55,43 @@
     return new Date(j, m - 1, t).toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long" });
   }
 
-  // Heute vergangene Uhrzeiten ausgrauen.
-  function uhrzeitenAktualisieren() {
-    const istHeute = datum.value === alsIsoDatum(new Date());
-    const grenze = new Date(Date.now() + EINSTELLUNGEN.vorlaufMinuten * 60000);
-    for (const option of uhrzeit.options) {
-      if (!option.value) continue;
-      const [h, min] = option.value.split(":").map(Number);
-      const zeit = new Date();
-      zeit.setHours(h, min, 0, 0);
-      option.disabled = istHeute && zeit < grenze;
-    }
-    if (uhrzeit.selectedOptions[0]?.disabled) uhrzeit.value = "";
+  const inMinuten = (hhmm) => {
+    const [h, m] = hhmm.split(":").map(Number);
+    return h * 60 + m;
+  };
+  const alsUhrzeit = (min) => `${String(Math.floor(min / 60)).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+
+  function wochentag(iso) {
+    const [j, m, t] = iso.split("-").map(Number);
+    return new Date(j, m - 1, t).getDay();
   }
 
+  // Wählbare Uhrzeiten für einen Tag, heute ohne die bereits vergangenen.
+  function uhrzeitenFuer(iso) {
+    const jetzt = new Date();
+    const grenze = iso === alsIsoDatum(jetzt) ? jetzt.getHours() * 60 + jetzt.getMinutes() + EINSTELLUNGEN.vorlaufMinuten : -1;
+    const zeiten = [];
+    for (const [von, bis] of OEFFNUNGSZEITEN[wochentag(iso)]) {
+      const letzte = inMinuten(bis) - EINSTELLUNGEN.letzteVorSchlussMinuten;
+      for (let min = inMinuten(von); min <= letzte; min += EINSTELLUNGEN.rasterMinuten) {
+        if (min >= grenze) zeiten.push(alsUhrzeit(min));
+      }
+    }
+    return zeiten;
+  }
+
+  function uhrzeitenAktualisieren() {
+    const vorher = uhrzeit.value;
+    const zeiten = datum.value ? uhrzeitenFuer(datum.value) : [];
+    const platzhalter = !datum.value
+      ? "Erst Datum wählen"
+      : zeiten.length ? "Bitte wählen" : "Geschlossen";
+    uhrzeit.replaceChildren(new Option(platzhalter, ""), ...zeiten.map((z) => new Option(z, z)));
+    uhrzeit.disabled = !zeiten.length;
+    if (zeiten.includes(vorher)) uhrzeit.value = vorher;
+  }
+
+  uhrzeitenAktualisieren();
   datum.addEventListener("change", uhrzeitenAktualisieren);
 
   form.addEventListener("change", (e) => {
@@ -71,14 +108,13 @@
       fehler.datum = "Das Datum liegt in der Vergangenheit.";
     } else if (werte.datum > datum.max) {
       fehler.datum = `Reservierungen sind bis zu ${EINSTELLUNGEN.maxTageImVoraus} Tage im Voraus möglich.`;
-    } else {
-      const [j, m, t] = werte.datum.split("-").map(Number);
-      if (EINSTELLUNGEN.ruhetage.includes(new Date(j, m - 1, t).getDay())) {
-        fehler.datum = "An diesem Tag haben wir geschlossen.";
-      }
+    } else if (!OEFFNUNGSZEITEN[wochentag(werte.datum)].length) {
+      fehler.datum = "Sonntags haben wir geschlossen. Wähl bitte einen anderen Tag.";
+    } else if (!uhrzeitenFuer(werte.datum).length) {
+      fehler.datum = "Für heute nehmen wir online keine Reservierungen mehr an. Ruf uns gern an.";
     }
 
-    if (!werte.uhrzeit) fehler.uhrzeit = "Wähl bitte eine Uhrzeit.";
+    if (!werte.uhrzeit && !fehler.datum) fehler.uhrzeit = "Wähl bitte eine Uhrzeit.";
     if (!werte.personen) fehler.personen = "Wähl bitte die Anzahl der Personen.";
 
     if (!werte.name || werte.name.trim().length < 2) fehler.name = "Gib bitte deinen Namen an.";
