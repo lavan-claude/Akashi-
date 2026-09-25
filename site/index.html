@@ -3,31 +3,124 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tisch reservieren – Akashi Japanese Restaurant &amp; Izakaya Bremen</title>
-  <meta name="description" content="Reservier deinen Tisch im Akashi, Japanese Restaurant &amp; Izakaya am Ludwig-Franzius-Platz in Bremen. Sushi, Ramen und Izakaya-Küche.">
+  <title>Akashi – Japanese Restaurant &amp; Izakaya in Bremen</title>
+  <meta name="description" content="Sushi, Ramen, Tonkatsu und Izakaya-Küche am Ludwig-Franzius-Platz in der Bremer Überseestadt. Vor Ort, zum Mitnehmen oder geliefert. Tisch online anfragen.">
   <meta name="theme-color" content="#15120f">
   <link rel="preload" href="fonts/shippori-mincho-800-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/zen-kaku-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/reservierung.js" defer></script>
+  <script src="js/hero.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#reservieren">Zur Reservierung springen</a>
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-  <header class="kopf">
+  <header class="kopf kopf--schwebend">
     <a class="marke" href="/" aria-label="Akashi – zur Startseite">
       <span class="marke__zeichen" aria-hidden="true">明石</span>
       <span class="marke__name">Akashi</span>
     </a>
-    <a class="kopf__telefon" href="tel:+4942143093028">0421 43093028</a>
+    <nav class="kopf__nav" aria-label="Hauptnavigation">
+      <a href="#akashi">Über uns</a>
+      <a href="#karte">Speisekarte</a>
+      <a class="kopf__knopf" href="#reservieren">Tisch reservieren</a>
+    </nav>
   </header>
 
   <main>
+    <!-- Hero: Die Bühne bleibt stehen, während man durch die hohe Sektion scrollt.
+         js/hero.js setzt dabei --fortschritt von 0 bis 1. -->
+    <section class="hero" aria-labelledby="hero-titel">
+      <div class="hero__buehne">
+        <svg class="hero__torii" viewBox="0 0 400 320" aria-hidden="true" focusable="false">
+          <path d="M18 46 Q200 16 382 46 L376 70 Q200 46 24 70 Z" />
+          <rect x="46" y="84" width="308" height="16" />
+          <rect x="92" y="62" width="24" height="258" />
+          <rect x="284" y="62" width="24" height="258" />
+          <rect x="190" y="70" width="20" height="30" />
+        </svg>
+        <!-- Standbild aus Kling. Fehlt die Datei, bleibt das gezeichnete Torii sichtbar. -->
+        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="2560" height="1440" fetchpriority="high" onerror="this.remove()">
+        <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
+        <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
+
+        <div class="hero__text">
+          <span class="hero__kanji" aria-hidden="true">明石</span>
+          <h1 id="hero-titel" class="hero__titel">Akashi</h1>
+          <p class="hero__unterzeile">Japanese Restaurant &amp; Izakaya in der Bremer Überseestadt</p>
+          <div class="hero__handlung">
+            <a class="knopf" href="#reservieren">Tisch reservieren</a>
+            <a class="hero__link" href="#karte">Zur Speisekarte</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="inhalt"></div>
+
+    <section class="akashi" id="akashi" aria-labelledby="akashi-titel">
+      <h2 id="akashi-titel" class="akashi__titel">Sushi, Ramen und die kleinen Teller einer Izakaya</h2>
+      <div class="akashi__text">
+        <p>
+          Im Akashi am Ludwig-Franzius-Platz bekommst du frisch zubereitetes Sushi und Sashimi,
+          kräftige Ramen, knuspriges Tonkatsu und die kleinen Gerichte einer Izakaya,
+          die man am Tisch miteinander teilt.
+        </p>
+        <p>
+          Du kannst bei uns sitzen bleiben, dein Essen mitnehmen oder es dir liefern lassen.
+        </p>
+      </div>
+      <ul class="akashi__arten">
+        <li><span class="akashi__art">Vor Ort</span> mittags und abends</li>
+        <li><span class="akashi__art">Zum Mitnehmen</span> direkt bei uns abholen</li>
+        <li><span class="akashi__art">Lieferung</span> kontaktlos nach Hause</li>
+      </ul>
+    </section>
+
+    <section class="karte" id="karte" aria-labelledby="karte-titel">
+      <div class="karte__kopf">
+        <h2 id="karte-titel" class="karte__titel">Aus unserer Karte</h2>
+        <p class="karte__text">Eine Auswahl. Die ganze Karte mit Preisen findest du in unserer Online-Bestellung.</p>
+      </div>
+      <ul class="karte__liste">
+        <li class="gericht">
+          <h3 class="gericht__name">Nigiri</h3>
+          <p class="gericht__text">Handgeformter Reis mit frischem Fisch, klassisch und schlicht.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Special Rolls</h3>
+          <p class="gericht__text">Unsere eigenen Rollen, dazu klassische und knusprige Maki.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Sashimi &amp; Yukke</h3>
+          <p class="gericht__text">Roher Fisch in feinen Scheiben und als gewürztes Tatar.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Ramen</h3>
+          <p class="gericht__text">Japanische Nudelsuppen in mehreren Varianten.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Rosu Katsu Menü</h3>
+          <p class="gericht__text">Tonkatsu vom Duroc-Schweinerücken, mit allen Beilagen.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Age Gyoza</h3>
+          <p class="gericht__text">Fünf knusprig gebratene Teigtaschen, vegetarisch oder mit Hähnchen.</p>
+        </li>
+        <li class="gericht">
+          <h3 class="gericht__name">Yakitori</h3>
+          <p class="gericht__text">Zwei Hähnchenspieße in hausgemachter Teriyaki-Sauce.</p>
+        </li>
+      </ul>
+      <!-- Adresse der Online-Bestellung mit dem Restaurant bestätigen. -->
+      <a class="karte__link" href="https://www.akashi-japanese-restaurant-izakaya-bremen.de/" rel="noopener">Ganze Speisekarte und online bestellen</a>
+    </section>
+
     <section class="reservieren" id="reservieren" aria-labelledby="reservieren-titel">
       <div class="reservieren__intro">
         <span class="reservieren__kanji" aria-hidden="true">予約</span>
-        <h1 id="reservieren-titel" class="reservieren__titel">Dein Tisch im Akashi</h1>
+        <h2 id="reservieren-titel" class="reservieren__titel">Dein Tisch im Akashi</h2>
         <p class="reservieren__text">
           Sag uns, wann du kommen möchtest und mit wie vielen Leuten.
           Wir prüfen die Anfrage und bestätigen dir den Tisch per E-Mail oder Telefon.
@@ -181,12 +274,18 @@
   </main>
 
   <footer class="fuss">
-    <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
-    <p>Ludwig-Franzius-Platz 13, 28217 Bremen<br><a href="tel:+4942143093028">0421 43093028</a></p>
-    <nav class="fuss__recht" aria-label="Rechtliches">
-      <a href="/impressum.html">Impressum</a>
-      <a href="/datenschutz.html">Datenschutz</a>
-    </nav>
+    <div class="fuss__spalte">
+      <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
+      <p>Ludwig-Franzius-Platz 13<br>28217 Bremen</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Ludwig-Franzius-Platz+13+28217+Bremen" rel="noopener">Route in Google Maps</a></p>
+    </div>
+    <div class="fuss__spalte">
+      <p><a href="tel:+4942143093028">0421 43093028</a><br><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></p>
+      <nav class="fuss__recht" aria-label="Rechtliches">
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

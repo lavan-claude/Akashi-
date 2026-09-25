@@ -58,6 +58,8 @@
   --shu-on-dark: #d8474c;   /* Torii-Rot für Text auf Schwarz (AA) */
   --sumi-hauch: rgb(21 18 15 / 0.06); /* Hover auf Papier */
   --shu-hauch: rgb(179 38 43 / 0.07); /* Hinweisfläche auf Papier */
+  --sumi-schleier: rgb(21 18 15 / 0.75); /* Verlauf hinter dem Kopf */
+  --nebel: rgb(238 235 229 / 0.10);      /* Nebel über dem Hero */
 
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;

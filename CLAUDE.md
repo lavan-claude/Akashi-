@@ -11,11 +11,13 @@ wie `mi-elevate`.
 
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
-  index.html          Seite mit Reservierung
+  index.html          Startseite: Hero, Über uns, Speisekarte, Reservierung
   danke.html          Bestätigung ohne JavaScript
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
+  js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
+  assets/hero/        Samurai-Bild aus Kling (samurai.jpg)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
@@ -60,6 +62,13 @@ den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
 Felder an n8n: `name`, `email`, `telefon`, `datum`, `uhrzeit`, `beginn`,
 `personen`, `grosse_gruppe`, `nachricht`, `quelle`, `einwilligung`. Änderungen
 müssen zum n8n-Workflow passen.
+
+## Inhalte
+
+- Nur belegte Angaben über das Restaurant. Keine erfundenen Details wie Tresen,
+  Herkunft des Kochs oder Auszeichnungen.
+- Speisekarte: Auswahl ohne Preise, die vollständige Karte liegt bei der
+  Online-Bestellung. Link in `index.html` mit dem Restaurant bestätigen.
 
 ## Arbeitsweise
 
