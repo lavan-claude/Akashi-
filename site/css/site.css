@@ -495,13 +495,18 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 
 .hero__bild,
+.hero__video,
 .hero__torii {
   position: absolute;
   z-index: 0;
   transform-origin: 70% 60%;
   transform: scale(calc(1.02 + var(--p) * 0.14)) translate3d(calc(var(--p) * -2%), calc(var(--p) * -3%), 0);
 }
-.hero__bild { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+.hero__bild,
+.hero__video { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+/* Das Video erscheint erst, wenn das erste Bild bereitsteht, sonst bleibt das Standbild. */
+.hero__video { opacity: 0; transition: opacity 400ms var(--ease-out); }
+.hero__video[data-bereit] { opacity: 1; }
 .hero__torii {
   right: 5vw;
   bottom: -2vh;
@@ -666,7 +671,8 @@ a[href^="tel:"] { white-space: nowrap; }
   .akashi__arten li { padding-bottom: var(--space-m); }
   .karte__liste { grid-template-columns: 1fr; }
   .hero__torii { right: -12vw; width: 90vw; opacity: 0.85; }
-  .hero__bild { object-position: 68% 50%; }
+  .hero__bild,
+  .hero__video { object-position: 68% 50%; }
 }
 
 /* Ohne Bewegung: Hero als ruhiges Bild, ohne Scroll-Effekt. */

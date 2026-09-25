@@ -17,7 +17,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
-  assets/hero/        Samurai-Bild aus Kling (samurai.jpg)
+  assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
@@ -62,6 +62,20 @@ den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
 Felder an n8n: `name`, `email`, `telefon`, `datum`, `uhrzeit`, `beginn`,
 `personen`, `grosse_gruppe`, `nachricht`, `quelle`, `einwilligung`. Änderungen
 müssen zum n8n-Workflow passen.
+
+## Hero-Video
+
+Das Video wird nicht abgespielt, sondern beim Scrollen vor- und zurückgespult
+(`js/hero.js`). Damit das flüssig läuft, braucht es in kurzen Abständen
+Schlüsselbilder und keinen Ton:
+
+```sh
+ffmpeg -i kling.mp4 -an -vf "scale=1600:-2" -c:v libx264 -crf 23 -g 6 \
+  -pix_fmt yuv420p -movflags +faststart site/assets/hero/samurai.mp4
+```
+
+Ziel: höchstens 4 MB. Das Standbild `samurai.jpg` ist zugleich das erste Bild
+des Videos und die Ansicht bei reduzierter Bewegung.
 
 ## Inhalte
 
