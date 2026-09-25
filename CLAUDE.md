@@ -17,11 +17,11 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
-netlify/functions/    Weiterleitung der Reservierung ans Restaurant-System
+netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
 ```
 
-Lokal ansehen: `npx netlify dev` (mit Formularen und Funktionen) oder
+Lokal ansehen: `npx netlify dev` (mit Serverfunktion) oder
 `npx serve site` (nur die Seite, Absenden schlägt dann fehl).
 
 ## Designsystem
@@ -42,10 +42,24 @@ Deutsch, **Du**-Form. Klar, gastfreundlich, keine Ausrufezeichen, keine Emojis.
 
 ## Reservierung
 
-Siehe `docs/reservierung-schnittstelle.md`. Felder des Formulars:
-`datum`, `uhrzeit`, `personen`, `name`, `telefon`, `email`, `nachricht`,
-`einwilligung`, `quelle`. Honigtopf `bot-field`. Änderungen an Feldern auch in
-`netlify/functions/submission-created.mjs` und in der Doku nachziehen.
+Aufgebaut wie das Kontaktformular von Leadflow, Details in
+`docs/reservierung-schnittstelle.md`. Das Formular ruft `/api/reservierung`
+auf (`netlify/functions/reservierung.mjs`), die Funktion reicht die Anfrage an
+den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
+
+- Adresse über die Umgebungsvariable `RESERVIERUNG_WEBHOOK_URL`. Ist sie nicht
+  gesetzt, greift die im Server-Code hinterlegte Adresse.
+- Prüfung von Hand in `validate()`, auch der Öffnungszeiten.
+- Honigtopf-Feld `website`: ausgefüllt heißt stillschweigend verwerfen, der
+  Absender sieht trotzdem die Bestätigung.
+- Ratenbegrenzung: höchstens fünf Anfragen je IP und Minute, im Arbeitsspeicher.
+- Fehlermeldungen der Funktion werden im Formular angezeigt.
+- Öffnungszeiten stehen in `site/js/reservierung.js` und in der Funktion und
+  müssen übereinstimmen.
+
+Felder an n8n: `name`, `email`, `telefon`, `datum`, `uhrzeit`, `beginn`,
+`personen`, `grosse_gruppe`, `nachricht`, `quelle`, `einwilligung`. Änderungen
+müssen zum n8n-Workflow passen.
 
 ## Arbeitsweise
 

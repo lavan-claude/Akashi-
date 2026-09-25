@@ -65,22 +65,18 @@
       </div>
 
       <div class="blatt">
-        <!-- Netlify Forms erkennt das Formular beim Deploy über data-netlify.
-             Weiterleitung an das Reservierungssystem: netlify/functions/submission-created.mjs -->
+        <!-- Geht an die Serverfunktion netlify/functions/reservierung.mjs,
+             die die Anfrage an den n8n-Workflow weiterreicht. -->
         <form
           class="formular"
           id="reservierung"
           name="reservierung"
           method="POST"
-          action="/danke.html"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
+          action="/api/reservierung"
           novalidate
         >
-          <input type="hidden" name="form-name" value="reservierung">
-          <input type="hidden" name="quelle" value="website">
           <p class="honigtopf" aria-hidden="true">
-            <label>Bitte leer lassen <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            <label>Website <input name="website" tabindex="-1" autocomplete="off"></label>
           </p>
 
           <fieldset class="gruppe">

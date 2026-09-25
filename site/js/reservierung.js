@@ -1,10 +1,12 @@
-// Reservierungsanfrage: Prüfung im Browser und Versand an Netlify Forms.
+// Reservierungsanfrage: Prüfung im Browser und Versand an die Serverfunktion
+// /api/reservierung, die sie an den n8n-Workflow weiterreicht.
 // Ohne JavaScript schickt das Formular klassisch ab und landet auf /danke.html.
 
 (function () {
   "use strict";
 
   // Öffnungszeiten je Wochentag, 0 = Sonntag. Leere Liste = geschlossen.
+  // Muss zu OEFFNUNGSZEITEN in netlify/functions/reservierung.mjs passen.
   // Stand: Angaben des Restaurants, September 2026.
   const OEFFNUNGSZEITEN = {
     0: [],
@@ -159,12 +161,13 @@
     knopf.textContent = "Wird gesendet";
 
     try {
-      const antwort = await fetch("/", {
+      const antwort = await fetch(form.action, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString(),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...werte, einwilligung: werte.einwilligung === "ja" }),
       });
-      if (!antwort.ok) throw new Error(String(antwort.status));
+      const ergebnis = await antwort.json().catch(() => ({}));
+      if (!antwort.ok || !ergebnis.ok) throw new Error(ergebnis.fehler || "");
 
       const personen = werte.personen === "9+" ? "9 oder mehr Personen" : werte.personen === "1" ? "1 Person" : `${werte.personen} Personen`;
       bestaetigungText.textContent =
@@ -173,10 +176,15 @@
       form.hidden = true;
       bestaetigung.hidden = false;
       bestaetigung.focus();
-    } catch {
-      status.innerHTML =
-        `Die Anfrage ist nicht bei uns angekommen. Versuch es gleich noch einmal oder ruf an unter ` +
-        `<a href="${EINSTELLUNGEN.telefonLink}">${EINSTELLUNGEN.telefon}</a>.`;
+    } catch (error) {
+      // Meldungen der Serverfunktion sind für Gäste geschrieben und werden direkt angezeigt.
+      if (error instanceof Error && error.message) {
+        status.textContent = error.message;
+      } else {
+        status.innerHTML =
+          `Die Anfrage ist nicht bei uns angekommen. Versuch es gleich noch einmal oder ruf an unter ` +
+          `<a href="${EINSTELLUNGEN.telefonLink}">${EINSTELLUNGEN.telefon}</a>.`;
+      }
       status.hidden = false;
       knopf.disabled = false;
       knopf.textContent = "Anfrage senden";
