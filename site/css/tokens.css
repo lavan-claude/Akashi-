@@ -1,0 +1,90 @@
+/* Designsystem Akashi – Tusche, Washi-Papier und das Rot der Torii.
+   Alle Farben, Schriften, Abstände und Radien nur hier festlegen. */
+
+@font-face {
+  font-family: "Shippori Mincho";
+  src: url("../fonts/shippori-mincho-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Shippori Mincho";
+  src: url("../fonts/shippori-mincho-800-latin.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+/* Nur die Zeichen 明石予約受付 – für Logo, Abschnittszeichen und Stempel.
+   Kanji immer in 800 setzen: ein Gewichtsbereich hier würde die lateinischen
+   Schnitte oben verdrängen. */
+@font-face {
+  font-family: "Shippori Mincho";
+  src: url("../fonts/shippori-mincho-800-kanji.woff2") format("woff2");
+  font-weight: 800;
+  font-display: block;
+  unicode-range: U+660E, U+77F3, U+4E88, U+7D04, U+53D7, U+4ED8;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: url("../fonts/zen-kaku-gothic-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: url("../fonts/zen-kaku-gothic-500-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: url("../fonts/zen-kaku-gothic-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* Farben */
+  --sumi: #15120f;          /* Tusche – Grundfläche */
+  --sumi-2: #221e1a;        /* Tusche, verdünnt – Flächen auf Schwarz */
+  --sumi-line: #3a342e;     /* Linien auf Schwarz */
+  --washi: #eeebe5;         /* Papier – Text auf Schwarz, Formularfläche */
+  --washi-line: #cbc4b8;    /* Linien auf Papier */
+  --sabi: #8f877c;          /* gedämpfter Text */
+  --sabi-on-paper: #6b645b; /* gedämpfter Text auf Papier (AA) */
+  --shu: #b3262b;           /* Torii-Rot – nur Handlung und Stempel */
+  --shu-deep: #8e1c21;      /* Torii-Rot, gedrückt */
+  --shu-on-dark: #d8474c;   /* Torii-Rot für Text auf Schwarz (AA) */
+  --sumi-hauch: rgb(21 18 15 / 0.06); /* Hover auf Papier */
+  --shu-hauch: rgb(179 38 43 / 0.07); /* Hinweisfläche auf Papier */
+
+  /* Schrift */
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.35rem + 1.2vw, 2.25rem);
+  --step-3: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+
+  /* Abstände */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: clamp(4rem, 3rem + 5vw, 8rem);
+
+  /* Radien – bewusst fast eckig, wie Papier und Holz */
+  --radius-s: 2px;
+  --radius-m: 4px;
+  --radius-round: 999px;
+
+  --shadow-paper: 0 1px 0 rgb(21 18 15 / 0.35), 0 24px 60px -24px rgb(0 0 0 / 0.6);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --measure: 62ch;
+}

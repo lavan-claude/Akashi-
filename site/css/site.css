@@ -1,0 +1,389 @@
+/* Grundlagen */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--sumi);
+  color: var(--washi);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: var(--shu-on-dark); }
+a[href^="tel:"] { white-space: nowrap; }
+
+:focus-visible {
+  outline: 2px solid var(--shu-on-dark);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: var(--space-s);
+  top: -100px;
+  padding: var(--space-xs) var(--space-s);
+  background: var(--washi);
+  color: var(--sumi);
+  z-index: 10;
+}
+.skip:focus { top: var(--space-s); }
+
+/* Kopf */
+.kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding: var(--space-m) clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--sumi-line);
+}
+
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+}
+.marke__zeichen {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--shu);
+  color: var(--washi);
+  border-radius: var(--radius-s);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.marke__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  letter-spacing: 0.02em;
+}
+
+.kopf__telefon {
+  font-size: var(--step--1);
+  color: var(--sabi);
+  text-decoration: none;
+}
+.kopf__telefon:hover { color: var(--washi); }
+
+/* Reservierung */
+.reservieren {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--space-2xl) clamp(1rem, 4vw, 3rem);
+}
+
+.reservieren__intro {
+  position: sticky;
+  top: var(--space-l);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-m);
+}
+
+/* Das Kanji steht senkrecht wie auf einem Holzschild neben dem Torii. */
+.reservieren__kanji {
+  grid-row: 1 / span 3;
+  writing-mode: vertical-rl;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  line-height: 1;
+  color: var(--shu-on-dark);
+  padding-left: var(--space-s);
+  border-left: 3px solid var(--shu);
+}
+
+.reservieren__titel {
+  margin: 0 0 var(--space-m);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-3);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.reservieren__text {
+  margin: 0 0 var(--space-l);
+  max-width: 38ch;
+  color: var(--washi);
+  opacity: 0.82;
+}
+
+.fakten {
+  margin: 0;
+  display: grid;
+  gap: var(--space-m);
+  border-top: 1px solid var(--sumi-line);
+  padding-top: var(--space-m);
+}
+.fakten dt {
+  font-size: var(--step--1);
+  color: var(--sabi);
+  margin-bottom: 0.15rem;
+}
+.fakten dd { margin: 0; max-width: 34ch; }
+
+/* Das Blatt: Formular auf Washi-Papier */
+.blatt {
+  position: relative;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+    var(--washi);
+  color: var(--sumi);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-paper);
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  color-scheme: light;
+}
+
+.formular { display: grid; gap: var(--space-l); }
+.formular[hidden] { display: none; }
+
+.gruppe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: grid;
+  gap: var(--space-m);
+}
+.gruppe__titel {
+  padding: 0;
+  margin-bottom: var(--space-s);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+}
+
+.reihe {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+}
+
+.feld { display: grid; gap: var(--space-2xs); align-content: start; }
+.feld label { font-weight: 500; font-size: var(--step--1); }
+.optional { font-weight: 400; color: var(--sabi-on-paper); }
+
+.feld input,
+.feld select,
+.feld textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--sumi);
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid var(--washi-line);
+  border-radius: 0;
+  padding: var(--space-xs) 0;
+  min-height: 2.9rem;
+  transition: border-color 160ms var(--ease-out);
+}
+.feld textarea { resize: vertical; min-height: 5.5rem; line-height: 1.5; }
+.feld select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--sumi) 50%), linear-gradient(135deg, var(--sumi) 50%, transparent 50%); background-position: calc(100% - 10px) 55%, calc(100% - 5px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 1.5rem; }
+.feld input::placeholder,
+.feld textarea::placeholder { color: var(--sabi-on-paper); opacity: 1; }
+
+.feld input:hover,
+.feld select:hover,
+.feld textarea:hover { border-bottom-color: var(--sabi-on-paper); }
+
+.feld input:focus-visible,
+.feld select:focus-visible,
+.feld textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--sumi);
+  box-shadow: 0 1.5px 0 0 var(--sumi);
+}
+
+.feld [aria-invalid="true"] { border-bottom-color: var(--shu); }
+
+.feld__hilfe { margin: 0; font-size: var(--step--1); color: var(--sabi-on-paper); }
+.feld__fehler { margin: 0; font-size: var(--step--1); color: var(--shu-deep); font-weight: 500; }
+
+/* Personen als Reihe von Holzplättchen */
+.personen {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  border: 1.5px solid var(--sumi);
+  border-radius: var(--radius-s);
+}
+.personen label { position: relative; }
+.personen label + label { border-left: 1px solid var(--washi-line); }
+.personen input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.personen span {
+  display: grid;
+  place-items: center;
+  min-height: 2.9rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+}
+.personen label:hover span { background: var(--sumi-hauch); }
+.personen input:checked + span { background: var(--sumi); color: var(--washi); }
+.personen input:focus-visible + span { outline: 2px solid var(--shu); outline-offset: -4px; }
+
+.hinweis {
+  margin: 0;
+  padding-left: var(--space-s);
+  border-left: 3px solid var(--shu);
+  font-size: var(--step--1);
+  max-width: var(--measure);
+}
+
+.feld--check {
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-xs);
+  align-items: start;
+}
+.feld--check input {
+  width: 1.2rem;
+  height: 1.2rem;
+  min-height: 0;
+  margin: 0.2rem 0 0;
+  accent-color: var(--sumi);
+}
+.feld--check label { font-weight: 400; line-height: 1.5; }
+.feld--check .feld__fehler { grid-column: 2; }
+
+.absenden {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+}
+.absenden__hinweis { margin: 0; font-size: var(--step--1); color: var(--sabi-on-paper); }
+
+.knopf {
+  font: inherit;
+  font-weight: 700;
+  color: var(--washi);
+  background: var(--shu);
+  border: 0;
+  border-radius: var(--radius-s);
+  padding: 0.95rem 1.9rem;
+  min-height: 3.1rem;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.knopf:hover { background: var(--shu-deep); }
+.knopf:active { transform: translateY(1px); }
+.knopf:focus-visible { outline: 2px solid var(--sumi); outline-offset: 3px; }
+.knopf[disabled] { cursor: progress; opacity: 0.7; }
+
+.status {
+  margin: 0;
+  padding: var(--space-s);
+  border-left: 3px solid var(--shu);
+  background: var(--shu-hauch);
+}
+.status a { font-weight: 700; }
+
+.honigtopf {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Bestätigung mit Stempel */
+.bestaetigung { display: grid; justify-items: start; gap: var(--space-s); outline: none; }
+.bestaetigung[hidden] { display: none; }
+
+.stempel {
+  display: inline-grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-bottom: var(--space-s);
+  border: 3px solid var(--shu);
+  border-radius: var(--radius-m);
+  color: var(--shu);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  transform: rotate(-6deg);
+}
+.bestaetigung__titel {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-2);
+  line-height: 1.15;
+}
+.bestaetigung__text { margin: 0; max-width: var(--measure); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bestaetigung:not([hidden]) .stempel {
+    animation: stempeln 420ms var(--ease-out) both;
+  }
+  @keyframes stempeln {
+    from { opacity: 0; transform: rotate(-6deg) scale(1.35); }
+    60% { opacity: 1; }
+    to { opacity: 1; transform: rotate(-6deg) scale(1); }
+  }
+}
+
+/* Fuß */
+.fuss {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: var(--space-xl) clamp(1rem, 4vw, 3rem);
+  border-top: 1px solid var(--sumi-line);
+  color: var(--sabi);
+  font-size: var(--step--1);
+}
+.fuss p { margin: 0; }
+.fuss__name { color: var(--washi); font-family: var(--font-display); font-weight: 700; font-size: var(--step-0); }
+.fuss__recht { display: flex; gap: var(--space-m); margin-top: var(--space-s); }
+
+/* Schmale Bildschirme */
+@media (max-width: 52rem) {
+  .reservieren { grid-template-columns: 1fr; padding-top: var(--space-xl); }
+  .reservieren__intro { position: static; }
+  .reservieren__kanji { grid-row: 1 / span 2; }
+  .fakten { grid-column: 1 / -1; margin-top: var(--space-s); }
+}
+
+@media (max-width: 34rem) {
+  .reihe { grid-template-columns: 1fr; }
+  .personen { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .personen label:nth-child(6) { border-left: 0; }
+  .personen label:nth-child(n + 6) { border-top: 1px solid var(--washi-line); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

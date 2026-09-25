@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tisch reservieren – Akashi Japanese Restaurant &amp; Izakaya Bremen</title>
+  <meta name="description" content="Reservier deinen Tisch im Akashi, Japanese Restaurant &amp; Izakaya am Ludwig-Franzius-Platz in Bremen. Sushi, Ramen und Izakaya-Küche.">
+  <meta name="theme-color" content="#15120f">
+  <link rel="preload" href="fonts/shippori-mincho-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/zen-kaku-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/reservierung.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#reservieren">Zur Reservierung springen</a>
+
+  <header class="kopf">
+    <a class="marke" href="/" aria-label="Akashi – zur Startseite">
+      <span class="marke__zeichen" aria-hidden="true">明石</span>
+      <span class="marke__name">Akashi</span>
+    </a>
+    <a class="kopf__telefon" href="tel:+4942143093028">0421 43093028</a>
+  </header>
+
+  <main>
+    <section class="reservieren" id="reservieren" aria-labelledby="reservieren-titel">
+      <div class="reservieren__intro">
+        <span class="reservieren__kanji" aria-hidden="true">予約</span>
+        <h1 id="reservieren-titel" class="reservieren__titel">Dein Tisch im Akashi</h1>
+        <p class="reservieren__text">
+          Sag uns, wann du kommen möchtest und mit wie vielen Leuten.
+          Wir prüfen die Anfrage und bestätigen dir den Tisch per E-Mail oder Telefon.
+        </p>
+
+        <dl class="fakten">
+          <div>
+            <dt>Adresse</dt>
+            <dd>Ludwig-Franzius-Platz 13<br>28217 Bremen</dd>
+          </div>
+          <div>
+            <dt>Telefon</dt>
+            <dd><a href="tel:+4942143093028">0421 43093028</a></dd>
+          </div>
+          <div>
+            <dt>Gruppen ab 9 Personen</dt>
+            <dd>Ruf uns am besten direkt an, dann planen wir den Abend gemeinsam.</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="blatt">
+        <!-- Netlify Forms erkennt das Formular beim Deploy über data-netlify.
+             Weiterleitung an das Reservierungssystem: netlify/functions/submission-created.mjs -->
+        <form
+          class="formular"
+          id="reservierung"
+          name="reservierung"
+          method="POST"
+          action="/danke.html"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          novalidate
+        >
+          <input type="hidden" name="form-name" value="reservierung">
+          <input type="hidden" name="quelle" value="website">
+          <p class="honigtopf" aria-hidden="true">
+            <label>Bitte leer lassen <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+
+          <fieldset class="gruppe">
+            <legend class="gruppe__titel">Wann</legend>
+            <div class="reihe">
+              <div class="feld">
+                <label for="datum">Datum</label>
+                <input id="datum" name="datum" type="date" required aria-describedby="datum-fehler">
+                <p class="feld__fehler" id="datum-fehler" hidden></p>
+              </div>
+              <div class="feld">
+                <label for="uhrzeit">Uhrzeit</label>
+                <!-- Zeiten an die Öffnungszeiten anpassen. Letzte Reservierung 90 Minuten vor Küchenschluss. -->
+                <select id="uhrzeit" name="uhrzeit" required aria-describedby="uhrzeit-fehler">
+                  <option value="">Bitte wählen</option>
+                  <option>11:30</option><option>12:00</option><option>12:30</option>
+                  <option>13:00</option><option>13:30</option><option>14:00</option>
+                  <option>17:00</option><option>17:30</option><option>18:00</option>
+                  <option>18:30</option><option>19:00</option><option>19:30</option>
+                  <option>20:00</option><option>20:30</option><option>21:00</option>
+                  <option>21:30</option><option>22:00</option>
+                </select>
+                <p class="feld__fehler" id="uhrzeit-fehler" hidden></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="gruppe" aria-describedby="personen-fehler">
+            <legend class="gruppe__titel">Wie viele Personen</legend>
+            <div class="personen">
+              <label><input type="radio" name="personen" value="1" required><span>1</span></label>
+              <label><input type="radio" name="personen" value="2" checked><span>2</span></label>
+              <label><input type="radio" name="personen" value="3"><span>3</span></label>
+              <label><input type="radio" name="personen" value="4"><span>4</span></label>
+              <label><input type="radio" name="personen" value="5"><span>5</span></label>
+              <label><input type="radio" name="personen" value="6"><span>6</span></label>
+              <label><input type="radio" name="personen" value="7"><span>7</span></label>
+              <label><input type="radio" name="personen" value="8"><span>8</span></label>
+              <label><input type="radio" name="personen" value="9+"><span>9+</span></label>
+            </div>
+            <p class="hinweis" id="gruppen-hinweis" hidden>
+              Für größere Gruppen stimmen wir Tisch und Menü gern mit dir ab. Schreib uns unten, was ihr vorhabt,
+              oder ruf an unter <a href="tel:+4942143093028">0421 43093028</a>.
+            </p>
+            <p class="feld__fehler" id="personen-fehler" hidden></p>
+          </fieldset>
+
+          <fieldset class="gruppe">
+            <legend class="gruppe__titel">Wer reserviert</legend>
+            <div class="feld">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" aria-describedby="name-fehler">
+              <p class="feld__fehler" id="name-fehler" hidden></p>
+            </div>
+            <div class="reihe">
+              <div class="feld">
+                <label for="telefon">Telefon</label>
+                <input id="telefon" name="telefon" type="tel" autocomplete="tel" required maxlength="30" aria-describedby="telefon-hilfe telefon-fehler">
+                <p class="feld__hilfe" id="telefon-hilfe">Falls wir kurzfristig Rückfragen haben.</p>
+                <p class="feld__fehler" id="telefon-fehler" hidden></p>
+              </div>
+              <div class="feld">
+                <label for="email">E-Mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" required maxlength="120" aria-describedby="email-fehler">
+                <p class="feld__fehler" id="email-fehler" hidden></p>
+              </div>
+            </div>
+            <div class="feld">
+              <label for="nachricht">Anmerkungen <span class="optional">optional</span></label>
+              <textarea id="nachricht" name="nachricht" rows="3" maxlength="1000" placeholder="Allergien, Kinderstuhl, Anlass, Platzwunsch"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="feld feld--check">
+            <input id="einwilligung" name="einwilligung" type="checkbox" value="ja" required aria-describedby="einwilligung-fehler">
+            <label for="einwilligung">
+              Ich bin einverstanden, dass das Akashi meine Angaben speichert, um die Reservierung zu bearbeiten.
+              Mehr dazu in der <a href="/datenschutz.html">Datenschutzerklärung</a>.
+            </label>
+            <p class="feld__fehler" id="einwilligung-fehler" hidden></p>
+          </div>
+
+          <div class="absenden">
+            <button class="knopf" type="submit">Anfrage senden</button>
+            <p class="absenden__hinweis">Die Reservierung gilt, sobald wir sie bestätigt haben.</p>
+          </div>
+
+          <p class="status" id="formular-status" role="alert" hidden></p>
+        </form>
+
+        <div class="bestaetigung" id="bestaetigung" tabindex="-1" hidden>
+          <span class="stempel" aria-hidden="true">受付</span>
+          <h2 class="bestaetigung__titel">Deine Anfrage ist angekommen</h2>
+          <p class="bestaetigung__text" id="bestaetigung-text">
+            Wir melden uns mit der Bestätigung per E-Mail oder Telefon.
+          </p>
+          <p class="bestaetigung__text">
+            Etwas ändern? Ruf uns an unter <a href="tel:+4942143093028">0421 43093028</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fuss">
+    <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
+    <p>Ludwig-Franzius-Platz 13, 28217 Bremen<br><a href="tel:+4942143093028">0421 43093028</a></p>
+    <nav class="fuss__recht" aria-label="Rechtliches">
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </nav>
+  </footer>
+</body>
+</html>
