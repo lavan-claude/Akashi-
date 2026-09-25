@@ -24,7 +24,7 @@ Netlify Forms, der Fehler steht im Funktions-Log.
 ## Einrichten in Netlify
 
 1. **E-Mail ans Restaurant:** Site configuration → Forms → Form notifications →
-   Add notification → Email notification, Formular `reservierung`.
+   Add notification → Email notification an `info@akashi-bremen.de`, Formular `reservierung`.
 2. **Weiterleitung ans System:** Site configuration → Environment variables →
    `RESERVIERUNG_WEBHOOK_URL` setzen, optional `RESERVIERUNG_WEBHOOK_SECRET`.
 3. Neu deployen, damit die Variablen greifen.
@@ -56,20 +56,24 @@ Netlify Forms, der Fehler steht im Funktions-Log.
   `X-Akashi-Signatur: sha256=<HMAC-SHA256 des Rohinhalts, hex>`. Das Ziel
   kann damit prüfen, dass die Anfrage wirklich von der Website kommt.
 
-## Anbindung an eatbu
+## Anbindung an eatbu oder FoodAmigos
 
-Das Akashi nutzt laut seinem Online-Auftritt eatbu (`akashi.eatbu.com`).
-Ob eatbu eine offene Schnittstelle oder einen Webhook-Eingang anbietet, ist
-noch offen. Die Antwort bestimmt den Weg:
+Im Umfeld des Akashi tauchen zwei Systeme auf. Unter `akashi.eatbu.com` gibt
+es eine Buchungsseite von eatbu. Die bisherige Website nennt in ihrer
+Datenschutzerklärung FoodAmigos (Foodamigos GmbH, Bonn) als Partner für
+Online-Bestellungen. Welches System die Reservierungen tatsächlich führt und ob
+es eine offene Schnittstelle oder einen Webhook-Eingang hat, ist noch offen.
+Die Antwort bestimmt den Weg:
 
-| eatbu bietet | Umsetzung |
+| Das System bietet | Umsetzung |
 |---|---|
-| API zum Anlegen von Reservierungen | n8n-Workflow nimmt das JSON oben an und ruft die eatbu-API auf. `RESERVIERUNG_WEBHOOK_URL` zeigt auf den n8n-Webhook. |
+| API zum Anlegen von Reservierungen | n8n-Workflow nimmt das JSON oben an und ruft die API des Systems auf. `RESERVIERUNG_WEBHOOK_URL` zeigt auf den n8n-Webhook. |
 | Nur E-Mail-Eingang für Anfragen | E-Mail-Benachrichtigung aus Netlify Forms an diese Adresse schicken. |
-| Nichts davon | Anfragen kommen per E-Mail. Zusätzlich kann auf der Seite ein Link zur eatbu-Buchung stehen. |
+| Nichts davon | Anfragen kommen per E-Mail. Zusätzlich kann auf der Seite ein Link zur Online-Buchung stehen. |
 
-Fragen an das Restaurant bzw. an den eatbu-Support:
+Fragen an das Restaurant bzw. an den Support des Systems:
+0. Werden Reservierungen über eatbu, FoodAmigos oder etwas anderes verwaltet?
 1. Gibt es eine API oder Schnittstelle, um Reservierungen von außen anzulegen?
 2. Gibt es ein einbettbares Buchungs-Widget?
-3. An welche E-Mail-Adresse sollen Anfragen gehen?
+3. Sollen Anfragen an info@akashi-bremen.de gehen oder an eine andere Adresse?
 4. Öffnungszeiten, Ruhetag, Küchenschluss, ab wann Gruppen anrufen sollen?
