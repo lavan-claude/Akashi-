@@ -1578,3 +1578,78 @@ section[id],
   .kopf__knopf:hover::before,
   .kopf__knopf:focus-visible::before { opacity: 1; }
 }
+
+/* ── Handy und Tablet: kompakt, der Samurai bleibt sichtbar ─────────────────
+   Das Video steht oben frei, der Name überlappt seinen unteren Rand. */
+@media (max-width: 60rem) {
+  .hero__bild,
+  .hero__video,
+  .hero__torii { inset: 0 0 auto 0; height: 64svh; }
+  .hero__video,
+  .hero__bild { object-position: 68% 40%; }
+  .hero__buehne::after {
+    background: linear-gradient(to bottom,
+      var(--sumi-schleier) 0, transparent 7rem,
+      transparent 30svh, var(--sumi) 62svh, var(--sumi) 100%);
+  }
+  .hero__raster { padding-top: 42svh; }
+}
+
+@media (max-width: 34rem) {
+  /* Abstände: Abschnitte atmen, aber ohne 128 px Luft */
+  .kapitel { padding-block: 3.25rem; gap: var(--space-l); }
+  .karte { padding-top: 3.25rem; }
+  .reservieren { padding-block: 3.25rem; gap: var(--space-l); }
+
+  /* Hero */
+  .hero__raster { padding-bottom: 2.5rem; gap: var(--space-m); }
+  .hero__kicker { margin-bottom: var(--space-xs); }
+  .hero__kicker::before { display: none; }
+  .hero__kicker { font-size: 0.66rem; letter-spacing: 0.14em; white-space: nowrap; }
+  .hero__unterzeile { margin-block: var(--space-s) var(--space-m); font-size: var(--step--1); }
+  .hero__handlung { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs); }
+  .hero__handlung .knopf { padding-inline: 0.8rem; font-size: 0.92rem; }
+  .hero__handlung .knopf span[aria-hidden] { display: none; }
+  .hero__merk { flex-direction: row; gap: var(--space-2xs) var(--space-s); margin-top: var(--space-m); font-size: 0.78rem; }
+  .hero__merk span { gap: var(--space-s); }
+  .hero__merk span + span::before { display: inline-block; }
+  .hero__bildseite { display: none; }
+
+  /* Über uns: flacheres Bild */
+  .ueber__bild img { aspect-ratio: 16 / 10; }
+  .eckdaten { gap: var(--space-m); margin-top: var(--space-m); }
+
+  /* Izakaya: Sonne als kleines Siegel oben rechts */
+  .izakaya { position: relative; }
+  .izakaya .kapitel__titel { padding-right: 5.5rem; }
+  .emblem { position: absolute; top: 3rem; right: clamp(1rem, 4vw, 3rem); width: 5rem; animation: none; }
+  .emblem__sonne { box-shadow: 0 0 0 1px var(--sumi-line), 0 0 0 0.4rem var(--sumi), 0 0 0 calc(0.4rem + 1px) var(--sumi-line); }
+  .emblem__zeichen { font-size: 1.3rem; }
+  .wege { margin-top: var(--space-m); }
+  .wege li { padding-block: var(--space-xs); }
+
+  /* Standort: ohne doppeltes Foto, Knöpfe nebeneinander, flache Karte */
+  .standort__bild { display: none; }
+  .standort .kapitel__titel { margin-bottom: var(--space-s); }
+  .wochenzeiten th,
+  .wochenzeiten td { padding-block: 0.45rem; }
+  .standort__links { margin-bottom: var(--space-m); }
+  .standort__knoepfe { display: grid; grid-template-columns: 1fr 1fr; }
+  .standort__knoepfe .knopf { padding-inline: 0.8rem; font-size: 0.92rem; text-align: center; }
+  .standort__karte { height: 11rem; }
+
+  /* Speisekarte */
+  .kapitel.karte .karte__kopf { margin-bottom: var(--space-m); }
+  .karte__weiter .knopf { width: 100%; text-align: center; }
+
+  /* Bilderleiste: drei kleine Bilder in einer Reihe */
+  .leiste { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .leiste figure:first-child { grid-column: auto; }
+  .leiste figure { height: 8.5rem; }
+  .leiste img { height: 100%; margin-top: 0; animation: none; }
+
+  /* Reservierung: Kontakt in zwei Spalten */
+  .fakten { grid-template-columns: 1fr 1fr; gap: var(--space-s) var(--space-m); }
+  .fakten > div:last-child { grid-column: 1 / -1; }
+  .reservieren__text { margin-bottom: var(--space-m); }
+}
