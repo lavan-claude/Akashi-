@@ -491,7 +491,8 @@ a[href^="tel:"] { white-space: nowrap; }
   z-index: 3;
   pointer-events: none;
   background: var(--sumi);
-  opacity: calc(var(--p) * 0.85);
+  /* Erst wenn das Video durch ist (ab 85 % Scrollweg), blendet die Bühne ab. */
+  opacity: calc(max(0, (var(--p) - 0.85) / 0.15) * 0.9);
 }
 
 .hero__bild,

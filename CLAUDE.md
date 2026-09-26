@@ -17,7 +17,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
-  assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 (Video)
+  assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
@@ -74,8 +74,20 @@ ffmpeg -i kling.mp4 -an -vf "scale=1600:-2" -c:v libx264 -crf 23 -g 6 \
   -pix_fmt yuv420p -movflags +faststart site/assets/hero/samurai.mp4
 ```
 
-Ziel: höchstens 4 MB. Das Standbild `samurai.jpg` ist zugleich das erste Bild
-des Videos und die Ansicht bei reduzierter Bewegung.
+Dazu eine WebM-Fassung für Chrome und Firefox:
+
+```sh
+ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
+  site/assets/hero/samurai.webm
+```
+
+Ziel: höchstens 4 MB. Das Standbild `samurai.jpg` ist das erste Bild des Videos
+und zugleich die Ansicht bei reduzierter Bewegung. Das Video ist bei 85 %
+Scrollweg zu Ende, danach blendet die Bühne ab.
+
+Das aktuelle Video trägt das Kling-Wasserzeichen (kostenloses Konto). Vor
+Livegang durch die Fassung ohne Wasserzeichen ersetzen und die
+Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
 
 ## Inhalte
 

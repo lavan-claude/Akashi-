@@ -41,11 +41,12 @@
           <rect x="190" y="70" width="20" height="30" />
         </svg>
         <!-- Standbild aus Kling. Fehlt die Datei, bleibt das gezeichnete Torii sichtbar. -->
-        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="2560" height="1440" fetchpriority="high" onerror="this.remove()">
+        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="1276" height="720" fetchpriority="high" onerror="this.remove()">
         <!-- Video aus Kling, läuft mit dem Scrollen vor und zurück (js/hero.js).
              Fehlt es, bleibt das Standbild. -->
         <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-          <source src="assets/hero/samurai.mp4" type="video/mp4" onerror="this.parentElement.remove()">
+          <source src="assets/hero/samurai.mp4" type="video/mp4">
+          <source src="assets/hero/samurai.webm" type="video/webm" onerror="this.parentElement.remove()">
         </video>
         <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
         <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>

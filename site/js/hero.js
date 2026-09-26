@@ -12,6 +12,7 @@
   const video = hero?.querySelector(".hero__video");
   const ruhig = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  const VIDEO_ENDE = 0.85;
   let fortschritt = 0;
   let videoZeit = 0;
   let geplant = false;
@@ -28,7 +29,8 @@
   function spulen() {
     spultGerade = false;
     if (!video || !video.duration || ruhig.matches) return;
-    const ziel = fortschritt * (video.duration - 0.05);
+    // Das Video ist bei 85 % Scrollweg zu Ende, der Rest gehört dem Abblenden.
+    const ziel = Math.min(1, fortschritt / VIDEO_ENDE) * (video.duration - 0.05);
     videoZeit += (ziel - videoZeit) * 0.18;
     if (Math.abs(ziel - videoZeit) < 0.005) videoZeit = ziel;
     if (Math.abs(video.currentTime - videoZeit) > 1 / 60) video.currentTime = videoZeit;
