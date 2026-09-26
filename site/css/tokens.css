@@ -73,6 +73,16 @@
   --matcha: #9bb07a;        /* Kennzeichnung vegetarisch auf Schwarz (AA) */
   --matcha-auf-papier: #4d6630; /* Kennzeichnung vegetarisch auf Papier (AA) */
 
+  /* Katana-Scheide in der Navigation */
+  --urushi: #0e0a08;        /* schwarzer Lack der Scheide */
+  --urushi-hell: #3b2620;   /* roter Lackschimmer */
+  --urushi-glanz: rgb(255 240 225 / 0.16); /* Lichtkante auf dem Lack */
+  --same: #cfc6b6;          /* Rochenhaut unter der Griffwicklung */
+  --kin: #b8955a;           /* Messing: Stichblatt, Endkappe */
+  --kin-dunkel: #6e5530;
+  --hagane: #dfe3e6;        /* Stahl der Klinge */
+  --hagane-dunkel: #7d858c;
+
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
   --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;

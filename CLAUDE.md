@@ -11,19 +11,24 @@ wie `mi-elevate`.
 
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
-  index.html          Startseite: Hero, Über uns, Speisekarte, Reservierung
+  index.html          Startseite: Hero, Über uns, Karten-Kacheln, Bilderleiste, Reservierung, Anfahrt
+  speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie
   danke.html          Bestätigung ohne JavaScript
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
+  js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
+  js/anfahrt.js       lädt Google Maps erst nach Klick (Datenschutz)
+  assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
+  assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
   assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
 daten/                speisekarte.json
-tools/                speisekarte.py erzeugt die Karte in index.html
+tools/                speisekarte.py erzeugt Karte und Kacheln
 ```
 
 Lokal ansehen: `npx netlify dev` (mit Serverfunktion) oder
@@ -46,6 +51,11 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
   mit Tuschestrich). Texte bleiben Deutsch. Nur echtes Japanisch, kein
   vereinfachtes Chinesisch. Die Schriftdatei enthält nur die verwendeten
   Zeichen; neue Zeichen erst in `fonts/yuji-boku-pinsel.woff2` aufnehmen.
+
+- Navigation liegt auf einer Katana-Scheide (`.saya`): Griff, Stichblatt,
+  Kordel, Endkappe sind reine CSS-Zierde, Farben dafür in `tokens.css`
+  (`--urushi`, `--kin`, `--hagane`). Beim Überfahren wird das Schwert gezogen.
+- Hero-Name: 明石 als Pinselzug, „Akashi“ in Mincho, roter Hanko-Stempel.
 
 ## Sprache und Ton
 
@@ -91,7 +101,12 @@ ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
   site/assets/hero/samurai.webm
 ```
 
-Ziel: höchstens 4 MB. Das Standbild `samurai.jpg` ist das erste Bild des Videos
+Ziel: höchstens 4 MB.
+
+Das Original aus Kling liegt nicht im Repo. Die aktuelle Fassung (1920 × 1080,
+Stand 26.09.2026) ist aus der alten 1276er-Datei hochgerechnet, entrauscht
+(`hqdn3d`, `gradfun`) und nachgeschärft (`cas`). Mit dem Original als Quelle
+wird sie noch einmal deutlich besser. Das Standbild `samurai.jpg` ist das erste Bild des Videos
 und zugleich die Ansicht bei reduzierter Bewegung. Das Video ist bei 85 %
 Scrollweg zu Ende, danach blendet die Bühne ab.
 
@@ -103,10 +118,10 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
 
 - Nur belegte Angaben über das Restaurant. Keine erfundenen Details wie Tresen,
   Herkunft des Kochs oder Auszeichnungen.
-- Speisekarte: vollständig auf der Seite, Quelle ist die Karte des Restaurants
-  (Stand September 2026). Daten in `daten/speisekarte.json`, das HTML erzeugt
-  `python3 tools/speisekarte.py` zwischen den Markierungen `KARTE:START` und
-  `KARTE:ENDE` in `index.html`. Nie das erzeugte HTML von Hand ändern.
+- Speisekarte: vollständig auf `speisekarte.html`, Quelle ist die Karte des Restaurants
+  (Stand September 2026). Daten in `daten/speisekarte.json`. `python3 tools/speisekarte.py` erzeugt
+  die ganze Karte in `speisekarte.html` (`KARTE:START`/`KARTE:ENDE`) und die
+  Kacheln in `index.html` (`KACHELN:START`/`KACHELN:ENDE`). Nie das erzeugte HTML von Hand ändern.
 
 ## Arbeitsweise
 

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Erzeugt die Speisekarte in site/index.html aus daten/speisekarte.json.
+"""Erzeugt die Speisekarte aus daten/speisekarte.json.
 
 Aufruf nach jeder Änderung an der Karte:  python3 tools/speisekarte.py
-Das Skript ersetzt alles zwischen <!-- KARTE:START --> und <!-- KARTE:ENDE -->.
+- site/speisekarte.html: die ganze Karte zwischen <!-- KARTE:START --> und <!-- KARTE:ENDE -->
+- site/index.html: die Kacheln zwischen <!-- KACHELN:START --> und <!-- KACHELN:ENDE -->
 """
 import html
 import json
@@ -10,8 +11,10 @@ from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
 DATEN = WURZEL / "daten" / "speisekarte.json"
-SEITE = WURZEL / "site" / "index.html"
+SEITE = WURZEL / "site" / "speisekarte.html"
 START, ENDE = "<!-- KARTE:START -->", "<!-- KARTE:ENDE -->"
+STARTSEITE = WURZEL / "site" / "index.html"
+K_START, K_ENDE = "<!-- KACHELN:START -->", "<!-- KACHELN:ENDE -->"
 
 
 def e(text):
@@ -78,6 +81,27 @@ def kategorie(k):
     return "\n".join(teile)
 
 
+def kacheln(karte):
+    """Kacheln der Startseite, jede führt zur Kategorie auf der Kartenseite."""
+    zeilen = [K_START, '<ol class="kacheln">']
+    for i, k in enumerate(karte["kategorien"]):
+        zeilen.append(
+            f'  <li class="aufdeck" style="--i: {i}"><a class="kachel" href="speisekarte.html#karte-{k["id"]}">'
+            f'<span class="kachel__nr">{i + 1:02d}</span>'
+            f'<span class="kachel__kanji" aria-hidden="true">{e(k["kanji"])}</span>'
+            f'<span class="kachel__name">{e(k["kategorie"])}</span>'
+            f'<span class="kachel__zahl">{len(k["gerichte"])} Gerichte</span></a></li>'
+        )
+    zeilen += ["</ol>", K_ENDE]
+    return "\n".join(zeilen)
+
+
+def ersetzen(datei, start, ende, block):
+    seite = datei.read_text(encoding="utf-8")
+    a, b = seite.index(start), seite.index(ende) + len(ende)
+    datei.write_text(seite[:a] + block + seite[b:], encoding="utf-8")
+
+
 def main():
     karte = json.loads(DATEN.read_text(encoding="utf-8"))
     nav = "".join(
@@ -94,9 +118,8 @@ def main():
             ENDE,
         ]
     )
-    seite = SEITE.read_text(encoding="utf-8")
-    a, b = seite.index(START), seite.index(ENDE) + len(ENDE)
-    SEITE.write_text(seite[:a] + block + seite[b:], encoding="utf-8")
+    ersetzen(SEITE, START, ENDE, block)
+    ersetzen(STARTSEITE, K_START, K_ENDE, kacheln(karte))
     anzahl = sum(len(k["gerichte"]) for k in karte["kategorien"])
     print(f"Speisekarte geschrieben: {len(karte['kategorien'])} Kategorien, {anzahl} Positionen")
 

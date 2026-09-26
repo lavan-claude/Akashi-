@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="de">
 <head>
+  <script>document.documentElement.classList.add("js")</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Akashi – Japanese Restaurant &amp; Izakaya in Bremen</title>
@@ -12,26 +13,33 @@
   <link rel="stylesheet" href="css/site.css">
   <script src="js/reservierung.js" defer></script>
   <script src="js/hero.js" defer></script>
-  <script src="js/karte.js" defer></script>
+  <script src="js/anfahrt.js" defer></script>
+  <script src="js/aufdecken.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-  <header class="kopf kopf--schwebend">
+  <header class="kopf kopf--schwebend kopf--mitte">
     <a class="marke" href="/" aria-label="Akashi – zur Startseite">
-      <span class="marke__zeichen" aria-hidden="true">明石</span>
-      <span class="marke__name">Akashi</span>
+      <img class="marke__logo" src="/assets/logo/akashi-logo.webp" width="420" height="166" alt="">
     </a>
-    <nav class="kopf__nav" aria-label="Hauptnavigation">
+    <!-- Navigation auf einer Katana-Scheide: Griff, Stichblatt, Kordel, Endkappe sind Zierde. -->
+    <nav class="kopf__nav saya" aria-label="Hauptnavigation">
+      <span class="saya__tsuka" aria-hidden="true"></span>
+      <span class="saya__tsuba" aria-hidden="true"></span>
+      <span class="saya__sageo" aria-hidden="true"></span>
       <a href="#akashi">Über uns</a>
-      <a href="#karte">Speisekarte</a>
-      <a class="kopf__knopf" href="#reservieren">Tisch reservieren</a>
+      <a href="speisekarte.html">Speisekarte</a>
+      <a href="#anfahrt">Anfahrt</a>
+      <span class="saya__kojiri" aria-hidden="true"></span>
     </nav>
+    <a class="kopf__knopf" href="#reservieren">Tisch reservieren</a>
   </header>
 
   <main>
-    <!-- Hero: Die Bühne bleibt stehen, während man durch die hohe Sektion scrollt.
-         js/hero.js setzt dabei --fortschritt von 0 bis 1. -->
+    <!-- Hero: Samurai-Video über die ganze Breite, Text links, Karten rechts.
+         Die Bühne bleibt stehen, während man durch die hohe Sektion scrollt;
+         js/hero.js setzt dabei --fortschritt von 0 bis 1 und spult das Video. -->
     <section class="hero" aria-labelledby="hero-titel">
       <div class="hero__buehne">
         <svg class="hero__torii" viewBox="0 0 400 320" aria-hidden="true" focusable="false">
@@ -42,7 +50,7 @@
           <rect x="190" y="70" width="20" height="30" />
         </svg>
         <!-- Standbild aus Kling. Fehlt die Datei, bleibt das gezeichnete Torii sichtbar. -->
-        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="1276" height="720" fetchpriority="high" onerror="this.remove()">
+        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="1920" height="1080" fetchpriority="high" onerror="this.remove()">
         <!-- Video aus Kling, läuft mit dem Scrollen vor und zurück (js/hero.js).
              Fehlt es, bleibt das Standbild. -->
         <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture>
@@ -52,15 +60,63 @@
         <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
         <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
 
-        <div class="hero__text">
-          <span class="hero__kanji pinsel" aria-hidden="true">明石</span>
-          <h1 id="hero-titel" class="hero__titel">Akashi</h1>
-          <p class="hero__unterzeile">Japanese Restaurant &amp; Izakaya in der Bremer Überseestadt</p>
-          <div class="hero__handlung">
-            <a class="knopf" href="#reservieren">Tisch reservieren</a>
-            <a class="hero__link" href="#karte">Zur Speisekarte</a>
+        <div class="hero__raster">
+          <div class="hero__text">
+            <p class="hero__zeile">
+              <span class="hero__pille"><span class="hero__punkt" aria-hidden="true"></span>Japanese Restaurant &amp; Izakaya</span>
+              <span class="hero__stempel" aria-hidden="true">寿司</span>
+            </p>
+            <h1 id="hero-titel" class="hero__name">
+              <span class="hero__pinsel" aria-hidden="true">明石</span>
+              <span class="hero__schrift">Akashi</span>
+              <span class="hanko" aria-hidden="true">明石</span>
+            </h1>
+            <p class="hero__bedeutung"><span lang="ja">明石</span> heißt „heller Stein“. Sushi, Ramen und Izakaya in der Überseestadt.</p>
+            <p class="hero__unterzeile">
+              Frisch zubereitetes Sushi und Sashimi, kräftige Ramen und die kleinen Teller
+              einer Izakaya, am Ludwig-Franzius-Platz in Bremen.
+            </p>
+            <div class="hero__handlung">
+              <a class="knopf knopf--pfeil" href="#reservieren">Tisch reservieren <span aria-hidden="true">→</span></a>
+              <a class="knopf knopf--hell" href="speisekarte.html">Zur Speisekarte <span aria-hidden="true">↗</span></a>
+            </div>
+            <ul class="hero__merk">
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M14 2.5 10 11M20 3.5 13 11"/></svg></span>
+                <span><strong>Vor Ort</strong>mittags und abends</span>
+              </li>
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+                <span><strong>Abholung &amp; Lieferung</strong>direkt bei uns bestellt</span>
+              </li>
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg></span>
+                <span><strong>4,7 bei Google</strong>aus 367 Bewertungen</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero__bildseite">
+            <span class="hero__schild pinsel" aria-hidden="true">居酒屋</span>
+
+            <ul class="hero__karten">
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12c3.2-5 10.3-5 14 0-3.7 5-10.8 5-14 0Z"/><path d="m16.5 12 5-3.5v7Z"/><circle cx="7.5" cy="11.2" r=".6"/></svg></span>
+                <span><strong>Sushi &amp; Sashimi</strong>frisch zubereitet</span>
+              </li>
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M8 7.5c0-1.5 1.5-1.5 1.5-3M12 7.5c0-1.5 1.5-1.5 1.5-3M16 7.5c0-1.5 1.5-1.5 1.5-3"/></svg></span>
+                <span><strong>Ramen</strong>fünf Sorten, auch vegan</span>
+              </li>
+              <li>
+                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Z"/><path d="M9 9h6M9 13h6"/></svg></span>
+                <span><strong>72 Gerichte</strong>auf der ganzen Karte</span>
+              </li>
+            </ul>
           </div>
         </div>
+
+        <a class="hero__runter" href="#inhalt"><span class="hero__maus" aria-hidden="true"></span>Weiter</a>
       </div>
     </section>
 
@@ -70,8 +126,8 @@
     <div class="papier">
     <section class="akashi" id="akashi" aria-labelledby="akashi-titel">
       <span class="pinsel akashi__pinsel" aria-hidden="true">居酒屋</span>
-      <h2 id="akashi-titel" class="akashi__titel">Sushi, Ramen und die kleinen Teller einer Izakaya</h2>
-      <div class="akashi__text">
+      <h2 id="akashi-titel" class="akashi__titel aufdeck">Sushi, Ramen und die kleinen Teller einer Izakaya</h2>
+      <div class="akashi__text aufdeck">
         <p>
           Im Akashi am Ludwig-Franzius-Platz bekommst du frisch zubereitetes Sushi und Sashimi,
           kräftige Ramen, knuspriges Tonkatsu und die kleinen Gerichte einer Izakaya,
@@ -81,640 +137,45 @@
           Du kannst bei uns sitzen bleiben, dein Essen mitnehmen oder es dir liefern lassen.
         </p>
       </div>
-      <ul class="akashi__arten">
+      <ul class="akashi__arten aufdeck">
         <li><span class="akashi__art">Vor Ort</span> mittags und abends</li>
         <li><span class="akashi__art">Zum Mitnehmen</span> direkt bei uns abholen</li>
         <li><span class="akashi__art">Lieferung</span> kontaktlos nach Hause</li>
       </ul>
     </section>
 
-    <section class="karte" id="karte" aria-labelledby="karte-titel">
-      <div class="karte__kopf">
+    <section class="karte karte--start" id="karte" aria-labelledby="karte-titel">
+      <div class="karte__kopf aufdeck">
         <span class="pinsel karte__pinsel" aria-hidden="true">お品書き</span>
         <h2 id="karte-titel" class="karte__titel">Speisekarte</h2>
-        <p class="karte__text">Vor Ort, zum Mitnehmen oder geliefert. Fragen zu Zutaten und Allergenen beantworten wir dir gern.</p>
+        <p class="karte__text">72 Gerichte in 8 Kategorien, vor Ort, zum Mitnehmen oder geliefert. Wähl eine Kategorie, die ganze Karte öffnet sich an der passenden Stelle.</p>
       </div>
       <!-- Wird von tools/speisekarte.py aus daten/speisekarte.json erzeugt. Nicht von Hand ändern. -->
-<!-- KARTE:START -->
-<nav class="karte__nav" aria-label="Kategorien der Speisekarte">
-  <ul class="karte__nav-liste"><li><a href="#karte-starter">Starter &amp; Beilagen</a></li><li><a href="#karte-sashimi">Sashimi</a></li><li><a href="#karte-uramaki">Uramaki Rolls</a></li><li><a href="#karte-maki">Maki &amp; Crispy</a></li><li><a href="#karte-sets">Sushi Sets</a></li><li><a href="#karte-ramen">Ramen</a></li><li><a href="#karte-tonkatsu">Tonkatsu Menü</a></li><li><a href="#karte-curry">Japanisches Curry</a></li></ul>
-</nav>
-<section class="kategorie" id="karte-starter" aria-labelledby="karte-starter-titel">
-  <span class="kategorie__kanji" aria-hidden="true">前菜</span>
-  <h3 class="kategorie__titel" id="karte-starter-titel">Starter &amp; Beilagen</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S1</span>Edamame</h4>
-        <p class="gericht__preis"><data value="8.5">8,50</data></p>
-      </div>
-      <p class="gericht__text">Grüne Sojabohnen, gesalzen, proteinreich &amp; gesund</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S2</span>Spicy Edamame</h4>
-        <p class="gericht__preis"><data value="9.5">9,50</data></p>
-      </div>
-      <p class="gericht__text">Grüne Sojabohnen, proteinreich &amp; gesund mit Chiliknoblauch gebraten</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S3</span>Wakame</h4>
-        <p class="gericht__preis"><data value="5.5">5,50</data></p>
-      </div>
-      <p class="gericht__text">Japanischer Beilage-Algensalat</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S4</span>Kleine jap. Suppe</h4>
-        <p class="gericht__preis"><data value="4.5">4,50</data></p>
-      </div>
-      <p class="gericht__text">Mit Alge &amp; japanischem Tofu</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S5</span>Japanischer Tofu</h4>
-        <p class="gericht__preis"><data value="9.5">9,50</data></p>
-      </div>
-      <p class="gericht__text">Mit Röstzwiebeln angegrillt</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S6</span>Pommes</h4>
-        <p class="gericht__preis"><data value="5.5">5,50</data></p>
-      </div>
-      <p class="gericht__text">Wasabi-Würzung separat und jap. Mayonnaise</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S7</span>Yasai Tempura</h4>
-        <p class="gericht__preis"><data value="10.5">10,50</data></p>
-      </div>
-      <p class="gericht__text">Lotuswurzel, Süßkartoffel, Karotte, Blumenkohl und rote Paprika in feinem Tempura-Teig. Gemüse kann variieren</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S8</span>Spicy Kappa Salat</h4>
-        <p class="gericht__preis"><data value="8.5">8,50</data></p>
-      </div>
-      <p class="gericht__text">Leicht scharfer Gurkensalat mit Wakame-Alge</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S9</span>Gyoza</h4>
-        <p class="gericht__preis"><data value="7.5">7,50</data></p>
-      </div>
-      <p class="gericht__text">Knusprige, gefüllte Teigtaschen mit Ponzu Dip</p>
-      <p class="gericht__optionen">Huhn oder Gemüse</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">auch vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S10</span>Sashimi</h4>
-        <p class="gericht__preis"><data value="15.5">15,50</data></p>
-      </div>
-      <p class="gericht__text">Sashimi, original geschnitten (dick), etwa 5 Scheiben je nach Größe</p>
-      <p class="gericht__optionen">Lachs oder japanischer Thunfisch (+2,0)</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S11</span>Japanese Yukke</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Sashimi gewürfelt mit Avocado und Charlotten an scharfer Marinade</p>
-      <p class="gericht__optionen">Lachs oder japanischer Thunfisch (+3,0)</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S12</span>Oyster Fry</h4>
-        <p class="gericht__preis"><data value="9.5">9,50</data></p>
-      </div>
-      <p class="gericht__text">In Japan beliebte Zubereitung von vier Austern im Tempuramantel mit japanischer Mayonnaise und Kohlbeilage</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S13</span>Yakitori Spieße</h4>
-        <p class="gericht__preis"><data value="7.5">7,50</data></p>
-      </div>
-      <p class="gericht__text">Zwei gegrillte Hähnchenspieße, japanische Mayonnaise, Teriyakisauce und Sesam mit Kohlbeilage</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S14</span>Karaage Chicken</h4>
-        <p class="gericht__preis"><data value="8.5">8,50</data></p>
-      </div>
-      <p class="gericht__text">Vier saftige Hähnchenbällchen in Panade mit jap. Mayonnaise</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S15</span>Geso Kara</h4>
-        <p class="gericht__preis"><data value="9.5">9,50</data></p>
-      </div>
-      <p class="gericht__text">Panierte Tintenfischtentakeln mit japanischer Mayonnaise</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">S16</span>Ebi Tempura</h4>
-        <p class="gericht__preis"><data value="9.5">9,50</data></p>
-      </div>
-      <p class="gericht__text">Drei Garnelen im Tempura Mantel mit jap. Mayonnaise und Kohlbeilage</p>
-    </li>
-  </ul>
-</section>
-<section class="kategorie" id="karte-sashimi" aria-labelledby="karte-sashimi-titel">
-  <span class="kategorie__kanji" aria-hidden="true">刺身</span>
-  <h3 class="kategorie__titel" id="karte-sashimi-titel">Sashimi</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Maguro Sashimi</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Japanische Art, 5–6 Scheiben je nach Schnitt</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Sake Sashimi</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Japanische Art, 5–6 Scheiben je nach Schnitt</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Spicy Maguro Yukke</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Japanische Art, mit Avocado und Charlotten</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Spicy Sake Yukke</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Japanische Art, mit Avocado und Charlotten</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-  </ul>
-</section>
-<section class="kategorie" id="karte-uramaki" aria-labelledby="karte-uramaki-titel">
-  <span class="kategorie__kanji" aria-hidden="true">巻き寿司</span>
-  <h3 class="kategorie__titel" id="karte-uramaki-titel">Uramaki Rolls</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q1</span>Sake-Avo Roll</h4>
-        <p class="gericht__preis"><data value="15.5">15,50</data></p>
-      </div>
-      <p class="gericht__text">Zarter Lachs und Avocado belegt mit Sesam und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q2</span>Dragon Roll</h4>
-        <p class="gericht__preis"><data value="18.5">18,50</data></p>
-      </div>
-      <p class="gericht__text">Ebi-Tempura Garnelen und Avocado, belegt mit flambiertem Lachs, Sesam, jap. Mayonnaise und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q3</span>Creamy Sake-Kappa Roll</h4>
-        <p class="gericht__preis"><data value="15.5">15,50</data></p>
-      </div>
-      <p class="gericht__text">Zarter Lachs, Gurke und Frischkäse belegt mit Sesam und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q4</span>Philadelphia Roll</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Avocado, Gurke und Frischkäse vollständig belegt mit zartem Lachs und Sesam</p>
-      <p class="gericht__optionen">Optional: Vegetarisch</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q5</span>Tobiko Sake-Kappa Roll</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Zarter Lachs, Gurke und Frischkäse belegt mit Tobiko, Sesam und Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q6</span>Crazy California Roll</h4>
-        <p class="gericht__preis"><data value="18.5">18,50</data></p>
-      </div>
-      <p class="gericht__text">Surimi-Tempura, Gurke und Avocado belegt mit zartem Lachs, Tobiko, Chillimayonnaise und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q7</span>Crispy Chicken Roll</h4>
-        <p class="gericht__preis"><data value="14.5">14,50</data></p>
-      </div>
-      <p class="gericht__text">Karaage crispy Chicken, Avocado und Charlotten mit Sesam, Röstzwiebeln, jap. Mayonnaise und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q8</span>Ebi-Tempura Roll</h4>
-        <p class="gericht__preis"><data value="14.5">14,50</data></p>
-      </div>
-      <p class="gericht__text">Ebi-Tempura Garnelen und Avocado mit Sesam und hausgemachter Teriyakisauce</p>
-      <p class="gericht__optionen">Tobiko Topping +1,5</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q9</span>Surf and Turf Roll</h4>
-        <p class="gericht__preis"><data value="18.5">18,50</data></p>
-      </div>
-      <p class="gericht__text">Ebi-Tempura Garnelen, Avocado und Charlotten belegt mit feinem, flambiertem Rindfleisch, Tobiko, Sesam und BBQ-Sauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q10</span>Unagi-Dragon Roll</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Ebi-Tempura Garnelen und Avocado, belegt mit flambiertem Aal, Sesam, BBQ-Sauce und japanischer Mayonnaise</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q11</span>Softshell-Crab Roll</h4>
-        <p class="gericht__preis"><data value="17.5">17,50</data></p>
-      </div>
-      <p class="gericht__text">Softshell-Krabbe, Frischkäse, Avocado und Charlotten mit Tobiko, Sesam, Chillimayonnaise und hausgemachter Teriyakisauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q12</span>Spicy Maguro-Avo Roll</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Zarter, jap. Tuna, scharfe Sauce und Avocado belegt mit Sesam</p>
-      <p class="gericht__optionen">Nicht scharf, Tobiko Topping 1,5</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Q13</span>Unagi-Avo Roll</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Aal, Avocado, Gurke, Charlotten belegt mit Sesam und BBQ-Sauce</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">V1</span>Lotus Roll</h4>
-        <p class="gericht__preis"><data value="12.5">12,50</data></p>
-      </div>
-      <p class="gericht__text">Lotuswurzel belegt mit Wakame und Sesam</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">V2</span>Sweet Potato Roll</h4>
-        <p class="gericht__preis"><data value="14.5">14,50</data></p>
-      </div>
-      <p class="gericht__text">Gebackene Süßkartoffel und Avocado belegt mit Sesam und jap. Chillimayonnaise</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">V3</span>Tamago Roll</h4>
-        <p class="gericht__preis"><data value="14.5">14,50</data></p>
-      </div>
-      <p class="gericht__text">Japanisches Omelett und Avocado belegt mit Sesam, Röstzwiebeln, jap. Avo-Mayonnaise und hausgemachter Teriyakisauce</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">V4</span>Yasai Tempura Roll</h4>
-        <p class="gericht__preis"><data value="14.5">14,50</data></p>
-      </div>
-      <p class="gericht__text">Verschiedenes Gemüse in Tempura mit Sesam, Röstzwiebeln, jap. Avo-Mayonnaise und Teriyakisauce</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-  </ul>
-  <p class="kategorie__hinweis">Alle Rollen und Maki sind 8 Stück. 4 Stück nur im Set oder auf Nachfrage. Unsere Sushi werden mit passenden Zutaten wie Chillifäden, Sesam oder Kresse verziert.</p>
-</section>
-<section class="kategorie" id="karte-maki" aria-labelledby="karte-maki-titel">
-  <span class="kategorie__kanji" aria-hidden="true">巻き寿司</span>
-  <h3 class="kategorie__titel" id="karte-maki-titel">Maki &amp; Crispy</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C1</span>Sake Maki</h4>
-        <p class="gericht__preis"><data value="7.5">7,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki mit zartem Lachs</p>
-      <p class="gericht__optionen">Crispy Sake Maki +1,0</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C2</span>Tekka Maki</h4>
-        <p class="gericht__preis"><data value="8.5">8,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki mit jap. Thunfisch</p>
-      <p class="gericht__optionen">Crispy Tekka Maki +1,0</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C3</span>Big Crispy Chicken Maki</h4>
-        <p class="gericht__preis"><data value="10.5">10,50</data></p>
-      </div>
-      <p class="gericht__text">Chicken und Avocado in Crispy-Fry Panade, groß gerollt</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C4</span>Ebi-Tempura Maki</h4>
-        <p class="gericht__preis"><data value="8.5">8,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki mit Ebi-Tempura</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C5</span>Surimi Maki</h4>
-        <p class="gericht__preis"><data value="6.5">6,50</data></p>
-      </div>
-      <p class="gericht__text">Maki mit Surimi</p>
-      <p class="gericht__optionen">Crispy Surimi Maki +1,0</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C6</span>Avocado Maki</h4>
-        <p class="gericht__preis"><data value="6.5">6,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki mit Avocado</p>
-      <p class="gericht__optionen">Crispy Avocado Maki +1,0</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C7</span>Tamago Maki</h4>
-        <p class="gericht__preis"><data value="6.5">6,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki jap. Omelett</p>
-      <p class="gericht__optionen">Crispy Tamago Maki +1,0</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C8</span>Kappa Maki</h4>
-        <p class="gericht__preis"><data value="5.5">5,50</data></p>
-      </div>
-      <p class="gericht__text">Klassische Maki mit Gurke</p>
-      <p class="gericht__optionen">Crispy Kappa Maki +1,0</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">C9</span>Crispy Lotus Maki</h4>
-        <p class="gericht__preis"><data value="7.5">7,50</data></p>
-      </div>
-      <p class="gericht__text">Crispy Maki mit Lotus</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-  </ul>
-</section>
-<section class="kategorie" id="karte-sets" aria-labelledby="karte-sets-titel">
-  <span class="kategorie__kanji" aria-hidden="true">寿司</span>
-  <h3 class="kategorie__titel" id="karte-sets-titel">Sushi Sets</h3>
-  <p class="kategorie__intro">Die Sets sind für 2 Personen. Weitere Sushi können hinzugefügt werden. Die Sushi-Sets sind auf beliebig viele Personen erweiterbar. Nennt uns hierzu nur eure Personenanzahl.</p>
-  <ul class="kategorie__liste kategorie__liste--sets">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 1</span>Umi-Dragon</h4>
-        <p class="gericht__preis"><data value="62">62,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Dragon Roll</li><li>4x Softshell Roll</li><li>4x Ebi Tempura Roll</li><li>4x Sake Avo Roll</li><li>4x Crispy Sake Maki</li><li>4x Ebi Tempura Maki</li><li>Spicy Maguro Yukke</li></ul>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--beliebt">sehr beliebt</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 2</span>Creamy-Crisp</h4>
-        <p class="gericht__preis"><data value="52">52,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Creamy Sake-Kappa Roll</li><li>4x Sake Avo Roll</li><li>4x Philadelphia Roll</li><li>4x Crispy Chicken Roll</li><li>4x Tobiko Ebi Tempura Roll</li><li>4x Ebi Tempura Maki</li><li>4x Crispy Sake Maki</li></ul>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 3</span>Fish n’Crab</h4>
-        <p class="gericht__preis"><data value="62">62,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Softshell Roll</li><li>4x Dragon Roll</li><li>4x Tobiko Sake-Kappa Roll</li><li>4x Sake-Avo Roll</li><li>4x Sake Maki</li><li>1x Maguro Nigiri</li><li>Spicy Maguro Yukke</li></ul>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 4</span>Umi-Ushi Fire</h4>
-        <p class="gericht__preis"><data value="58">58,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Surf and Turf Roll</li><li>4x Dragon Roll</li><li>4x Philadelphia Roll</li><li>4x Creamy Sake-Kappa Roll</li><li>4x Sake Maki</li><li>Spicy Maguro Yukke</li></ul>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 5</span>Plant-Based</h4>
-        <p class="gericht__preis"><data value="42">42,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Sweet Potato Roll</li><li>4x Tamago Roll</li><li>4x Yasai Tempura Roll</li><li>4x Veg. Philadelphia Roll</li><li>8x Crispy Avocado Maki</li><li>8x Kappa Maki</li></ul>
-      <p class="gericht__optionen">Auch vegan verfügbar</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 6</span>Rollercoaster</h4>
-        <p class="gericht__preis"><data value="64">64,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Tobiko-Maguro-Avo Roll</li><li>4x Spicy Maguro-Avo Roll</li><li>4x Surf and Turf Roll</li><li>4x Dragon Roll</li><li>4x Creamy Sake-Kappa Roll</li><li>Spicy Maguro Yukke</li></ul>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 7</span>Akashi Basic</h4>
-        <p class="gericht__preis"><data value="56">56,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>8x Dragon Roll</li><li>4x Sake Avo Roll</li><li>4x Crispy Chicken Roll</li><li>8x Crispy Sake Maki</li><li>8x Big Crispy-Chicken Maki</li></ul>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--beliebt">sehr beliebt</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">Set 8</span>Crispy-Lover</h4>
-        <p class="gericht__preis"><data value="50">50,00</data></p>
-      </div>
-      <ul class="gericht__liste"><li>4x Ebi-Tempura Roll</li><li>4x Softshell Roll</li><li>8x Crispy Chicken Roll</li><li>8x Crispy Sake Maki</li><li>8x Big Crispy-Chicken Maki</li></ul>
-      <p class="gericht__optionen">Kein roher Fisch</p>
-    </li>
-  </ul>
-  <p class="kategorie__hinweis">Ihr wollt euch überraschen lassen? Variation der Sushi-Küche 28–34 € pro Person. Vorspeise bei Bedarf bitte separat bestellen.</p>
-</section>
-<section class="kategorie" id="karte-ramen" aria-labelledby="karte-ramen-titel">
-  <span class="kategorie__kanji" aria-hidden="true">ラーメン</span>
-  <h3 class="kategorie__titel" id="karte-ramen-titel">Ramen</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">R1</span>Naruto Tonkotsu Ramen</h4>
-        <p class="gericht__preis"><data value="17.5">17,50</data></p>
-      </div>
-      <p class="gericht__text">Original Schweineknochen Brühe mit Cha-Shu (Schweinebauch), Narutomaki, weichem Ei, Bambus, Black Mu-Err Pilz und Lauchzwiebeln</p>
-      <p class="gericht__optionen">Crispy Chicken statt ChaShu +1,5</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">R2</span>Spicy Tantanmen</h4>
-        <p class="gericht__preis"><data value="17.5">17,50</data></p>
-      </div>
-      <p class="gericht__text">Scharfe Miso-Chicken Brühe mit Sesampaste, gehacktem Hühnerfleisch, Komatsuna (oder ähnl. Blattspinat), Bambus, weichem Ei und Lauchzwiebeln</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">R3</span>Teriyaki Chicken Ramen</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Miso-Chicken Brühe mit Teriyaki-Chicken, jap. Komatsuna (oder ähnl. Blattspinat), weichem Ei, Mais und Lauchzwiebeln</p>
-      <p class="gericht__optionen">Crispy Chicken statt Teriyaki Chicken +1,5</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">R4</span>Vegan Miso Ramen</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Miso Brühe mit japanischem Tofu, Komatsuna (oder ähnl. Blattspinat), Bambus, Mais, Black Mu-Err Pilz</p>
-      <p class="gericht__optionen">Weiches Ei</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">R5</span>Vegan Spicy Tantanmen</h4>
-        <p class="gericht__preis"><data value="16.5">16,50</data></p>
-      </div>
-      <p class="gericht__text">Scharfe Miso Brühe mit Sesampaste, japanischem Tofu, Komatsuna (oder ähnl. Blattspinat), Bambus und Lauchzwiebeln</p>
-      <p class="gericht__optionen">Weiches Ei</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span><span class="merkmal merkmal--scharf">scharf</span></p>
-    </li>
-  </ul>
-</section>
-<section class="kategorie" id="karte-tonkatsu" aria-labelledby="karte-tonkatsu-titel">
-  <span class="kategorie__kanji" aria-hidden="true">とんかつ</span>
-  <h3 class="kategorie__titel" id="karte-tonkatsu-titel">Tonkatsu Menü</h3>
-  <p class="kategorie__intro">Das Tonkatsu original aus Japan. Ein Schnitzel nach japanischer Art, serviert auf einem Holztablett. Inklusive: eine Schale Reis mit Wasabi Furikake (jap. Reiswürzung), eine kleine Miso Suppe, ein Kartoffelsalat nach japanischer Art, eine Kohlbeilage mit jap. Dressing, Tonkatsu Sauce (oder andere, je nach Menü) und gerösteter Sesam im Suribachi Mörser.</p>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T1</span>Rosu Katsu Original Menu</h4>
-        <p class="gericht__preis"><data value="27.5">27,50</data></p>
-      </div>
-      <p class="gericht__text">100 % Duroc Schweinerücken, inklusive aller Beilagen. Das saftige Schweinerücken-Tonkatsu zeichnet sich durch seine hohe Fleischqualität aus. Das Duroc-Schwein zählt zu den ältesten und edelsten Schweinerassen weltweit und sticht durch den zarten Geschmack des Fleisches hervor.</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T2</span>Torikatsu Menu</h4>
-        <p class="gericht__preis"><data value="25.5">25,50</data></p>
-      </div>
-      <p class="gericht__text">Hähnchenfilet Katsu, inklusive aller Beilagen. Zartes Hähnchenbrustfilet in Halal-Qualität, lange eingelegt in hausgem. Marinade</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T3</span>Yasai Tempura Menu</h4>
-        <p class="gericht__preis"><data value="22.5">22,50</data></p>
-      </div>
-      <p class="gericht__text">Japanischer Tofu, Lotuswurzel, Süßkartoffel, Karotte, wechselndes Gemüse in feinem Tempura-Teig, inklusive aller Beilagen</p>
-      <p class="gericht__optionen">Vegan: Wakame statt Kartoffelsalat</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T4</span>Tamago Katsu Menu</h4>
-        <p class="gericht__preis"><data value="22.5">22,50</data></p>
-      </div>
-      <p class="gericht__text">3 japanische Omelett-Würfel im Tempura-Mantel, inklusive aller Beilagen</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T5</span>Karaage Menu</h4>
-        <p class="gericht__preis"><data value="21.5">21,50</data></p>
-      </div>
-      <p class="gericht__text">Frittierte Hähnchenbällchen eingelegt in hausgem. Marinade mit jap. Mayonnaise, inklusive aller Beilagen</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T6</span>Salmon Katsu Menu</h4>
-        <p class="gericht__preis"><data value="27.5">27,50</data></p>
-      </div>
-      <p class="gericht__text">Frischer, norwegischer Lachs zart zubereitet mit hausgemachter Teriyakisauce und Remoulade, inklusive aller Beilagen</p>
-      <p class="gericht__optionen">Bitte wählen: Katsu oder gegrillt</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name"><span class="gericht__nr">T7</span>Unagi Katsu Menu</h4>
-        <p class="gericht__preis"><data value="25.5">25,50</data></p>
-      </div>
-      <p class="gericht__text">Aal aus japanischem Wildfang als Stück mit japanischer Aal-Sauce und BBQ Sauce, inklusive aller Beilagen</p>
-      <p class="gericht__optionen">Bitte wählen: Katsu oder gegrillt, Doppelte Portion Aal 37,5</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Pommes</h4>
-        <p class="gericht__preis"><data value="4.5">4,50</data></p>
-      </div>
-      <p class="gericht__text">Optionale Beilage. Dip: japanische Mayonnaise</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-  </ul>
-  <p class="kategorie__hinweis">Optional: Pommes statt Kartoffelsalat und Reis, kostenfrei.</p>
-</section>
-<section class="kategorie" id="karte-curry" aria-labelledby="karte-curry-titel">
-  <span class="kategorie__kanji" aria-hidden="true">カレー</span>
-  <h3 class="kategorie__titel" id="karte-curry-titel">Japanisches Curry</h3>
-  <ul class="kategorie__liste">
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Rosu Katsukaré</h4>
-        <p class="gericht__preis"><data value="21.5">21,50</data></p>
-      </div>
-      <p class="gericht__text">Populäres, japanisches Premium Duroc Schweine-Schnitzel (Empfehlung) mit Curry aus Kartoffeln, Karotten und Zwiebeln. Dazu Reis, Kohlbeilage und Miso Suppe</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Tori Katsu (Huhn) Curry</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Statt Duroc</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Ebi-Tempura Garnelen Curry</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Statt Duroc, 4 Stück</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Karaage Chicken Curry</h4>
-        <p class="gericht__preis"><data value="19.5">19,50</data></p>
-      </div>
-      <p class="gericht__text">Statt Duroc, 4 Stück</p>
-    </li>
-    <li class="gericht">
-      <div class="gericht__kopf">
-        <h4 class="gericht__name">Japanischer Tofu Curry</h4>
-        <p class="gericht__preis"><data value="18.5">18,50</data></p>
-      </div>
-      <p class="gericht__text">Statt Duroc</p>
-      <p class="gericht__merkmale"><span class="merkmal merkmal--veggie">vegetarisch</span></p>
-    </li>
-  </ul>
-</section>
-<p class="karte__fuss">Alle Preise in Euro inklusive Mehrwertsteuer. Stand: September 2026.</p>
-<!-- KARTE:ENDE -->
+<!-- KACHELN:START -->
+<ol class="kacheln">
+  <li class="aufdeck" style="--i: 0"><a class="kachel" href="speisekarte.html#karte-starter"><span class="kachel__nr">01</span><span class="kachel__kanji" aria-hidden="true">前菜</span><span class="kachel__name">Starter &amp; Beilagen</span><span class="kachel__zahl">16 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 1"><a class="kachel" href="speisekarte.html#karte-sashimi"><span class="kachel__nr">02</span><span class="kachel__kanji" aria-hidden="true">刺身</span><span class="kachel__name">Sashimi</span><span class="kachel__zahl">4 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 2"><a class="kachel" href="speisekarte.html#karte-uramaki"><span class="kachel__nr">03</span><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Uramaki Rolls</span><span class="kachel__zahl">17 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 3"><a class="kachel" href="speisekarte.html#karte-maki"><span class="kachel__nr">04</span><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Maki &amp; Crispy</span><span class="kachel__zahl">9 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 4"><a class="kachel" href="speisekarte.html#karte-sets"><span class="kachel__nr">05</span><span class="kachel__kanji" aria-hidden="true">寿司</span><span class="kachel__name">Sushi Sets</span><span class="kachel__zahl">8 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 5"><a class="kachel" href="speisekarte.html#karte-ramen"><span class="kachel__nr">06</span><span class="kachel__kanji" aria-hidden="true">ラーメン</span><span class="kachel__name">Ramen</span><span class="kachel__zahl">5 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 6"><a class="kachel" href="speisekarte.html#karte-tonkatsu"><span class="kachel__nr">07</span><span class="kachel__kanji" aria-hidden="true">とんかつ</span><span class="kachel__name">Tonkatsu Menü</span><span class="kachel__zahl">8 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 7"><a class="kachel" href="speisekarte.html#karte-curry"><span class="kachel__nr">08</span><span class="kachel__kanji" aria-hidden="true">カレー</span><span class="kachel__name">Japanisches Curry</span><span class="kachel__zahl">5 Gerichte</span></a></li>
+</ol>
+<!-- KACHELN:ENDE -->
+      <p class="karte__weiter aufdeck"><a class="knopf" href="speisekarte.html">Ganze Speisekarte ansehen</a></p>
     </section>
     </div>
 
+    <!-- Eigene Fotos des Restaurants, bearbeitet in assets/raeume/. -->
+    <section class="leiste" aria-label="Eindrücke aus dem Akashi">
+      <figure><img src="assets/raeume/sushi-720.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 48rem) 100vw, 34vw" width="720" height="900" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></figure>
+      <figure><img src="assets/raeume/wandbild-760.webp" sizes="(max-width: 48rem) 50vw, 33vw" width="764" height="1020" loading="lazy" decoding="async" alt="Lange Tischreihe vor einem großen Wandbild mit Samurai, Drache und Bergen"></figure>
+      <figure><img src="assets/raeume/fensterbar-720.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 48rem) 50vw, 33vw" width="720" height="406" loading="lazy" decoding="async" alt="Gastraum am Abend mit Fensterbar und Blick auf die Überseestadt"></figure>
+    </section>
+
     <section class="reservieren" id="reservieren" aria-labelledby="reservieren-titel">
-      <div class="reservieren__intro">
+      <div class="reservieren__intro aufdeck">
         <span class="reservieren__kanji pinsel" aria-hidden="true">予約</span>
         <h2 id="reservieren-titel" class="reservieren__titel">Dein Tisch im Akashi</h2>
         <p class="reservieren__text">
@@ -739,9 +200,9 @@
             <dt>Öffnungszeiten</dt>
             <dd>
               <table class="zeiten">
-                <tr><th scope="row">Mo – Do</th><td>12:00 – 14:30<br>17:00 – 22:00</td></tr>
-                <tr><th scope="row">Freitag</th><td>12:00 – 14:30<br>17:00 – 23:30</td></tr>
-                <tr><th scope="row">Samstag</th><td>17:00 – 23:30</td></tr>
+                <tr><th scope="row">Mo – Do</th><td>12:00 – 14:30<br>17:00 – 21:00</td></tr>
+                <tr><th scope="row">Freitag</th><td>12:00 – 14:30<br>17:00 – 21:30</td></tr>
+                <tr><th scope="row">Samstag</th><td>17:00 – 21:30</td></tr>
                 <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
               </table>
             </dd>
@@ -784,7 +245,6 @@
                   <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
                   <option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option>
                   <option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option>
-                  <option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option>
                 </select>
                 <p class="feld__fehler" id="uhrzeit-fehler" hidden></p>
               </div>
@@ -867,13 +327,56 @@
         </div>
       </div>
     </section>
+
+    <section class="anfahrt" id="anfahrt" aria-labelledby="anfahrt-titel">
+      <div class="anfahrt__schild aufdeck">
+        <img class="anfahrt__logo" src="assets/raeume/logo-schild.webp" width="900" height="336" loading="lazy" decoding="async" alt="Akashi">
+        <h2 id="anfahrt-titel" class="anfahrt__titel">Adresse</h2>
+        <address class="anfahrt__adresse">
+          <p>Ludwig-Franzius-Platz 13</p>
+          <p>28217 Bremen</p>
+        </address>
+        <p class="anfahrt__links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">In Google Maps öffnen</a>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route planen</a>
+        </p>
+
+        <details class="anfahrt__zeiten">
+          <summary>Öffnungszeiten</summary>
+          <!-- Muss zu den Zeiten in der Reservierung und in js/reservierung.js passen. -->
+          <table class="wochenzeiten">
+            <tr><th scope="row">Mo:</th><td>12:00–14:30, 17:00–21:00</td></tr>
+            <tr><th scope="row">Di:</th><td>12:00–14:30, 17:00–21:00</td></tr>
+            <tr><th scope="row">Mi:</th><td>12:00–14:30, 17:00–21:00</td></tr>
+            <tr><th scope="row">Do:</th><td>12:00–14:30, 17:00–21:00</td></tr>
+            <tr><th scope="row">Fr:</th><td>12:00–14:30, 17:00–21:30</td></tr>
+            <tr><th scope="row">Sa:</th><td>17:00–21:30</td></tr>
+            <tr><th scope="row">So:</th><td>Ruhetag</td></tr>
+          </table>
+        </details>
+
+        <!-- Bestellung direkt beim Restaurant, kein Lieferdienst dazwischen. -->
+        <a class="knopf anfahrt__knopf" href="tel:+4942143093028">Jetzt bestellen</a>
+        <p class="anfahrt__bestellen">Telefonisch direkt bei uns: <a href="tel:+4942143093028">0421 43093028</a></p>
+      </div>
+
+      <!-- Google Maps lädt erst nach Klick (js/anfahrt.js), damit ohne Zustimmung
+           keine Daten an Google gehen. -->
+      <div class="anfahrt__karte aufdeck" style="--i: 2" data-karte="https://www.google.com/maps?q=Akashi+Japanese+Restaurant+%26+Izakaya,+Ludwig-Franzius-Platz+13,+28217+Bremen&amp;z=15&amp;output=embed">
+        <img class="anfahrt__vorschau" src="assets/raeume/fensterbar-1200.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 65vw" width="1200" height="675" loading="lazy" decoding="async" alt="">
+        <div class="anfahrt__freigabe">
+          <button class="knopf" type="button" data-karte-laden>Karte anzeigen</button>
+          <p>Dabei lädt Google Maps und erhält deine IP-Adresse. Mehr in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="fuss">
     <div class="fuss__spalte">
       <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
       <p>Ludwig-Franzius-Platz 13<br>28217 Bremen</p>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Ludwig-Franzius-Platz+13+28217+Bremen" rel="noopener">Route in Google Maps</a></p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route in Google Maps</a></p>
     </div>
     <div class="fuss__spalte">
       <p><a href="tel:+4942143093028">0421 43093028</a><br><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></p>
