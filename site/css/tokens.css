@@ -25,6 +25,16 @@
   font-display: block;
   unicode-range: U+660E, U+77F3, U+4E88, U+7D04, U+53D7, U+4ED8;
 }
+/* Pinselschrift nur für die japanischen Abschnittszeichen. Enthält genau diese
+   Zeichen: 明石 予約 居酒屋 お品書き 前菜 刺身 巻き寿司 ラーメン とんかつ カレー 受付.
+   Neue Zeichen erst in die Datei aufnehmen, sonst fällt die Schrift zurück. */
+@font-face {
+  font-family: "Yuji Boku";
+  src: url("../fonts/yuji-boku-pinsel.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+  unicode-range: U+304A,U+304B,U+304D,U+3064,U+3068,U+3093,U+30AB,U+30E1,U+30E9,U+30EC,U+30F3,U+30FC,U+4E88,U+4ED8,U+523A,U+524D,U+53D7,U+53F8,U+54C1,U+5BFF,U+5C45,U+5C4B,U+5DFB,U+660E,U+66F8,U+77F3,U+7D04,U+83DC,U+8EAB,U+9152;
+}
 @font-face {
   font-family: "Zen Kaku Gothic New";
   src: url("../fonts/zen-kaku-gothic-400-latin.woff2") format("woff2");
@@ -61,10 +71,12 @@
   --sumi-schleier: rgb(21 18 15 / 0.75); /* Verlauf hinter dem Kopf */
   --nebel: rgb(238 235 229 / 0.10);      /* Nebel über dem Hero */
   --matcha: #9bb07a;        /* Kennzeichnung vegetarisch auf Schwarz (AA) */
+  --matcha-auf-papier: #4d6630; /* Kennzeichnung vegetarisch auf Papier (AA) */
 
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
   --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+  --font-pinsel: "Yuji Boku", "Shippori Mincho", "Hiragino Mincho ProN", serif;
 
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);

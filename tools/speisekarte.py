@@ -65,6 +65,8 @@ def kategorie(k):
         f'<section class="kategorie" id="karte-{k["id"]}" aria-labelledby="karte-{k["id"]}-titel">',
         f'  <h3 class="kategorie__titel" id="karte-{k["id"]}-titel">{e(k["kategorie"])}</h3>',
     ]
+    if k.get("kanji"):
+        teile.insert(1, f'  <span class="kategorie__kanji" aria-hidden="true">{e(k["kanji"])}</span>')
     if k.get("intro"):
         teile.append(f'  <p class="kategorie__intro">{e(k["intro"])}</p>')
     teile.append(f'  <ul class="kategorie__liste{" kategorie__liste--sets" if k["id"] == "sets" else ""}">')

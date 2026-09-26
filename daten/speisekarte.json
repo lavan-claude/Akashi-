@@ -124,7 +124,8 @@
      "text": "Drei Garnelen im Tempura Mantel mit jap. Mayonnaise und Kohlbeilage",
      "preis": "9,5"
     }
-   ]
+   ],
+   "kanji": "前菜"
   },
   {
    "kategorie": "Sashimi",
@@ -156,7 +157,8 @@
      "preis": "16,5",
      "scharf": true
     }
-   ]
+   ],
+   "kanji": "刺身"
   },
   {
    "kategorie": "Uramaki Rolls",
@@ -280,7 +282,8 @@
      "preis": "14,5",
      "veggie": true
     }
-   ]
+   ],
+   "kanji": "巻き寿司"
   },
   {
    "kategorie": "Maki & Crispy",
@@ -362,7 +365,8 @@
      "preis": "7,5",
      "veggie": true
     }
-   ]
+   ],
+   "kanji": "巻き寿司"
   },
   {
    "kategorie": "Sushi Sets",
@@ -484,7 +488,8 @@
      ],
      "preis": "50"
     }
-   ]
+   ],
+   "kanji": "寿司"
   },
   {
    "kategorie": "Ramen",
@@ -536,7 +541,8 @@
      "veggie": true,
      "scharf": true
     }
-   ]
+   ],
+   "kanji": "ラーメン"
   },
   {
    "kategorie": "Tonkatsu Menü",
@@ -605,7 +611,8 @@
      "preis": "4,5",
      "veggie": true
     }
-   ]
+   ],
+   "kanji": "とんかつ"
   },
   {
    "kategorie": "Japanisches Curry",
@@ -642,7 +649,8 @@
      "preis": "18,5",
      "veggie": true
     }
-   ]
+   ],
+   "kanji": "カレー"
   }
  ]
 }

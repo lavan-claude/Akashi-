@@ -40,6 +40,12 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Kanji immer in Gewicht 800. Neue Kanji müssen in die Datei
   `fonts/shippori-mincho-800-kanji.woff2` und in deren `unicode-range`.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
+- Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem
+  Washi-Papier (`.papier`).
+- Japanische Abschnittszeichen in Pinselschrift **Yuji Boku** (`.pinsel`, senkrecht
+  mit Tuschestrich). Texte bleiben Deutsch. Nur echtes Japanisch, kein
+  vereinfachtes Chinesisch. Die Schriftdatei enthält nur die verwendeten
+  Zeichen; neue Zeichen erst in `fonts/yuji-boku-pinsel.woff2` aufnehmen.
 
 ## Sprache und Ton
 

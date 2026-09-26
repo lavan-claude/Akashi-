@@ -53,7 +53,7 @@
         <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
 
         <div class="hero__text">
-          <span class="hero__kanji" aria-hidden="true">明石</span>
+          <span class="hero__kanji pinsel" aria-hidden="true">明石</span>
           <h1 id="hero-titel" class="hero__titel">Akashi</h1>
           <p class="hero__unterzeile">Japanese Restaurant &amp; Izakaya in der Bremer Überseestadt</p>
           <div class="hero__handlung">
@@ -66,7 +66,10 @@
 
     <div id="inhalt"></div>
 
+    <!-- Helles Washi-Papier für Über uns und Speisekarte, dunkel bleiben Hero und Reservierung. -->
+    <div class="papier">
     <section class="akashi" id="akashi" aria-labelledby="akashi-titel">
+      <span class="pinsel akashi__pinsel" aria-hidden="true">居酒屋</span>
       <h2 id="akashi-titel" class="akashi__titel">Sushi, Ramen und die kleinen Teller einer Izakaya</h2>
       <div class="akashi__text">
         <p>
@@ -87,6 +90,7 @@
 
     <section class="karte" id="karte" aria-labelledby="karte-titel">
       <div class="karte__kopf">
+        <span class="pinsel karte__pinsel" aria-hidden="true">お品書き</span>
         <h2 id="karte-titel" class="karte__titel">Speisekarte</h2>
         <p class="karte__text">Vor Ort, zum Mitnehmen oder geliefert. Fragen zu Zutaten und Allergenen beantworten wir dir gern.</p>
       </div>
@@ -96,6 +100,7 @@
   <ul class="karte__nav-liste"><li><a href="#karte-starter">Starter &amp; Beilagen</a></li><li><a href="#karte-sashimi">Sashimi</a></li><li><a href="#karte-uramaki">Uramaki Rolls</a></li><li><a href="#karte-maki">Maki &amp; Crispy</a></li><li><a href="#karte-sets">Sushi Sets</a></li><li><a href="#karte-ramen">Ramen</a></li><li><a href="#karte-tonkatsu">Tonkatsu Menü</a></li><li><a href="#karte-curry">Japanisches Curry</a></li></ul>
 </nav>
 <section class="kategorie" id="karte-starter" aria-labelledby="karte-starter-titel">
+  <span class="kategorie__kanji" aria-hidden="true">前菜</span>
   <h3 class="kategorie__titel" id="karte-starter-titel">Starter &amp; Beilagen</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -226,6 +231,7 @@
   </ul>
 </section>
 <section class="kategorie" id="karte-sashimi" aria-labelledby="karte-sashimi-titel">
+  <span class="kategorie__kanji" aria-hidden="true">刺身</span>
   <h3 class="kategorie__titel" id="karte-sashimi-titel">Sashimi</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -261,6 +267,7 @@
   </ul>
 </section>
 <section class="kategorie" id="karte-uramaki" aria-labelledby="karte-uramaki-titel">
+  <span class="kategorie__kanji" aria-hidden="true">巻き寿司</span>
   <h3 class="kategorie__titel" id="karte-uramaki-titel">Uramaki Rolls</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -394,6 +401,7 @@
   <p class="kategorie__hinweis">Alle Rollen und Maki sind 8 Stück. 4 Stück nur im Set oder auf Nachfrage. Unsere Sushi werden mit passenden Zutaten wie Chillifäden, Sesam oder Kresse verziert.</p>
 </section>
 <section class="kategorie" id="karte-maki" aria-labelledby="karte-maki-titel">
+  <span class="kategorie__kanji" aria-hidden="true">巻き寿司</span>
   <h3 class="kategorie__titel" id="karte-maki-titel">Maki &amp; Crispy</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -472,6 +480,7 @@
   </ul>
 </section>
 <section class="kategorie" id="karte-sets" aria-labelledby="karte-sets-titel">
+  <span class="kategorie__kanji" aria-hidden="true">寿司</span>
   <h3 class="kategorie__titel" id="karte-sets-titel">Sushi Sets</h3>
   <p class="kategorie__intro">Die Sets sind für 2 Personen. Weitere Sushi können hinzugefügt werden. Die Sushi-Sets sind auf beliebig viele Personen erweiterbar. Nennt uns hierzu nur eure Personenanzahl.</p>
   <ul class="kategorie__liste kategorie__liste--sets">
@@ -540,6 +549,7 @@
   <p class="kategorie__hinweis">Ihr wollt euch überraschen lassen? Variation der Sushi-Küche 28–34 € pro Person. Vorspeise bei Bedarf bitte separat bestellen.</p>
 </section>
 <section class="kategorie" id="karte-ramen" aria-labelledby="karte-ramen-titel">
+  <span class="kategorie__kanji" aria-hidden="true">ラーメン</span>
   <h3 class="kategorie__titel" id="karte-ramen-titel">Ramen</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -587,6 +597,7 @@
   </ul>
 </section>
 <section class="kategorie" id="karte-tonkatsu" aria-labelledby="karte-tonkatsu-titel">
+  <span class="kategorie__kanji" aria-hidden="true">とんかつ</span>
   <h3 class="kategorie__titel" id="karte-tonkatsu-titel">Tonkatsu Menü</h3>
   <p class="kategorie__intro">Das Tonkatsu original aus Japan. Ein Schnitzel nach japanischer Art, serviert auf einem Holztablett. Inklusive: eine Schale Reis mit Wasabi Furikake (jap. Reiswürzung), eine kleine Miso Suppe, ein Kartoffelsalat nach japanischer Art, eine Kohlbeilage mit jap. Dressing, Tonkatsu Sauce (oder andere, je nach Menü) und gerösteter Sesam im Suribachi Mörser.</p>
   <ul class="kategorie__liste">
@@ -656,6 +667,7 @@
   <p class="kategorie__hinweis">Optional: Pommes statt Kartoffelsalat und Reis, kostenfrei.</p>
 </section>
 <section class="kategorie" id="karte-curry" aria-labelledby="karte-curry-titel">
+  <span class="kategorie__kanji" aria-hidden="true">カレー</span>
   <h3 class="kategorie__titel" id="karte-curry-titel">Japanisches Curry</h3>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -699,10 +711,11 @@
 <p class="karte__fuss">Alle Preise in Euro inklusive Mehrwertsteuer. Stand: September 2026.</p>
 <!-- KARTE:ENDE -->
     </section>
+    </div>
 
     <section class="reservieren" id="reservieren" aria-labelledby="reservieren-titel">
       <div class="reservieren__intro">
-        <span class="reservieren__kanji" aria-hidden="true">予約</span>
+        <span class="reservieren__kanji pinsel" aria-hidden="true">予約</span>
         <h2 id="reservieren-titel" class="reservieren__titel">Dein Tisch im Akashi</h2>
         <p class="reservieren__text">
           Sag uns, wann du kommen möchtest und mit wie vielen Leuten.
