@@ -1,0 +1,648 @@
+{
+ "stand": "September 2026",
+ "waehrung": "EUR",
+ "hinweis": "Alle Preise in Euro inklusive Mehrwertsteuer.",
+ "kategorien": [
+  {
+   "kategorie": "Starter & Beilagen",
+   "id": "starter",
+   "gerichte": [
+    {
+     "nr": "S1",
+     "name": "Edamame",
+     "text": "Grüne Sojabohnen, gesalzen, proteinreich & gesund",
+     "preis": "8,5",
+     "veggie": true
+    },
+    {
+     "nr": "S2",
+     "name": "Spicy Edamame",
+     "text": "Grüne Sojabohnen, proteinreich & gesund mit Chiliknoblauch gebraten",
+     "preis": "9,5",
+     "veggie": true,
+     "scharf": true
+    },
+    {
+     "nr": "S3",
+     "name": "Wakame",
+     "text": "Japanischer Beilage-Algensalat",
+     "preis": "5,5",
+     "veggie": true
+    },
+    {
+     "nr": "S4",
+     "name": "Kleine jap. Suppe",
+     "text": "Mit Alge & japanischem Tofu",
+     "preis": "4,5",
+     "veggie": true
+    },
+    {
+     "nr": "S5",
+     "name": "Japanischer Tofu",
+     "text": "Mit Röstzwiebeln angegrillt",
+     "preis": "9,5",
+     "veggie": true
+    },
+    {
+     "nr": "S6",
+     "name": "Pommes",
+     "text": "Wasabi-Würzung separat und jap. Mayonnaise",
+     "preis": "5,5",
+     "veggie": true
+    },
+    {
+     "nr": "S7",
+     "name": "Yasai Tempura",
+     "text": "Lotuswurzel, Süßkartoffel, Karotte, Blumenkohl und rote Paprika in feinem Tempura-Teig. Gemüse kann variieren",
+     "preis": "10,5",
+     "veggie": true
+    },
+    {
+     "nr": "S8",
+     "name": "Spicy Kappa Salat",
+     "text": "Leicht scharfer Gurkensalat mit Wakame-Alge",
+     "preis": "8,5",
+     "veggie": true,
+     "scharf": true
+    },
+    {
+     "nr": "S9",
+     "name": "Gyoza",
+     "text": "Knusprige, gefüllte Teigtaschen mit Ponzu Dip",
+     "optionen": [
+      "Huhn oder Gemüse"
+     ],
+     "preis": "7,5",
+     "veggie_option": true
+    },
+    {
+     "nr": "S10",
+     "name": "Sashimi",
+     "text": "Sashimi, original geschnitten (dick), etwa 5 Scheiben je nach Größe",
+     "optionen": [
+      "Lachs oder japanischer Thunfisch (+2,0)"
+     ],
+     "preis": "15,5"
+    },
+    {
+     "nr": "S11",
+     "name": "Japanese Yukke",
+     "text": "Sashimi gewürfelt mit Avocado und Charlotten an scharfer Marinade",
+     "optionen": [
+      "Lachs oder japanischer Thunfisch (+3,0)"
+     ],
+     "preis": "16,5",
+     "scharf": true
+    },
+    {
+     "nr": "S12",
+     "name": "Oyster Fry",
+     "text": "In Japan beliebte Zubereitung von vier Austern im Tempuramantel mit japanischer Mayonnaise und Kohlbeilage",
+     "preis": "9,5"
+    },
+    {
+     "nr": "S13",
+     "name": "Yakitori Spieße",
+     "text": "Zwei gegrillte Hähnchenspieße, japanische Mayonnaise, Teriyakisauce und Sesam mit Kohlbeilage",
+     "preis": "7,5"
+    },
+    {
+     "nr": "S14",
+     "name": "Karaage Chicken",
+     "text": "Vier saftige Hähnchenbällchen in Panade mit jap. Mayonnaise",
+     "preis": "8,5"
+    },
+    {
+     "nr": "S15",
+     "name": "Geso Kara",
+     "text": "Panierte Tintenfischtentakeln mit japanischer Mayonnaise",
+     "preis": "9,5"
+    },
+    {
+     "nr": "S16",
+     "name": "Ebi Tempura",
+     "text": "Drei Garnelen im Tempura Mantel mit jap. Mayonnaise und Kohlbeilage",
+     "preis": "9,5"
+    }
+   ]
+  },
+  {
+   "kategorie": "Sashimi",
+   "id": "sashimi",
+   "gerichte": [
+    {
+     "nr": "",
+     "name": "Maguro Sashimi",
+     "text": "Japanische Art, 5–6 Scheiben je nach Schnitt",
+     "preis": "19,5"
+    },
+    {
+     "nr": "",
+     "name": "Sake Sashimi",
+     "text": "Japanische Art, 5–6 Scheiben je nach Schnitt",
+     "preis": "16,5"
+    },
+    {
+     "nr": "",
+     "name": "Spicy Maguro Yukke",
+     "text": "Japanische Art, mit Avocado und Charlotten",
+     "preis": "19,5",
+     "scharf": true
+    },
+    {
+     "nr": "",
+     "name": "Spicy Sake Yukke",
+     "text": "Japanische Art, mit Avocado und Charlotten",
+     "preis": "16,5",
+     "scharf": true
+    }
+   ]
+  },
+  {
+   "kategorie": "Uramaki Rolls",
+   "id": "uramaki",
+   "hinweis": "Alle Rollen und Maki sind 8 Stück. 4 Stück nur im Set oder auf Nachfrage. Unsere Sushi werden mit passenden Zutaten wie Chillifäden, Sesam oder Kresse verziert.",
+   "gerichte": [
+    {
+     "nr": "Q1",
+     "name": "Sake-Avo Roll",
+     "text": "Zarter Lachs und Avocado belegt mit Sesam und hausgemachter Teriyakisauce",
+     "preis": "15,5"
+    },
+    {
+     "nr": "Q2",
+     "name": "Dragon Roll",
+     "text": "Ebi-Tempura Garnelen und Avocado, belegt mit flambiertem Lachs, Sesam, jap. Mayonnaise und hausgemachter Teriyakisauce",
+     "preis": "18,5"
+    },
+    {
+     "nr": "Q3",
+     "name": "Creamy Sake-Kappa Roll",
+     "text": "Zarter Lachs, Gurke und Frischkäse belegt mit Sesam und hausgemachter Teriyakisauce",
+     "preis": "15,5"
+    },
+    {
+     "nr": "Q4",
+     "name": "Philadelphia Roll",
+     "text": "Avocado, Gurke und Frischkäse vollständig belegt mit zartem Lachs und Sesam",
+     "optionen": [
+      "Optional: Vegetarisch"
+     ],
+     "preis": "16,5"
+    },
+    {
+     "nr": "Q5",
+     "name": "Tobiko Sake-Kappa Roll",
+     "text": "Zarter Lachs, Gurke und Frischkäse belegt mit Tobiko, Sesam und Teriyakisauce",
+     "preis": "16,5"
+    },
+    {
+     "nr": "Q6",
+     "name": "Crazy California Roll",
+     "text": "Surimi-Tempura, Gurke und Avocado belegt mit zartem Lachs, Tobiko, Chillimayonnaise und hausgemachter Teriyakisauce",
+     "preis": "18,5"
+    },
+    {
+     "nr": "Q7",
+     "name": "Crispy Chicken Roll",
+     "text": "Karaage crispy Chicken, Avocado und Charlotten mit Sesam, Röstzwiebeln, jap. Mayonnaise und hausgemachter Teriyakisauce",
+     "preis": "14,5"
+    },
+    {
+     "nr": "Q8",
+     "name": "Ebi-Tempura Roll",
+     "text": "Ebi-Tempura Garnelen und Avocado mit Sesam und hausgemachter Teriyakisauce",
+     "optionen": [
+      "Tobiko Topping +1,5"
+     ],
+     "preis": "14,5"
+    },
+    {
+     "nr": "Q9",
+     "name": "Surf and Turf Roll",
+     "text": "Ebi-Tempura Garnelen, Avocado und Charlotten belegt mit feinem, flambiertem Rindfleisch, Tobiko, Sesam und BBQ-Sauce",
+     "preis": "18,5"
+    },
+    {
+     "nr": "Q10",
+     "name": "Unagi-Dragon Roll",
+     "text": "Ebi-Tempura Garnelen und Avocado, belegt mit flambiertem Aal, Sesam, BBQ-Sauce und japanischer Mayonnaise",
+     "preis": "19,5"
+    },
+    {
+     "nr": "Q11",
+     "name": "Softshell-Crab Roll",
+     "text": "Softshell-Krabbe, Frischkäse, Avocado und Charlotten mit Tobiko, Sesam, Chillimayonnaise und hausgemachter Teriyakisauce",
+     "preis": "17,5"
+    },
+    {
+     "nr": "Q12",
+     "name": "Spicy Maguro-Avo Roll",
+     "text": "Zarter, jap. Tuna, scharfe Sauce und Avocado belegt mit Sesam",
+     "optionen": [
+      "Nicht scharf",
+      "Tobiko Topping 1,5"
+     ],
+     "preis": "16,5",
+     "scharf": true
+    },
+    {
+     "nr": "Q13",
+     "name": "Unagi-Avo Roll",
+     "text": "Aal, Avocado, Gurke, Charlotten belegt mit Sesam und BBQ-Sauce",
+     "preis": "16,5"
+    },
+    {
+     "nr": "V1",
+     "name": "Lotus Roll",
+     "text": "Lotuswurzel belegt mit Wakame und Sesam",
+     "preis": "12,5",
+     "veggie": true
+    },
+    {
+     "nr": "V2",
+     "name": "Sweet Potato Roll",
+     "text": "Gebackene Süßkartoffel und Avocado belegt mit Sesam und jap. Chillimayonnaise",
+     "preis": "14,5",
+     "veggie": true
+    },
+    {
+     "nr": "V3",
+     "name": "Tamago Roll",
+     "text": "Japanisches Omelett und Avocado belegt mit Sesam, Röstzwiebeln, jap. Avo-Mayonnaise und hausgemachter Teriyakisauce",
+     "preis": "14,5",
+     "veggie": true
+    },
+    {
+     "nr": "V4",
+     "name": "Yasai Tempura Roll",
+     "text": "Verschiedenes Gemüse in Tempura mit Sesam, Röstzwiebeln, jap. Avo-Mayonnaise und Teriyakisauce",
+     "preis": "14,5",
+     "veggie": true
+    }
+   ]
+  },
+  {
+   "kategorie": "Maki & Crispy",
+   "id": "maki",
+   "gerichte": [
+    {
+     "nr": "C1",
+     "name": "Sake Maki",
+     "text": "Klassische Maki mit zartem Lachs",
+     "optionen": [
+      "Crispy Sake Maki +1,0"
+     ],
+     "preis": "7,5"
+    },
+    {
+     "nr": "C2",
+     "name": "Tekka Maki",
+     "text": "Klassische Maki mit jap. Thunfisch",
+     "optionen": [
+      "Crispy Tekka Maki +1,0"
+     ],
+     "preis": "8,5"
+    },
+    {
+     "nr": "C3",
+     "name": "Big Crispy Chicken Maki",
+     "text": "Chicken und Avocado in Crispy-Fry Panade, groß gerollt",
+     "preis": "10,5"
+    },
+    {
+     "nr": "C4",
+     "name": "Ebi-Tempura Maki",
+     "text": "Klassische Maki mit Ebi-Tempura",
+     "preis": "8,5"
+    },
+    {
+     "nr": "C5",
+     "name": "Surimi Maki",
+     "text": "Maki mit Surimi",
+     "optionen": [
+      "Crispy Surimi Maki +1,0"
+     ],
+     "preis": "6,5"
+    },
+    {
+     "nr": "C6",
+     "name": "Avocado Maki",
+     "text": "Klassische Maki mit Avocado",
+     "optionen": [
+      "Crispy Avocado Maki +1,0"
+     ],
+     "preis": "6,5",
+     "veggie": true
+    },
+    {
+     "nr": "C7",
+     "name": "Tamago Maki",
+     "text": "Klassische Maki jap. Omelett",
+     "optionen": [
+      "Crispy Tamago Maki +1,0"
+     ],
+     "preis": "6,5",
+     "veggie": true
+    },
+    {
+     "nr": "C8",
+     "name": "Kappa Maki",
+     "text": "Klassische Maki mit Gurke",
+     "optionen": [
+      "Crispy Kappa Maki +1,0"
+     ],
+     "preis": "5,5",
+     "veggie": true
+    },
+    {
+     "nr": "C9",
+     "name": "Crispy Lotus Maki",
+     "text": "Crispy Maki mit Lotus",
+     "preis": "7,5",
+     "veggie": true
+    }
+   ]
+  },
+  {
+   "kategorie": "Sushi Sets",
+   "id": "sets",
+   "intro": "Die Sets sind für 2 Personen. Weitere Sushi können hinzugefügt werden. Die Sushi-Sets sind auf beliebig viele Personen erweiterbar. Nennt uns hierzu nur eure Personenanzahl.",
+   "hinweis": "Ihr wollt euch überraschen lassen? Variation der Sushi-Küche 28–34 € pro Person. Vorspeise bei Bedarf bitte separat bestellen.",
+   "gerichte": [
+    {
+     "nr": "Set 1",
+     "name": "Umi-Dragon",
+     "liste": [
+      "4x Dragon Roll",
+      "4x Softshell Roll",
+      "4x Ebi Tempura Roll",
+      "4x Sake Avo Roll",
+      "4x Crispy Sake Maki",
+      "4x Ebi Tempura Maki",
+      "Spicy Maguro Yukke"
+     ],
+     "preis": "62",
+     "beliebt": true
+    },
+    {
+     "nr": "Set 2",
+     "name": "Creamy-Crisp",
+     "liste": [
+      "4x Creamy Sake-Kappa Roll",
+      "4x Sake Avo Roll",
+      "4x Philadelphia Roll",
+      "4x Crispy Chicken Roll",
+      "4x Tobiko Ebi Tempura Roll",
+      "4x Ebi Tempura Maki",
+      "4x Crispy Sake Maki"
+     ],
+     "preis": "52"
+    },
+    {
+     "nr": "Set 3",
+     "name": "Fish n’Crab",
+     "liste": [
+      "4x Softshell Roll",
+      "4x Dragon Roll",
+      "4x Tobiko Sake-Kappa Roll",
+      "4x Sake-Avo Roll",
+      "4x Sake Maki",
+      "1x Maguro Nigiri",
+      "Spicy Maguro Yukke"
+     ],
+     "preis": "62"
+    },
+    {
+     "nr": "Set 4",
+     "name": "Umi-Ushi Fire",
+     "liste": [
+      "4x Surf and Turf Roll",
+      "4x Dragon Roll",
+      "4x Philadelphia Roll",
+      "4x Creamy Sake-Kappa Roll",
+      "4x Sake Maki",
+      "Spicy Maguro Yukke"
+     ],
+     "preis": "58"
+    },
+    {
+     "nr": "Set 5",
+     "name": "Plant-Based",
+     "liste": [
+      "4x Sweet Potato Roll",
+      "4x Tamago Roll",
+      "4x Yasai Tempura Roll",
+      "4x Veg. Philadelphia Roll",
+      "8x Crispy Avocado Maki",
+      "8x Kappa Maki"
+     ],
+     "optionen": [
+      "Auch vegan verfügbar"
+     ],
+     "preis": "42",
+     "veggie": true
+    },
+    {
+     "nr": "Set 6",
+     "name": "Rollercoaster",
+     "liste": [
+      "4x Tobiko-Maguro-Avo Roll",
+      "4x Spicy Maguro-Avo Roll",
+      "4x Surf and Turf Roll",
+      "4x Dragon Roll",
+      "4x Creamy Sake-Kappa Roll",
+      "Spicy Maguro Yukke"
+     ],
+     "preis": "64"
+    },
+    {
+     "nr": "Set 7",
+     "name": "Akashi Basic",
+     "liste": [
+      "8x Dragon Roll",
+      "4x Sake Avo Roll",
+      "4x Crispy Chicken Roll",
+      "8x Crispy Sake Maki",
+      "8x Big Crispy-Chicken Maki"
+     ],
+     "preis": "56",
+     "beliebt": true
+    },
+    {
+     "nr": "Set 8",
+     "name": "Crispy-Lover",
+     "liste": [
+      "4x Ebi-Tempura Roll",
+      "4x Softshell Roll",
+      "8x Crispy Chicken Roll",
+      "8x Crispy Sake Maki",
+      "8x Big Crispy-Chicken Maki"
+     ],
+     "optionen": [
+      "Kein roher Fisch"
+     ],
+     "preis": "50"
+    }
+   ]
+  },
+  {
+   "kategorie": "Ramen",
+   "id": "ramen",
+   "gerichte": [
+    {
+     "nr": "R1",
+     "name": "Naruto Tonkotsu Ramen",
+     "text": "Original Schweineknochen Brühe mit Cha-Shu (Schweinebauch), Narutomaki, weichem Ei, Bambus, Black Mu-Err Pilz und Lauchzwiebeln",
+     "optionen": [
+      "Crispy Chicken statt ChaShu +1,5"
+     ],
+     "preis": "17,5"
+    },
+    {
+     "nr": "R2",
+     "name": "Spicy Tantanmen",
+     "text": "Scharfe Miso-Chicken Brühe mit Sesampaste, gehacktem Hühnerfleisch, Komatsuna (oder ähnl. Blattspinat), Bambus, weichem Ei und Lauchzwiebeln",
+     "preis": "17,5",
+     "scharf": true
+    },
+    {
+     "nr": "R3",
+     "name": "Teriyaki Chicken Ramen",
+     "text": "Miso-Chicken Brühe mit Teriyaki-Chicken, jap. Komatsuna (oder ähnl. Blattspinat), weichem Ei, Mais und Lauchzwiebeln",
+     "optionen": [
+      "Crispy Chicken statt Teriyaki Chicken +1,5"
+     ],
+     "preis": "16,5"
+    },
+    {
+     "nr": "R4",
+     "name": "Vegan Miso Ramen",
+     "text": "Miso Brühe mit japanischem Tofu, Komatsuna (oder ähnl. Blattspinat), Bambus, Mais, Black Mu-Err Pilz",
+     "optionen": [
+      "Weiches Ei"
+     ],
+     "preis": "16,5",
+     "veggie": true
+    },
+    {
+     "nr": "R5",
+     "name": "Vegan Spicy Tantanmen",
+     "text": "Scharfe Miso Brühe mit Sesampaste, japanischem Tofu, Komatsuna (oder ähnl. Blattspinat), Bambus und Lauchzwiebeln",
+     "optionen": [
+      "Weiches Ei"
+     ],
+     "preis": "16,5",
+     "veggie": true,
+     "scharf": true
+    }
+   ]
+  },
+  {
+   "kategorie": "Tonkatsu Menü",
+   "id": "tonkatsu",
+   "intro": "Das Tonkatsu original aus Japan. Ein Schnitzel nach japanischer Art, serviert auf einem Holztablett. Inklusive: eine Schale Reis mit Wasabi Furikake (jap. Reiswürzung), eine kleine Miso Suppe, ein Kartoffelsalat nach japanischer Art, eine Kohlbeilage mit jap. Dressing, Tonkatsu Sauce (oder andere, je nach Menü) und gerösteter Sesam im Suribachi Mörser.",
+   "hinweis": "Optional: Pommes statt Kartoffelsalat und Reis, kostenfrei.",
+   "gerichte": [
+    {
+     "nr": "T1",
+     "name": "Rosu Katsu Original Menu",
+     "text": "100 % Duroc Schweinerücken, inklusive aller Beilagen. Das saftige Schweinerücken-Tonkatsu zeichnet sich durch seine hohe Fleischqualität aus. Das Duroc-Schwein zählt zu den ältesten und edelsten Schweinerassen weltweit und sticht durch den zarten Geschmack des Fleisches hervor.",
+     "preis": "27,5"
+    },
+    {
+     "nr": "T2",
+     "name": "Torikatsu Menu",
+     "text": "Hähnchenfilet Katsu, inklusive aller Beilagen. Zartes Hähnchenbrustfilet in Halal-Qualität, lange eingelegt in hausgem. Marinade",
+     "preis": "25,5"
+    },
+    {
+     "nr": "T3",
+     "name": "Yasai Tempura Menu",
+     "text": "Japanischer Tofu, Lotuswurzel, Süßkartoffel, Karotte, wechselndes Gemüse in feinem Tempura-Teig, inklusive aller Beilagen",
+     "optionen": [
+      "Vegan: Wakame statt Kartoffelsalat"
+     ],
+     "preis": "22,5",
+     "veggie": true
+    },
+    {
+     "nr": "T4",
+     "name": "Tamago Katsu Menu",
+     "text": "3 japanische Omelett-Würfel im Tempura-Mantel, inklusive aller Beilagen",
+     "preis": "22,5",
+     "veggie": true
+    },
+    {
+     "nr": "T5",
+     "name": "Karaage Menu",
+     "text": "Frittierte Hähnchenbällchen eingelegt in hausgem. Marinade mit jap. Mayonnaise, inklusive aller Beilagen",
+     "preis": "21,5"
+    },
+    {
+     "nr": "T6",
+     "name": "Salmon Katsu Menu",
+     "text": "Frischer, norwegischer Lachs zart zubereitet mit hausgemachter Teriyakisauce und Remoulade, inklusive aller Beilagen",
+     "optionen": [
+      "Bitte wählen: Katsu oder gegrillt"
+     ],
+     "preis": "27,5"
+    },
+    {
+     "nr": "T7",
+     "name": "Unagi Katsu Menu",
+     "text": "Aal aus japanischem Wildfang als Stück mit japanischer Aal-Sauce und BBQ Sauce, inklusive aller Beilagen",
+     "optionen": [
+      "Bitte wählen: Katsu oder gegrillt",
+      "Doppelte Portion Aal 37,5"
+     ],
+     "preis": "25,5"
+    },
+    {
+     "nr": "",
+     "name": "Pommes",
+     "text": "Optionale Beilage. Dip: japanische Mayonnaise",
+     "preis": "4,5",
+     "veggie": true
+    }
+   ]
+  },
+  {
+   "kategorie": "Japanisches Curry",
+   "id": "curry",
+   "gerichte": [
+    {
+     "nr": "",
+     "name": "Rosu Katsukaré",
+     "text": "Populäres, japanisches Premium Duroc Schweine-Schnitzel (Empfehlung) mit Curry aus Kartoffeln, Karotten und Zwiebeln. Dazu Reis, Kohlbeilage und Miso Suppe",
+     "preis": "21,5"
+    },
+    {
+     "nr": "",
+     "name": "Tori Katsu (Huhn) Curry",
+     "text": "Statt Duroc",
+     "preis": "19,5"
+    },
+    {
+     "nr": "",
+     "name": "Ebi-Tempura Garnelen Curry",
+     "text": "Statt Duroc, 4 Stück",
+     "preis": "19,5"
+    },
+    {
+     "nr": "",
+     "name": "Karaage Chicken Curry",
+     "text": "Statt Duroc, 4 Stück",
+     "preis": "19,5"
+    },
+    {
+     "nr": "",
+     "name": "Japanischer Tofu Curry",
+     "text": "Statt Duroc",
+     "preis": "18,5",
+     "veggie": true
+    }
+   ]
+  }
+ ]
+}

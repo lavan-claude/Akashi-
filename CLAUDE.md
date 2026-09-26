@@ -17,10 +17,13 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
+  js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
+daten/                speisekarte.json
+tools/                speisekarte.py erzeugt die Karte in index.html
 ```
 
 Lokal ansehen: `npx netlify dev` (mit Serverfunktion) oder
@@ -93,8 +96,10 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
 
 - Nur belegte Angaben über das Restaurant. Keine erfundenen Details wie Tresen,
   Herkunft des Kochs oder Auszeichnungen.
-- Speisekarte: Auswahl ohne Preise, die vollständige Karte liegt bei der
-  Online-Bestellung. Link in `index.html` mit dem Restaurant bestätigen.
+- Speisekarte: vollständig auf der Seite, Quelle ist die Karte des Restaurants
+  (Stand September 2026). Daten in `daten/speisekarte.json`, das HTML erzeugt
+  `python3 tools/speisekarte.py` zwischen den Markierungen `KARTE:START` und
+  `KARTE:ENDE` in `index.html`. Nie das erzeugte HTML von Hand ändern.
 
 ## Arbeitsweise
 

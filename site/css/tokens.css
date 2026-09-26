@@ -60,6 +60,7 @@
   --shu-hauch: rgb(179 38 43 / 0.07); /* Hinweisfläche auf Papier */
   --sumi-schleier: rgb(21 18 15 / 0.75); /* Verlauf hinter dem Kopf */
   --nebel: rgb(238 235 229 / 0.10);      /* Nebel über dem Hero */
+  --matcha: #9bb07a;        /* Kennzeichnung vegetarisch auf Schwarz (AA) */
 
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;

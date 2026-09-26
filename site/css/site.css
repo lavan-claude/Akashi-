@@ -635,34 +635,111 @@ a[href^="tel:"] { white-space: nowrap; }
   font-size: var(--step-3);
   line-height: 1.05;
 }
-.karte__text { margin: 0; max-width: 36ch; color: var(--sabi); }
-.karte__liste {
+.karte__text { margin: 0; max-width: 40ch; color: var(--sabi); }
+
+/* Kategorienleiste bleibt unter dem festen Kopf stehen. */
+.karte__nav {
+  position: sticky;
+  top: 5.4rem;
+  z-index: 10;
+  margin: 0 calc(-1 * clamp(1rem, 4vw, 3rem)) var(--space-l);
+  padding: var(--space-xs) clamp(1rem, 4vw, 3rem);
+  background: var(--sumi);
+  border-bottom: 1px solid var(--sumi-line);
+}
+.karte__nav-liste {
+  display: flex;
+  gap: var(--space-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.karte__nav-liste::-webkit-scrollbar { display: none; }
+.karte__nav-liste a {
+  display: block;
+  padding: var(--space-2xs) 0;
+  white-space: nowrap;
+  color: var(--sabi);
+  text-decoration: none;
+  font-size: var(--step--1);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  scroll-snap-align: start;
+  transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.karte__nav-liste a:hover { color: var(--washi); }
+.karte__nav-liste a[aria-current="true"] { color: var(--washi); border-bottom-color: var(--shu); }
+
+.kategorie { padding-top: var(--space-l); }
+.kategorie[id] { scroll-margin-top: 8.5rem; }
+.kategorie + .kategorie { margin-top: var(--space-l); }
+.kategorie__titel {
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-2);
+  line-height: 1.1;
+}
+.kategorie__intro,
+.kategorie__hinweis { margin: 0 0 var(--space-m); max-width: var(--measure); color: var(--sabi); }
+.kategorie__hinweis { margin: var(--space-m) 0 0; font-size: var(--step--1); }
+
+.kategorie__liste {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(2rem, 6vw, 6rem);
+  column-gap: clamp(2rem, 6vw, 5rem);
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.gericht {
-  padding: var(--space-m) 0;
-  border-top: 1px solid var(--sumi-line);
-}
+.kategorie__liste--sets { grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); column-gap: var(--space-l); }
+
+.gericht { padding: var(--space-s) 0 var(--space-m); border-top: 1px solid var(--sumi-line); }
+.gericht__kopf { display: flex; align-items: baseline; gap: var(--space-s); }
 .gericht__name {
-  margin: 0 0 var(--space-2xs);
+  flex: 1;
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--step-2);
-  line-height: 1.15;
+  font-size: var(--step-1);
+  line-height: 1.2;
 }
-.gericht__text { margin: 0; max-width: 40ch; color: var(--sabi); }
-.karte__link {
+.gericht__nr {
   display: inline-block;
-  margin-top: var(--space-l);
-  font-weight: 700;
-  text-decoration-color: var(--shu-on-dark);
-  text-decoration-thickness: 2px;
+  min-width: 2.6em;
+  margin-right: var(--space-2xs);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--step--1);
+  color: var(--sabi);
 }
+.gericht__preis {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gericht__text { margin: var(--space-2xs) 0 0; max-width: 46ch; color: var(--sabi); font-size: var(--step--1); line-height: 1.55; }
+.gericht__liste { margin: var(--space-xs) 0 0; padding: 0; list-style: none; color: var(--sabi); font-size: var(--step--1); line-height: 1.7; }
+.gericht__optionen { margin: var(--space-2xs) 0 0; font-size: var(--step--1); color: var(--washi); opacity: 0.8; }
+.gericht__optionen::before { content: "Option: "; color: var(--shu-on-dark); }
+.gericht__merkmale { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: var(--space-xs) 0 0; }
+.merkmal {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--sumi-line);
+  border-radius: var(--radius-s);
+  color: var(--sabi);
+}
+.merkmal--veggie { color: var(--matcha); border-color: currentColor; }
+.merkmal--scharf { color: var(--shu-on-dark); border-color: currentColor; }
+.merkmal--beliebt { color: var(--washi); border-color: var(--washi-line); }
+
+.karte__fuss { margin: var(--space-xl) 0 0; color: var(--sabi); font-size: var(--step--1); }
 
 @media (max-width: 52rem) {
   .kopf__nav a:not(.kopf__knopf) { display: none; }
@@ -670,7 +747,8 @@ a[href^="tel:"] { white-space: nowrap; }
   .akashi__arten { grid-template-columns: 1fr; }
   .akashi__arten li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--sumi-line); }
   .akashi__arten li { padding-bottom: var(--space-m); }
-  .karte__liste { grid-template-columns: 1fr; }
+  .kategorie__liste { grid-template-columns: 1fr; }
+  .karte__nav { top: 4.6rem; }
   .hero__torii { right: -12vw; width: 90vw; opacity: 0.85; }
   .hero__bild,
   .hero__video { object-position: 68% 50%; }
