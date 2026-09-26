@@ -52,8 +52,9 @@ Aufgebaut wie das Kontaktformular von Leadflow, Details in
 auf (`netlify/functions/reservierung.mjs`), die Funktion reicht die Anfrage an
 den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
 
-- Adresse über die Umgebungsvariable `RESERVIERUNG_WEBHOOK_URL`. Ist sie nicht
-  gesetzt, greift die im Server-Code hinterlegte Adresse.
+- Adresse nur über die Umgebungsvariable `RESERVIERUNG_WEBHOOK_URL` in Netlify,
+  nie im Code, das Repo ist öffentlich. Fehlt sie, zeigt das Formular die
+  Telefonnummer.
 - Prüfung von Hand in `validate()`, auch der Öffnungszeiten.
 - Honigtopf-Feld `website`: ausgefüllt heißt stillschweigend verwerfen, der
   Absender sieht trotzdem die Bestätigung.

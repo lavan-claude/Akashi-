@@ -12,13 +12,13 @@ POST /api/reservierung    netlify/functions/reservierung.mjs
         │                 prüft alle Angaben erneut, auch die Öffnungszeiten,
         │                 Honigtopf, höchstens fünf Anfragen je IP und Minute
         ▼
-n8n-Workflow              RESERVIERUNG_WEBHOOK_URL
-        │                 ohne Variable: https://lavan-claude.app.n8n.cloud/webhook/reservierung
+n8n-Workflow              RESERVIERUNG_WEBHOOK_URL (nur in Netlify, nie im Code)
         ▼
 E-Mail ans Restaurant, eatbu, FoodAmigos, Google Sheet – was der Workflow vorsieht
 ```
 
-- Die Webhook-Adresse steht nur im Server-Code und landet nie im Browser.
+- Die Webhook-Adresse steht nur in der Netlify-Variable, nicht im Code und nie
+  im Browser. Fehlt die Variable, bekommt der Gast den Hinweis anzurufen.
 - Honigtopf-Feld `website`: für Besucher unsichtbar. Ist es ausgefüllt, wird
   die Anfrage stillschweigend verworfen, der Absender sieht trotzdem die
   Bestätigung.
@@ -34,14 +34,16 @@ E-Mail ans Restaurant, eatbu, FoodAmigos, Google Sheet – was der Workflow vors
 
 ## n8n-Workflow einrichten
 
-1. In n8n einen Workflow mit Webhook-Knoten anlegen: Methode `POST`,
-   Pfad `reservierung`. Das ergibt die Adresse oben.
+1. In n8n einen Workflow mit Webhook-Knoten anlegen, Methode `POST`. Als Pfad
+   eine lange Zufallsfolge nehmen, nicht `reservierung`. Die Adresse ist so
+   nicht zu erraten.
 2. Den Workflow aktivieren. Nur aktive Workflows nehmen Produktions-Aufrufe an.
 3. Dahinter zum Beispiel eine E-Mail an `info@akashi-bremen.de` mit allen
    Angaben und eine Bestätigungsmail an den Gast („Wir haben deine Anfrage
    erhalten und melden uns“).
-4. Soll eine andere Adresse gelten: in Netlify unter Site configuration →
-   Environment variables `RESERVIERUNG_WEBHOOK_URL` setzen und neu deployen.
+4. Die Produktions-Adresse des Webhooks in Netlify unter Site configuration →
+   Environment variables als `RESERVIERUNG_WEBHOOK_URL` eintragen und neu
+   deployen.
 
 ## Datensatz an n8n (POST, `application/json`)
 

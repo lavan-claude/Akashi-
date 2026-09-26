@@ -4,13 +4,12 @@
 // Der Aufruf läuft bewusst über den Server: So landet die Webhook-Adresse nie
 // im Browser und kann von außen weder ausgelesen noch direkt beschickt werden.
 //
-// Adresse über die Umgebungsvariable RESERVIERUNG_WEBHOOK_URL. Ist sie nicht
-// gesetzt, greift die hier hinterlegte Adresse.
+// Adresse nur über die Umgebungsvariable RESERVIERUNG_WEBHOOK_URL in Netlify.
+// Sie steht bewusst nicht im Code, weil das Repo öffentlich sein kann.
 //
 // Fehlermeldungen aus dieser Funktion zeigt das Formular dem Gast an. Also
 // nichts hineinschreiben, was Besucher nicht sehen sollen.
 
-const FALLBACK_WEBHOOK_URL = "https://lavan-claude.app.n8n.cloud/webhook/reservierung";
 const ZEITZONE = "Europe/Berlin";
 
 // Muss zu OEFFNUNGSZEITEN in site/js/reservierung.js passen. 0 = Sonntag.
@@ -199,7 +198,15 @@ export default async (req, context) => {
     return antwort(alsFormular, 429, "Zu viele Anfragen in kurzer Zeit. Bitte versuch es gleich noch einmal.");
   }
 
-  const webhookUrl = process.env.RESERVIERUNG_WEBHOOK_URL ?? FALLBACK_WEBHOOK_URL;
+  const webhookUrl = process.env.RESERVIERUNG_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.error("RESERVIERUNG_WEBHOOK_URL ist nicht gesetzt.");
+    return antwort(
+      alsFormular,
+      503,
+      "Online-Reservierungen sind gerade nicht möglich. Ruf uns gern an unter 0421 43093028.",
+    );
+  }
 
   try {
     const response = await fetch(webhookUrl, {
