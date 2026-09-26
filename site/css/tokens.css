@@ -83,6 +83,11 @@
   --hagane: #dfe3e6;        /* Stahl der Klinge */
   --hagane-dunkel: #7d858c;
 
+  /* Hero: Licht und Funken, die der Maus folgen */
+  --laterne: rgb(255 128 72 / 0.22); /* warmes Laternenlicht */
+  --glut: #ff8a4c;                   /* Glutfunken */
+  --bluete-hell: #e8646a;            /* helle Blüte in der Zeigerspur */
+
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
   --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
@@ -110,6 +115,7 @@
 
   --shadow-paper: 0 1px 0 rgb(21 18 15 / 0.35), 0 24px 60px -24px rgb(0 0 0 / 0.6);
 
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);      /* kräftiges ease-out für Oberfläche */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* für Bewegung auf der Fläche */
   --measure: 62ch;
 }

@@ -11,16 +11,16 @@ wie `mi-elevate`.
 
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
-  index.html          Startseite: Hero, Über uns, Karten-Kacheln, Bilderleiste, Reservierung, Anfahrt
+  index.html          Startseite: Hero, Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Reservierung
   speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie
   danke.html          Bestätigung ohne JavaScript
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
-  js/hero.js          Scroll-Effekt im Hero (setzt --fortschritt)
+  js/hero.js          Hero: Scroll spult das Video, Maus bewegt Ebenen, Licht und Funken
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
-  js/anfahrt.js       lädt Google Maps erst nach Klick (Datenschutz)
+  js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
   assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
   assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
   assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
@@ -45,6 +45,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Kanji immer in Gewicht 800. Neue Kanji müssen in die Datei
   `fonts/shippori-mincho-800-kanji.woff2` und in deren `unicode-range`.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
+  Ausnahme: Knöpfe haben runde Enden (`--radius-round`). Beim Überfahren wischt
+  eine Füllfarbe herein (`--fuellung`, je nach Untergrund).
+- Im Hero hinterlässt der Zeiger rote Blüten (Canvas in `js/hero.js`), dazu
+  Glutfunken und Laternenlicht. Bei reduzierter Bewegung ist das alles aus.
 - Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem
   Washi-Papier (`.papier`).
 - Japanische Abschnittszeichen in Pinselschrift **Yuji Boku** (`.pinsel`, senkrecht
@@ -55,6 +59,11 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Navigation liegt auf einer Katana-Scheide (`.saya`): Griff, Stichblatt,
   Kordel, Endkappe sind reine CSS-Zierde, Farben dafür in `tokens.css`
   (`--urushi`, `--kin`, `--hagane`). Beim Überfahren wird das Schwert gezogen.
+- Kapitel wechseln zwischen `.kapitel--papier` und `.kapitel--tusche`, jedes mit
+  Kapitelzeile (`.kicker`). Aufbau angelehnt an antica-weyhe.vercel.app.
+- Bewegung: Tokens `--ease-out` und `--ease-in-out`, Hover-Bewegung nur bei
+  `(hover: hover) and (pointer: fine)`, Einblenden 600 ms. Der Hero setzt
+  Transformationen direkt an den Ebenen, nicht über Variablen am Elternelement.
 - Hero-Name: 明石 als Pinselzug, „Akashi“ in Mincho, roter Hanko-Stempel.
 
 ## Sprache und Ton

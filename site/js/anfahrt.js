@@ -1,5 +1,9 @@
-// Google Maps erst nach Klick einbetten. Vorher gehen keine Daten an Google.
+// Standort: markiert den heutigen Tag in den Öffnungszeiten und bettet
+// Google Maps erst nach Klick ein. Vorher gehen keine Daten an Google.
 (function () {
+  const heute = document.querySelector(`[data-wochenzeiten] tr[data-tag="${new Date().getDay()}"]`);
+  heute?.setAttribute("data-heute", "");
+
   const karte = document.querySelector("[data-karte]");
   const knopf = karte && karte.querySelector("[data-karte-laden]");
   if (!knopf) return;

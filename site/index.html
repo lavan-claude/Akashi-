@@ -28,9 +28,10 @@
       <span class="saya__tsuka" aria-hidden="true"></span>
       <span class="saya__tsuba" aria-hidden="true"></span>
       <span class="saya__sageo" aria-hidden="true"></span>
-      <a href="#akashi">Über uns</a>
       <a href="speisekarte.html">Speisekarte</a>
-      <a href="#anfahrt">Anfahrt</a>
+      <a href="#reservieren" data-abschnitt="reservieren">Reservierung</a>
+      <a href="#ueber-uns" data-abschnitt="ueber-uns">Über uns</a>
+      <a href="#standort" data-abschnitt="standort">Standort</a>
       <span class="saya__kojiri" aria-hidden="true"></span>
     </nav>
     <a class="kopf__knopf" href="#reservieren">Tisch reservieren</a>
@@ -59,13 +60,14 @@
         </video>
         <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
         <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
+        <!-- Folgt der Maus: warmes Laternenlicht und Glutfunken (js/hero.js) -->
+        <div class="hero__licht" aria-hidden="true"></div>
+        <canvas class="hero__funken" aria-hidden="true"></canvas>
+        <div class="hero__abblende" aria-hidden="true"></div>
 
         <div class="hero__raster">
           <div class="hero__text">
-            <p class="hero__zeile">
-              <span class="hero__pille"><span class="hero__punkt" aria-hidden="true"></span>Japanese Restaurant &amp; Izakaya</span>
-              <span class="hero__stempel" aria-hidden="true">寿司</span>
-            </p>
+            <p class="kicker kicker--hell hero__kicker">Japanese Restaurant &amp; Izakaya · Bremen</p>
             <h1 id="hero-titel" class="hero__name">
               <span class="hero__pinsel" aria-hidden="true">明石</span>
               <span class="hero__schrift">Akashi</span>
@@ -80,38 +82,20 @@
               <a class="knopf knopf--pfeil" href="#reservieren">Tisch reservieren <span aria-hidden="true">→</span></a>
               <a class="knopf knopf--hell" href="speisekarte.html">Zur Speisekarte <span aria-hidden="true">↗</span></a>
             </div>
-            <ul class="hero__merk">
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M14 2.5 10 11M20 3.5 13 11"/></svg></span>
-                <span><strong>Vor Ort</strong>mittags und abends</span>
-              </li>
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
-                <span><strong>Abholung &amp; Lieferung</strong>direkt bei uns bestellt</span>
-              </li>
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg></span>
-                <span><strong>4,7 bei Google</strong>aus 367 Bewertungen</span>
-              </li>
-            </ul>
+            <p class="hero__merk">
+              <span>Mittags und abends vor Ort</span>
+              <span>Abholung &amp; Lieferung</span>
+              <span>4,7 bei Google, 367 Bewertungen</span>
+            </p>
           </div>
 
           <div class="hero__bildseite">
             <span class="hero__schild pinsel" aria-hidden="true">居酒屋</span>
 
-            <ul class="hero__karten">
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12c3.2-5 10.3-5 14 0-3.7 5-10.8 5-14 0Z"/><path d="m16.5 12 5-3.5v7Z"/><circle cx="7.5" cy="11.2" r=".6"/></svg></span>
-                <span><strong>Sushi &amp; Sashimi</strong>frisch zubereitet</span>
-              </li>
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M8 7.5c0-1.5 1.5-1.5 1.5-3M12 7.5c0-1.5 1.5-1.5 1.5-3M16 7.5c0-1.5 1.5-1.5 1.5-3"/></svg></span>
-                <span><strong>Ramen</strong>fünf Sorten, auch vegan</span>
-              </li>
-              <li>
-                <span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Z"/><path d="M9 9h6M9 13h6"/></svg></span>
-                <span><strong>72 Gerichte</strong>auf der ganzen Karte</span>
-              </li>
+            <ul class="hero__karten" data-neigen>
+              <li><span class="hero__karten-jp" aria-hidden="true">刺身</span><span><strong>Sushi &amp; Sashimi</strong>frisch zubereitet</span></li>
+              <li><span class="hero__karten-jp" aria-hidden="true">ラーメン</span><span><strong>Ramen</strong>fünf Sorten, zwei davon vegan</span></li>
+              <li><span class="hero__karten-jp" aria-hidden="true">お品書き</span><span><strong>72 Gerichte</strong>in acht Kategorien</span></li>
             </ul>
           </div>
         </div>
@@ -122,33 +106,120 @@
 
     <div id="inhalt"></div>
 
-    <!-- Helles Washi-Papier für Über uns und Speisekarte, dunkel bleiben Hero und Reservierung. -->
-    <div class="papier">
-    <section class="akashi" id="akashi" aria-labelledby="akashi-titel">
-      <span class="pinsel akashi__pinsel" aria-hidden="true">居酒屋</span>
-      <h2 id="akashi-titel" class="akashi__titel aufdeck">Sushi, Ramen und die kleinen Teller einer Izakaya</h2>
-      <div class="akashi__text aufdeck">
-        <p>
-          Im Akashi am Ludwig-Franzius-Platz bekommst du frisch zubereitetes Sushi und Sashimi,
-          kräftige Ramen, knuspriges Tonkatsu und die kleinen Gerichte einer Izakaya,
-          die man am Tisch miteinander teilt.
-        </p>
-        <p>
-          Du kannst bei uns sitzen bleiben, dein Essen mitnehmen oder es dir liefern lassen.
-        </p>
+    <!-- Über uns: Bild links, Text rechts. Alle Angaben aus Karte, Fotos und Impressum. -->
+    <section class="kapitel kapitel--papier ueber" id="ueber-uns" aria-labelledby="ueber-titel">
+      <figure class="ueber__bild aufdeck aufdeck--bild">
+        <img src="assets/raeume/gastraum-1200.webp" srcset="assets/raeume/gastraum-720.webp 720w, assets/raeume/gastraum-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 46vw" width="1200" height="799" loading="lazy" decoding="async" alt="Der Gastraum am Abend: Holztische vor einer dunklen Bank, darüber ein großes Wandbild einer Frau mit Blumenschmuck im Haar in rotem Licht, links die Fensterbar">
+      </figure>
+      <div class="ueber__text">
+        <p class="kicker aufdeck">Über uns</p>
+        <h2 id="ueber-titel" class="kapitel__titel aufdeck">Rotes Licht und dunkles Holz</h2>
+        <div class="fliess aufdeck">
+          <p>
+            Das Akashi liegt am Ludwig-Franzius-Platz, mitten in der Bremer Überseestadt.
+            Drinnen ist es ruhig und eher dunkel gehalten: rotes Licht an den Wänden, lange
+            Holztische, eine Fensterbar mit Blick nach draußen. An den Wänden hängen große
+            Bilder, ein Samurai vor verschneiten Bergen und eine Frau mit Blumenschmuck im Haar.
+          </p>
+          <p>
+            Auf den Tisch kommen Sushi und Sashimi, Uramaki und knusprige Crispy Rolls und
+            Sushi-Sets zum Teilen. Dazu fünf Ramen,
+            von der Naruto Tonkotsu mit Schweineknochenbrühe bis zu zwei veganen Varianten,
+            außerdem Tonkatsu und japanisches Curry.
+          </p>
+          <p>
+            Der Name kommt aus dem Japanischen: <span lang="ja" class="jp">明石</span>, gelesen
+            Akashi, bedeutet heller Stein.
+          </p>
+        </div>
+        <dl class="eckdaten aufdeck">
+          <div><dt>Gerichte</dt><dd>72</dd></div>
+          <div><dt>Ramen</dt><dd>5</dd></div>
+          <div><dt>Google</dt><dd>4,7 <span>aus 367 Bewertungen</span></dd></div>
+        </dl>
       </div>
-      <ul class="akashi__arten aufdeck">
-        <li><span class="akashi__art">Vor Ort</span> mittags und abends</li>
-        <li><span class="akashi__art">Zum Mitnehmen</span> direkt bei uns abholen</li>
-        <li><span class="akashi__art">Lieferung</span> kontaktlos nach Hause</li>
-      </ul>
     </section>
 
-    <section class="karte karte--start" id="karte" aria-labelledby="karte-titel">
-      <div class="karte__kopf aufdeck">
-        <span class="pinsel karte__pinsel" aria-hidden="true">お品書き</span>
-        <h2 id="karte-titel" class="karte__titel">Speisekarte</h2>
-        <p class="karte__text">72 Gerichte in 8 Kategorien, vor Ort, zum Mitnehmen oder geliefert. Wähl eine Kategorie, die ganze Karte öffnet sich an der passenden Stelle.</p>
+    <!-- Izakaya: Text links, Emblem rechts -->
+    <section class="kapitel kapitel--tusche izakaya" id="izakaya" aria-labelledby="izakaya-titel">
+      <div class="izakaya__text">
+        <p class="kicker kicker--hell aufdeck">Izakaya</p>
+        <h2 id="izakaya-titel" class="kapitel__titel aufdeck">Bestellen, teilen, nachbestellen</h2>
+        <div class="fliess aufdeck">
+          <p>
+            Eine Izakaya ist in Japan das Lokal nach Feierabend: Man bestellt mehrere kleine
+            Gerichte, stellt sie in die Mitte und isst gemeinsam. So kannst du auch bei uns
+            essen. Fang mit Gyoza, Edamame oder Yasai Tempura an, nimm Sashimi und eine Runde
+            Rolls dazu und entscheide dann, ob noch eine Ramen passt.
+          </p>
+        </div>
+        <ul class="wege aufdeck">
+          <li><strong>Vor Ort</strong> mittags und abends, Gruppen ab neun Personen am besten telefonisch</li>
+          <li><strong>Abholen</strong> direkt bei uns am Ludwig-Franzius-Platz</li>
+          <li><strong>Lieferung</strong> kontaktlos nach Hause</li>
+        </ul>
+      </div>
+      <div class="emblem aufdeck" aria-hidden="true">
+        <span class="emblem__sonne"></span>
+        <span class="emblem__zeichen">居酒屋</span>
+      </div>
+    </section>
+
+    <!-- Standort: Öffnungszeiten | Bild | Adresse, darunter die Karte nach Klick -->
+    <section class="kapitel kapitel--papier standort" id="standort" aria-labelledby="standort-titel">
+      <div class="standort__zeiten aufdeck">
+        <p class="kicker">Öffnungszeiten</p>
+        <h2 class="kapitel__titel kapitel__titel--klein">Wann du kommen kannst</h2>
+        <!-- Muss zu den Zeiten in js/reservierung.js und netlify/functions/reservierung.mjs passen. -->
+        <table class="wochenzeiten" data-wochenzeiten>
+          <tr data-tag="1"><th scope="row">Montag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="2"><th scope="row">Dienstag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="3"><th scope="row">Mittwoch</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="4"><th scope="row">Donnerstag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="5"><th scope="row">Freitag</th><td>12:00–14:30 · 17:00–21:30</td></tr>
+          <tr data-tag="6"><th scope="row">Samstag</th><td>17:00–21:30</td></tr>
+          <tr data-tag="0"><th scope="row">Sonntag</th><td>Ruhetag</td></tr>
+        </table>
+      </div>
+
+      <figure class="standort__bild aufdeck aufdeck--bild" style="--i: 1">
+        <img src="assets/raeume/fensterbar-720.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 30vw" width="720" height="406" loading="lazy" decoding="async" alt="Fensterbar am Abend mit Blick auf die Straßen der Überseestadt">
+      </figure>
+
+      <div class="standort__adresse aufdeck" style="--i: 2">
+        <p class="kicker">Standort</p>
+        <h2 id="standort-titel" class="kapitel__titel kapitel__titel--klein">Akashi</h2>
+        <address>
+          Ludwig-Franzius-Platz 13<br>
+          28217 Bremen, Überseestadt<br>
+          <a href="tel:+4942143093028">0421 43093028</a><br>
+          <a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a>
+        </address>
+        <p class="standort__links">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">In Google Maps öffnen</a>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route planen</a>
+        </p>
+        <div class="standort__knoepfe">
+          <a class="knopf" href="#reservieren">Tisch reservieren</a>
+          <a class="knopf knopf--linie" href="tel:+4942143093028">Jetzt bestellen</a>
+        </div>
+      </div>
+
+      <!-- Google Maps lädt erst nach Klick (js/anfahrt.js), damit ohne Zustimmung
+           keine Daten an Google gehen. -->
+      <div class="standort__karte aufdeck" data-karte="https://www.google.com/maps?q=Akashi+Japanese+Restaurant+%26+Izakaya,+Ludwig-Franzius-Platz+13,+28217+Bremen&amp;z=15&amp;output=embed">
+        <div class="standort__freigabe">
+          <button class="knopf knopf--linie" type="button" data-karte-laden>Karte anzeigen</button>
+          <p>Dabei lädt Google Maps und erhält deine IP-Adresse. Mehr in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="kapitel kapitel--tusche karte karte--start" id="karte" aria-labelledby="karte-titel">
+      <div class="karte__kopf">
+        <p class="kicker kicker--hell aufdeck">Unsere Karte</p>
+        <h2 id="karte-titel" class="kapitel__titel aufdeck">72 Gerichte, acht Kapitel</h2>
+        <p class="karte__text aufdeck">Von Edamame bis Tonkatsu. Wähl eine Kategorie, die ganze Karte öffnet sich an der passenden Stelle.</p>
       </div>
       <!-- Wird von tools/speisekarte.py aus daten/speisekarte.json erzeugt. Nicht von Hand ändern. -->
 <!-- KACHELN:START -->
@@ -165,7 +236,6 @@
 <!-- KACHELN:ENDE -->
       <p class="karte__weiter aufdeck"><a class="knopf" href="speisekarte.html">Ganze Speisekarte ansehen</a></p>
     </section>
-    </div>
 
     <!-- Eigene Fotos des Restaurants, bearbeitet in assets/raeume/. -->
     <section class="leiste" aria-label="Eindrücke aus dem Akashi">
@@ -185,27 +255,12 @@
 
         <dl class="fakten">
           <div>
-            <dt>Adresse</dt>
-            <dd>Ludwig-Franzius-Platz 13<br>28217 Bremen</dd>
-          </div>
-          <div>
             <dt>Telefon</dt>
             <dd><a href="tel:+4942143093028">0421 43093028</a></dd>
           </div>
           <div>
             <dt>E-Mail</dt>
             <dd><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></dd>
-          </div>
-          <div>
-            <dt>Öffnungszeiten</dt>
-            <dd>
-              <table class="zeiten">
-                <tr><th scope="row">Mo – Do</th><td>12:00 – 14:30<br>17:00 – 21:00</td></tr>
-                <tr><th scope="row">Freitag</th><td>12:00 – 14:30<br>17:00 – 21:30</td></tr>
-                <tr><th scope="row">Samstag</th><td>17:00 – 21:30</td></tr>
-                <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
-              </table>
-            </dd>
           </div>
           <div>
             <dt>Gruppen ab 9 Personen</dt>
@@ -328,48 +383,6 @@
       </div>
     </section>
 
-    <section class="anfahrt" id="anfahrt" aria-labelledby="anfahrt-titel">
-      <div class="anfahrt__schild aufdeck">
-        <img class="anfahrt__logo" src="assets/raeume/logo-schild.webp" width="900" height="336" loading="lazy" decoding="async" alt="Akashi">
-        <h2 id="anfahrt-titel" class="anfahrt__titel">Adresse</h2>
-        <address class="anfahrt__adresse">
-          <p>Ludwig-Franzius-Platz 13</p>
-          <p>28217 Bremen</p>
-        </address>
-        <p class="anfahrt__links">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">In Google Maps öffnen</a>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route planen</a>
-        </p>
-
-        <details class="anfahrt__zeiten">
-          <summary>Öffnungszeiten</summary>
-          <!-- Muss zu den Zeiten in der Reservierung und in js/reservierung.js passen. -->
-          <table class="wochenzeiten">
-            <tr><th scope="row">Mo:</th><td>12:00–14:30, 17:00–21:00</td></tr>
-            <tr><th scope="row">Di:</th><td>12:00–14:30, 17:00–21:00</td></tr>
-            <tr><th scope="row">Mi:</th><td>12:00–14:30, 17:00–21:00</td></tr>
-            <tr><th scope="row">Do:</th><td>12:00–14:30, 17:00–21:00</td></tr>
-            <tr><th scope="row">Fr:</th><td>12:00–14:30, 17:00–21:30</td></tr>
-            <tr><th scope="row">Sa:</th><td>17:00–21:30</td></tr>
-            <tr><th scope="row">So:</th><td>Ruhetag</td></tr>
-          </table>
-        </details>
-
-        <!-- Bestellung direkt beim Restaurant, kein Lieferdienst dazwischen. -->
-        <a class="knopf anfahrt__knopf" href="tel:+4942143093028">Jetzt bestellen</a>
-        <p class="anfahrt__bestellen">Telefonisch direkt bei uns: <a href="tel:+4942143093028">0421 43093028</a></p>
-      </div>
-
-      <!-- Google Maps lädt erst nach Klick (js/anfahrt.js), damit ohne Zustimmung
-           keine Daten an Google gehen. -->
-      <div class="anfahrt__karte aufdeck" style="--i: 2" data-karte="https://www.google.com/maps?q=Akashi+Japanese+Restaurant+%26+Izakaya,+Ludwig-Franzius-Platz+13,+28217+Bremen&amp;z=15&amp;output=embed">
-        <img class="anfahrt__vorschau" src="assets/raeume/fensterbar-1200.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 65vw" width="1200" height="675" loading="lazy" decoding="async" alt="">
-        <div class="anfahrt__freigabe">
-          <button class="knopf" type="button" data-karte-laden>Karte anzeigen</button>
-          <p>Dabei lädt Google Maps und erhält deine IP-Adresse. Mehr in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="fuss">
