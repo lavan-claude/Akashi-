@@ -1927,3 +1927,62 @@ section[id],
   .bewertung figure { padding: var(--space-m); }
   .bewertung__sterne { margin-top: var(--space-s); }
 }
+
+/* ── Knöpfe wie eine Klinge (27.09.2026) ───────────────────────────────────
+   Hauptknopf: kantig, zwei Ecken schräg abgeschnitten wie Klingenspitze und
+   Heft. Nebenknöpfe: eckiger Rahmen. Die Füllfarbe beim Überfahren bleibt. */
+.knopf:not(.knopf--hell):not(.knopf--linie) {
+  --schnitt: 0.75rem;
+  border-radius: 0;
+  clip-path: polygon(var(--schnitt) 0, 100% 0, 100% calc(100% - var(--schnitt)), calc(100% - var(--schnitt)) 100%, 0 100%, 0 var(--schnitt));
+}
+/* Der Fokusring liegt innen, weil die Form außen alles abschneidet */
+.knopf:not(.knopf--hell):not(.knopf--linie):focus-visible { outline: 2px solid currentColor; outline-offset: -6px; }
+.knopf.knopf--hell,
+.knopf.knopf--linie,
+.kopf__knopf { border-radius: var(--radius-s); }
+
+/* ── Öffnungszeiten wie auf einer gedruckten Karte ───────────────────────
+   Keine Tabellenlinien: gepunktete Führungslinie von Tag zu Zeit, heute mit
+   rotem Stempel. */
+.wochenzeiten,
+.wochenzeiten tbody { display: block; }
+.wochenzeiten tr { display: flex; align-items: baseline; gap: var(--space-xs); }
+.wochenzeiten tr + tr > * { border-top: 0; }
+.wochenzeiten th {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: var(--space-xs);
+  padding: 0.55rem 0;
+  font-weight: 500;
+}
+.wochenzeiten th::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1.5px dotted var(--washi-line);
+  translate: 0 -0.25em;
+}
+.wochenzeiten td { padding: 0.55rem 0; white-space: nowrap; }
+.wochenzeiten tr[data-heute] th::after { content: ""; }
+.wochenzeiten tr[data-heute] th,
+.wochenzeiten tr[data-heute] td { color: var(--sumi); font-weight: 700; }
+.wochenzeiten tr[data-heute] td::after {
+  content: "heute";
+  display: inline-block;
+  margin-left: var(--space-xs);
+  padding: 0.05rem 0.35rem;
+  border: 1.5px solid var(--shu);
+  border-radius: var(--radius-s);
+  color: var(--shu-deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  rotate: -6deg;
+}
+
+/* ── „Weiter“ im Hero links unten, bündig mit dem Text ─────────────────── */
+.hero__runter {
+  left: calc(max(0px, (100% - 84rem) / 2) + clamp(1rem, 4vw, 3rem));
+  translate: none;
+}

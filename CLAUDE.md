@@ -51,8 +51,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Kanji immer in Gewicht 800. Neue Kanji müssen in die Datei
   `fonts/shippori-mincho-800-kanji.woff2` und in deren `unicode-range`.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
-  Ausnahme: Knöpfe haben runde Enden (`--radius-round`). Beim Überfahren wischt
-  eine Füllfarbe herein (`--fuellung`, je nach Untergrund).
+  Knöpfe (27.09.2026): Der Hauptknopf ist kantig wie eine Klinge, zwei Ecken
+  schräg abgeschnitten (`clip-path`, Fokusring innen). Nebenknöpfe
+  (`.knopf--hell`, `.knopf--linie`, `.kopf__knopf`) sind eckige Rahmen.
+  Beim Überfahren wischt eine Füllfarbe herein (`--fuellung`).
 - Hero-Animation (Wunsch von Lavan, 27.09.2026): Die einzige Animation sind
   rote Glutpunkte, die langsam aufsteigen, dazu spult Scrollen das Video.
   Nichts folgt dem Mauszeiger: keine Blüten, kein Laternenlicht, keine
@@ -82,6 +84,9 @@ Die Seite soll nach einem echten Restaurant aussehen, nicht nach einem
 KI-Baukasten. Deshalb:
 
 - Keine Kapitelzeilen in gesperrten Großbuchstaben über Überschriften (`.kicker`).
+- Keine Standard-Tabellenlinien: Öffnungszeiten mit gepunkteter Führungslinie
+  wie auf einer gedruckten Karte, „heute“ als kleiner roter Stempel.
+- Im Hero steht alles linksbündig, auch der Hinweis „Weiter“.
 - Keine Pfeile in Knöpfen, keine Mittelpunkte als Trenner.
 - Keine Zahlenreihen und „Vertrauensbausteine“ (72 Gerichte, 4,7 Sterne …).
   Eine Bewertung höchstens als echtes Zitat eines Gastes.
@@ -89,8 +94,7 @@ KI-Baukasten. Deshalb:
   ihre roten Nummern 01–08 und die Zahl der Gerichte.
 - Hero-Text (27.09.2026, abends): nur 明石 Akashi mit Stempel, ein Satz, zwei
   Knöpfe ohne Pfeile. Keine Kapitelzeile, keine Merkmal-Zeile, keine Sterne.
-- Ausnahme Izakaya (Wunsch von Lavan, 27.09.2026): Kapitelzeile „Izakaya“,
-  Überschrift, Liste Vor Ort / Abholen / Lieferung und rechts die rote Sonne
+- Izakaya (Wunsch von Lavan, 27.09.2026): Überschrift, Liste Vor Ort / Abholen / Lieferung und rechts die rote Sonne
   mit 居酒屋 statt Foto. Kein erklärender Text.
 - Stimmen (`#stimmen`, vor der Reservierung): Slideshow mit echten
   Google-Bewertungen (`js/stimmen.js`), wörtlich, Namen gekürzt, Quelle und
