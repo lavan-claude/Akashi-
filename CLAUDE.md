@@ -162,16 +162,18 @@ ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
 
 Ziel: höchstens 4 MB.
 
-Seit 28.09.2026: neues Kling-Video (Samurai in Rüstung rechts vor der roten
-Sonne, fallende Blütenblätter), 1920 × 1080, 8 s, ohne Wasserzeichen. Quelle
-`Downloads/kling_20260928_VIDEO_Create_an__313_0.mp4`, nicht im Repo. Farben
+Seit 28.09.2026: neues Kling-Video (Samurai im Gras vor der roten Sonne,
+zieht nach der Hälfte das Schwert), 1920 × 1080, 8 s. Quelle
+`Downloads/kling_20260928_VIDEO_Create_an__422_0.mp4`, nicht im Repo. Farben
 bewusst unverändert wie im Original (Wunsch von Lavan), nur der Ton ist
 entfernt. Nicht nachfärben.
 
+Das Video trägt unten rechts das Wasserzeichen „KlingAI 3.0 Omni“. Vor
+Livegang durch die Fassung ohne Wasserzeichen ersetzen und die
+Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
+
 Das Standbild `samurai.jpg` ist das erste Bild des Videos und zugleich die
-Ansicht bei reduzierter Bewegung. Die Kamera fährt nur leicht heran, beim
-Scrollen passiert deshalb wenig. Vor Livegang die Nutzungsbedingungen von Kling
-für gewerbliche Nutzung prüfen.
+Ansicht bei reduzierter Bewegung.
 
 ## Inhalte
 
