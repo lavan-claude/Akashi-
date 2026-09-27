@@ -180,13 +180,12 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
 
 ## Branches
 
-- `main` ist die Seite, die live auf akashibremen.netlify.app steht
-  (Samurai-Hero mit Funken, Kacheln, Zahlenreihe). **Nicht ändern**, solange
-  die neue Version nicht ausdrücklich freigegeben ist.
-- `neue-version` ist die Überarbeitung mit echten Fotos und ohne
-  Vorlagen-Muster. Hier wird weitergebaut. Vorschau unter
-  neue-version--akashibremen.netlify.app (Branch-Deploys in Netlify nötig).
-- `alte-version` und `vor-fotos` sind nur Sicherungen.
+- `main` ist die Seite, die live auf akashibremen.netlify.app steht. Seit dem
+  27.09.2026 ist das die überarbeitete Fassung (vorher auf `neue-version`).
+  Hier wird weitergebaut.
+- `neue-version` ist in `main` aufgegangen und wird nicht mehr gebraucht.
+- `live-bis-27-09` ist die alte Live-Fassung (Blüten, Laternenlicht, Karten im
+  Hero). `alte-version` und `vor-fotos` sind ältere Sicherungen.
 
 ## Arbeitsweise
 
