@@ -148,11 +148,15 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
 - Fotos: nur eigene Fotos des Restaurants, als WebP in `site/assets/raeume/`.
   Das Teamfoto liegt nur in 399 px vor, deshalb klein unter Über uns.
 
-## Ältere Fassungen
+## Branches
 
-Nicht löschen, nur zum Vergleichen: Branch `alte-version` (Samurai-Hero mit
-Funken, Kacheln und Zahlenreihe) und Branch `vor-fotos` (ohne Vorlagen-Muster,
-vor den echten Fotos). Weitergebaut wird nur auf `main`.
+- `main` ist die Seite, die live auf akashibremen.netlify.app steht
+  (Samurai-Hero mit Funken, Kacheln, Zahlenreihe). **Nicht ändern**, solange
+  die neue Version nicht ausdrücklich freigegeben ist.
+- `neue-version` ist die Überarbeitung mit echten Fotos und ohne
+  Vorlagen-Muster. Hier wird weitergebaut. Vorschau unter
+  neue-version--akashibremen.netlify.app (Branch-Deploys in Netlify nötig).
+- `alte-version` und `vor-fotos` sind nur Sicherungen.
 
 ## Arbeitsweise
 
