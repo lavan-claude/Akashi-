@@ -38,7 +38,7 @@
   </header>
 
   <main>
-    <!-- Hero: Samurai-Video über die ganze Breite, Text links.
+    <!-- Hero: Samurai-Video über die ganze Breite, Text links, Karten rechts.
          Die Bühne bleibt stehen, während man durch die hohe Sektion scrollt;
          js/hero.js setzt dabei --fortschritt von 0 bis 1 und spult das Video. -->
     <section class="hero" aria-labelledby="hero-titel">
@@ -60,25 +60,44 @@
         </video>
         <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
         <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
+        <!-- Folgt der Maus: warmes Laternenlicht und Glutfunken (js/hero.js) -->
+        <div class="hero__licht" aria-hidden="true"></div>
+        <canvas class="hero__funken" aria-hidden="true"></canvas>
         <div class="hero__abblende" aria-hidden="true"></div>
 
         <div class="hero__raster">
           <div class="hero__text">
+            <p class="kicker kicker--hell hero__kicker">Japanese Restaurant &amp; Izakaya · Bremen</p>
             <h1 id="hero-titel" class="hero__name">
               <span class="hero__pinsel" aria-hidden="true">明石</span>
               <span class="hero__schrift">Akashi</span>
               <span class="hanko" aria-hidden="true">明石</span>
             </h1>
+            <p class="hero__bedeutung"><span lang="ja">明石</span> heißt „heller Stein“. Sushi, Ramen und Izakaya in der Überseestadt.</p>
             <p class="hero__unterzeile">
-              Sushi, Ramen und kleine Teller für die Mitte.
-              Japanese Restaurant &amp; Izakaya am Ludwig-Franzius-Platz.
+              Frisch zubereitetes Sushi und Sashimi, kräftige Ramen und die kleinen Teller
+              einer Izakaya, am Ludwig-Franzius-Platz in Bremen.
             </p>
             <div class="hero__handlung">
-              <a class="knopf" href="#reservieren">Tisch reservieren</a>
-              <a class="knopf knopf--hell" href="speisekarte.html">Speisekarte</a>
+              <a class="knopf knopf--pfeil" href="#reservieren">Tisch reservieren <span aria-hidden="true">→</span></a>
+              <a class="knopf knopf--hell" href="speisekarte.html">Zur Speisekarte <span aria-hidden="true">↗</span></a>
             </div>
+            <p class="hero__merk">
+              <span>Mittags und abends vor Ort</span>
+              <span>Abholung &amp; Lieferung</span>
+              <span>4,7 bei Google, 367 Bewertungen</span>
+            </p>
           </div>
 
+          <div class="hero__bildseite">
+            <span class="hero__schild pinsel" aria-hidden="true">居酒屋</span>
+
+            <ul class="hero__karten" data-neigen>
+              <li><span class="hero__karten-jp" aria-hidden="true">刺身</span><span><strong>Sushi &amp; Sashimi</strong>frisch zubereitet</span></li>
+              <li><span class="hero__karten-jp" aria-hidden="true">ラーメン</span><span><strong>Ramen</strong>fünf Sorten, zwei davon vegan</span></li>
+              <li><span class="hero__karten-jp" aria-hidden="true">お品書き</span><span><strong>72 Gerichte</strong>in acht Kategorien</span></li>
+            </ul>
+          </div>
         </div>
 
         <a class="hero__runter" href="#inhalt"><span class="hero__maus" aria-hidden="true"></span>Weiter</a>
@@ -93,56 +112,71 @@
         <img src="assets/raeume/gastraum-1200.webp" srcset="assets/raeume/gastraum-720.webp 720w, assets/raeume/gastraum-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 46vw" width="1200" height="799" loading="lazy" decoding="async" alt="Der Gastraum am Abend: Holztische vor einer dunklen Bank, darüber ein großes Wandbild einer Frau mit Blumenschmuck im Haar in rotem Licht, links die Fensterbar">
       </figure>
       <div class="ueber__text">
+        <p class="kicker aufdeck">Über uns</p>
         <h2 id="ueber-titel" class="kapitel__titel aufdeck">Rotes Licht und dunkles Holz</h2>
         <div class="fliess aufdeck">
           <p>
-            Abends ist es bei uns eher dunkel. Rotes Licht an den Wänden, lange Holztische,
-            vorne die Fensterbar mit Blick auf die Überseestadt. An der Wand ein Samurai vor
-            verschneiten Bergen und eine Frau mit Blumen im Haar.
+            Das Akashi liegt am Ludwig-Franzius-Platz, mitten in der Bremer Überseestadt.
+            Drinnen ist es ruhig und eher dunkel gehalten: rotes Licht an den Wänden, lange
+            Holztische, eine Fensterbar mit Blick nach draußen. An den Wänden hängen große
+            Bilder, ein Samurai vor verschneiten Bergen und eine Frau mit Blumenschmuck im Haar.
           </p>
           <p>
-            Auf den Tisch kommen Sushi, Sashimi und Rolls zum Teilen, dazu Ramen,
-            Tonkatsu und japanisches Curry.
+            Auf den Tisch kommen Sushi und Sashimi, Uramaki und knusprige Crispy Rolls und
+            Sushi-Sets zum Teilen. Dazu fünf Ramen,
+            von der Naruto Tonkotsu mit Schweineknochenbrühe bis zu zwei veganen Varianten,
+            außerdem Tonkatsu und japanisches Curry.
+          </p>
+          <p>
+            Der Name kommt aus dem Japanischen: <span lang="ja" class="jp">明石</span>, gelesen
+            Akashi, bedeutet heller Stein.
           </p>
         </div>
-        <figure class="ueber__team aufdeck">
-          <img src="assets/raeume/team-400.webp" width="399" height="501" loading="lazy" decoding="async" alt="Das Team des Akashi, vier Personen im Gastraum vor dem Wandbild mit dem Samurai">
-          <figcaption>Das Team vom Akashi</figcaption>
-        </figure>
+        <dl class="eckdaten aufdeck">
+          <div><dt>Gerichte</dt><dd>72</dd></div>
+          <div><dt>Ramen</dt><dd>5</dd></div>
+          <div><dt>Google</dt><dd>4,7 <span>aus 367 Bewertungen</span></dd></div>
+        </dl>
       </div>
     </section>
 
-    <!-- Izakaya: Text links, Foto rechts -->
+    <!-- Izakaya: Text links, Emblem rechts -->
     <section class="kapitel kapitel--tusche izakaya" id="izakaya" aria-labelledby="izakaya-titel">
       <div class="izakaya__text">
+        <p class="kicker kicker--hell aufdeck">Izakaya</p>
         <h2 id="izakaya-titel" class="kapitel__titel aufdeck">Bestellen, teilen, nachbestellen</h2>
         <div class="fliess aufdeck">
           <p>
-            Ein paar kleine Teller für die Mitte, Gyoza, Edamame, Yasai Tempura.
-            Dann Sashimi und eine Runde Rolls. Wer danach noch Hunger hat, nimmt eine Ramen.
-          </p>
-          <p>
-            Mittags und abends bei uns, zum Abholen oder geliefert.
-            Ab neun Personen ruf am besten kurz an: <a href="tel:+4942143093028">0421 43093028</a>.
+            Eine Izakaya ist in Japan das Lokal nach Feierabend: Man bestellt mehrere kleine
+            Gerichte, stellt sie in die Mitte und isst gemeinsam. So kannst du auch bei uns
+            essen. Fang mit Gyoza, Edamame oder Yasai Tempura an, nimm Sashimi und eine Runde
+            Rolls dazu und entscheide dann, ob noch eine Ramen passt.
           </p>
         </div>
+        <ul class="wege aufdeck">
+          <li><strong>Vor Ort</strong> mittags und abends, Gruppen ab neun Personen am besten telefonisch</li>
+          <li><strong>Abholen</strong> direkt bei uns am Ludwig-Franzius-Platz</li>
+          <li><strong>Lieferung</strong> kontaktlos nach Hause</li>
+        </ul>
       </div>
-      <figure class="izakaya__bild aufdeck aufdeck--bild">
-        <img src="assets/raeume/rolls-1200.webp" srcset="assets/raeume/rolls-720.webp 720w, assets/raeume/rolls-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 42vw" width="1200" height="675" loading="lazy" decoding="async" alt="Zwei Rolls auf Schieferplatten, eine mit Lachs und Ebi Tempura, dahinter die Bar und das Wandbild im Abendlicht">
-      </figure>
+      <div class="emblem aufdeck" aria-hidden="true">
+        <span class="emblem__sonne"></span>
+        <span class="emblem__zeichen">居酒屋</span>
+      </div>
     </section>
 
     <!-- Standort: Öffnungszeiten | Bild | Adresse, darunter die Karte nach Klick -->
     <section class="kapitel kapitel--papier standort" id="standort" aria-labelledby="standort-titel">
       <div class="standort__zeiten aufdeck">
-        <h2 class="kapitel__titel kapitel__titel--klein">Öffnungszeiten</h2>
+        <p class="kicker">Öffnungszeiten</p>
+        <h2 class="kapitel__titel kapitel__titel--klein">Wann du kommen kannst</h2>
         <!-- Muss zu den Zeiten in js/reservierung.js und netlify/functions/reservierung.mjs passen. -->
         <table class="wochenzeiten" data-wochenzeiten>
-          <tr data-tag="1"><th scope="row">Montag</th><td>12:00–14:30, 17:00–21:00</td></tr>
-          <tr data-tag="2"><th scope="row">Dienstag</th><td>12:00–14:30, 17:00–21:00</td></tr>
-          <tr data-tag="3"><th scope="row">Mittwoch</th><td>12:00–14:30, 17:00–21:00</td></tr>
-          <tr data-tag="4"><th scope="row">Donnerstag</th><td>12:00–14:30, 17:00–21:00</td></tr>
-          <tr data-tag="5"><th scope="row">Freitag</th><td>12:00–14:30, 17:00–21:30</td></tr>
+          <tr data-tag="1"><th scope="row">Montag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="2"><th scope="row">Dienstag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="3"><th scope="row">Mittwoch</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="4"><th scope="row">Donnerstag</th><td>12:00–14:30 · 17:00–21:00</td></tr>
+          <tr data-tag="5"><th scope="row">Freitag</th><td>12:00–14:30 · 17:00–21:30</td></tr>
           <tr data-tag="6"><th scope="row">Samstag</th><td>17:00–21:30</td></tr>
           <tr data-tag="0"><th scope="row">Sonntag</th><td>Ruhetag</td></tr>
         </table>
@@ -153,7 +187,8 @@
       </figure>
 
       <div class="standort__adresse aufdeck" style="--i: 2">
-        <h2 id="standort-titel" class="kapitel__titel kapitel__titel--klein">So findest du uns</h2>
+        <p class="kicker">Standort</p>
+        <h2 id="standort-titel" class="kapitel__titel kapitel__titel--klein">Akashi</h2>
         <address>
           Ludwig-Franzius-Platz 13<br>
           28217 Bremen, Überseestadt<br>
@@ -182,30 +217,31 @@
 
     <section class="kapitel kapitel--tusche karte karte--start" id="karte" aria-labelledby="karte-titel">
       <div class="karte__kopf">
-        <h2 id="karte-titel" class="kapitel__titel aufdeck">Von Edamame bis Tonkatsu</h2>
+        <p class="kicker kicker--hell aufdeck">Unsere Karte</p>
+        <h2 id="karte-titel" class="kapitel__titel aufdeck">72 Gerichte, acht Kapitel</h2>
+        <p class="karte__text aufdeck">Von Edamame bis Tonkatsu. Wähl eine Kategorie, die ganze Karte öffnet sich an der passenden Stelle.</p>
       </div>
       <!-- Wird von tools/speisekarte.py aus daten/speisekarte.json erzeugt. Nicht von Hand ändern. -->
 <!-- KACHELN:START -->
-<ul class="kacheln">
-  <li class="aufdeck" style="--i: 0"><a class="kachel" href="speisekarte.html#karte-starter"><span class="kachel__kanji" aria-hidden="true">前菜</span><span class="kachel__name">Starter &amp; Beilagen</span></a></li>
-  <li class="aufdeck" style="--i: 1"><a class="kachel" href="speisekarte.html#karte-sashimi"><span class="kachel__kanji" aria-hidden="true">刺身</span><span class="kachel__name">Sashimi</span></a></li>
-  <li class="aufdeck" style="--i: 2"><a class="kachel" href="speisekarte.html#karte-uramaki"><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Uramaki Rolls</span></a></li>
-  <li class="aufdeck" style="--i: 3"><a class="kachel" href="speisekarte.html#karte-maki"><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Maki &amp; Crispy</span></a></li>
-  <li class="aufdeck" style="--i: 4"><a class="kachel" href="speisekarte.html#karte-sets"><span class="kachel__kanji" aria-hidden="true">寿司</span><span class="kachel__name">Sushi Sets</span></a></li>
-  <li class="aufdeck" style="--i: 5"><a class="kachel" href="speisekarte.html#karte-ramen"><span class="kachel__kanji" aria-hidden="true">ラーメン</span><span class="kachel__name">Ramen</span></a></li>
-  <li class="aufdeck" style="--i: 6"><a class="kachel" href="speisekarte.html#karte-tonkatsu"><span class="kachel__kanji" aria-hidden="true">とんかつ</span><span class="kachel__name">Tonkatsu Menü</span></a></li>
-  <li class="aufdeck" style="--i: 7"><a class="kachel" href="speisekarte.html#karte-curry"><span class="kachel__kanji" aria-hidden="true">カレー</span><span class="kachel__name">Japanisches Curry</span></a></li>
-</ul>
+<ol class="kacheln">
+  <li class="aufdeck" style="--i: 0"><a class="kachel" href="speisekarte.html#karte-starter"><span class="kachel__nr">01</span><span class="kachel__kanji" aria-hidden="true">前菜</span><span class="kachel__name">Starter &amp; Beilagen</span><span class="kachel__zahl">16 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 1"><a class="kachel" href="speisekarte.html#karte-sashimi"><span class="kachel__nr">02</span><span class="kachel__kanji" aria-hidden="true">刺身</span><span class="kachel__name">Sashimi</span><span class="kachel__zahl">4 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 2"><a class="kachel" href="speisekarte.html#karte-uramaki"><span class="kachel__nr">03</span><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Uramaki Rolls</span><span class="kachel__zahl">17 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 3"><a class="kachel" href="speisekarte.html#karte-maki"><span class="kachel__nr">04</span><span class="kachel__kanji" aria-hidden="true">巻き寿司</span><span class="kachel__name">Maki &amp; Crispy</span><span class="kachel__zahl">9 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 4"><a class="kachel" href="speisekarte.html#karte-sets"><span class="kachel__nr">05</span><span class="kachel__kanji" aria-hidden="true">寿司</span><span class="kachel__name">Sushi Sets</span><span class="kachel__zahl">8 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 5"><a class="kachel" href="speisekarte.html#karte-ramen"><span class="kachel__nr">06</span><span class="kachel__kanji" aria-hidden="true">ラーメン</span><span class="kachel__name">Ramen</span><span class="kachel__zahl">5 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 6"><a class="kachel" href="speisekarte.html#karte-tonkatsu"><span class="kachel__nr">07</span><span class="kachel__kanji" aria-hidden="true">とんかつ</span><span class="kachel__name">Tonkatsu Menü</span><span class="kachel__zahl">8 Gerichte</span></a></li>
+  <li class="aufdeck" style="--i: 7"><a class="kachel" href="speisekarte.html#karte-curry"><span class="kachel__nr">08</span><span class="kachel__kanji" aria-hidden="true">カレー</span><span class="kachel__name">Japanisches Curry</span><span class="kachel__zahl">5 Gerichte</span></a></li>
+</ol>
 <!-- KACHELN:ENDE -->
       <p class="karte__weiter aufdeck"><a class="knopf" href="speisekarte.html">Ganze Speisekarte ansehen</a></p>
     </section>
 
     <!-- Eigene Fotos des Restaurants, bearbeitet in assets/raeume/. -->
     <section class="leiste" aria-label="Eindrücke aus dem Akashi">
-      <figure><img src="assets/raeume/tonkatsu-540.webp" srcset="assets/raeume/tonkatsu-540.webp 540w, assets/raeume/tonkatsu-800.webp 800w" sizes="(max-width: 48rem) 50vw, 25vw" width="540" height="720" loading="lazy" decoding="async" alt="Tonkatsu Menü auf einem Holzbrett mit Reis, Misosuppe und Soßen, dahinter das Fenster zur Straße"></figure>
-      <figure><img src="assets/raeume/sushi-720.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 48rem) 50vw, 25vw" width="720" height="900" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></figure>
-      <figure><img src="assets/raeume/wandbild-760.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="764" height="1020" loading="lazy" decoding="async" alt="Lange Tischreihe vor einem großen Wandbild mit Samurai, Drache und Bergen"></figure>
-      <figure><img src="assets/raeume/tofu-salat-640.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="640" height="480" loading="lazy" decoding="async" alt="Schale mit knusprigem Tofu auf Rucola, dazu Zitrone, im Hintergrund Edamame"></figure>
+      <figure><img src="assets/raeume/sushi-720.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 48rem) 100vw, 34vw" width="720" height="900" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></figure>
+      <figure><img src="assets/raeume/wandbild-760.webp" sizes="(max-width: 48rem) 50vw, 33vw" width="764" height="1020" loading="lazy" decoding="async" alt="Lange Tischreihe vor einem großen Wandbild mit Samurai, Drache und Bergen"></figure>
+      <figure><img src="assets/raeume/fensterbar-720.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 48rem) 50vw, 33vw" width="720" height="406" loading="lazy" decoding="async" alt="Gastraum am Abend mit Fensterbar und Blick auf die Überseestadt"></figure>
     </section>
 
     <section class="reservieren" id="reservieren" aria-labelledby="reservieren-titel">

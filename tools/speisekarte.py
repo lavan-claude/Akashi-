@@ -83,14 +83,16 @@ def kategorie(k):
 
 def kacheln(karte):
     """Kacheln der Startseite, jede führt zur Kategorie auf der Kartenseite."""
-    zeilen = [K_START, '<ul class="kacheln">']
+    zeilen = [K_START, '<ol class="kacheln">']
     for i, k in enumerate(karte["kategorien"]):
         zeilen.append(
             f'  <li class="aufdeck" style="--i: {i}"><a class="kachel" href="speisekarte.html#karte-{k["id"]}">'
+            f'<span class="kachel__nr">{i + 1:02d}</span>'
             f'<span class="kachel__kanji" aria-hidden="true">{e(k["kanji"])}</span>'
-            f'<span class="kachel__name">{e(k["kategorie"])}</span></a></li>'
+            f'<span class="kachel__name">{e(k["kategorie"])}</span>'
+            f'<span class="kachel__zahl">{len(k["gerichte"])} Gerichte</span></a></li>'
         )
-    zeilen += ["</ul>", K_ENDE]
+    zeilen += ["</ol>", K_ENDE]
     return "\n".join(zeilen)
 
 

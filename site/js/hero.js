@@ -1,6 +1,8 @@
-// Hero: Scrollen durch die hohe Hero-Sektion spult das Samurai-Video vor und
-// zurück, zoomt das Bild leicht und blendet am Ende zur Tusche ab. Das ist der
-// einzige Effekt; Maus, Licht, Funken und Blüten sind bewusst entfernt.
+// Hero: Scrollen und Maus bewegen die Bühne.
+// - Scrollen durch die hohe Hero-Sektion spult das Samurai-Video vor und zurück,
+//   zoomt die Bilder leicht und blendet am Ende zur Tusche ab.
+// - Die Maus (oder ein Finger) verschiebt die Ebenen gegeneinander, zieht ein warmes
+//   Laternenlicht mit und schiebt Glutfunken beiseite.
 // Transformationen werden direkt an den Ebenen gesetzt, nicht über eine Variable am
 // Elternelement, damit nicht bei jedem Bild alle Kinder neu berechnet werden.
 // Bei reduzierter Bewegung bleibt der Hero still auf dem Standbild.
@@ -114,6 +116,7 @@
     k.fill();
     return c;
   });
+  let letzteX = -999, letzteY = -999;
 
   function bluetenStreuen(x, y, anzahl) {
     if (!vorlagen.length) return;
@@ -243,9 +246,46 @@
     }
   }
 
+  // ── Eingaben ──────────────────────────────────────────────────────────────
+  function zeigen(e) {
+    const r = buehne.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    zielX = (x / r.width) * 2 - 1;
+    zielY = (y / r.height) * 2 - 1;
+    lichtZielX = x;
+    lichtZielY = y;
+    buehne.setAttribute("data-maus", "");
+    // Alle paar Pixel Weg eine neue Blüte, beim Tippen ein kleiner Strauß.
+    if (!ruhig.matches) {
+      const weg = Math.hypot(x - letzteX, y - letzteY);
+      if (e.type === "pointerdown") bluetenStreuen(x, y, 7);
+      else if (weg > 16) bluetenStreuen(x, y, weg > 60 ? 2 : 1);
+      if (e.type === "pointerdown" || weg > 16) { letzteX = x; letzteY = y; }
+    }
+    planen();
+  }
+  buehne.addEventListener("pointermove", zeigen, { passive: true });
+  buehne.addEventListener("pointerdown", zeigen, { passive: true });
+  buehne.addEventListener("pointerleave", () => {
+    zielX = zielY = 0;
+    buehne.removeAttribute("data-maus");
+    planen();
+  });
+
+  // Ohne feine Maus (Handy) wandert das Licht langsam von selbst.
+  let wandern = 0;
+  function lichtWandern() {
+    if (feineMaus.matches || ruhig.matches || !sichtbar) return;
+    wandern += 0.004;
+    lichtZielX = breite * (0.6 + 0.25 * Math.sin(wandern * 1.3));
+    lichtZielY = hoehe * (0.45 + 0.2 * Math.cos(wandern));
+    buehne.setAttribute("data-maus", "");
+    setTimeout(lichtWandern, 50);
+  }
+
   new IntersectionObserver(([e]) => {
     sichtbar = e.isIntersecting;
-    if (sichtbar) planen();
+    if (sichtbar) { planen(); lichtWandern(); }
   }).observe(buehne);
 
   if (video) {
@@ -273,4 +313,5 @@
   lichtY = lichtZielY = hoehe * 0.45;
   kopfSetzen();
   planen();
+  lichtWandern();
 })();

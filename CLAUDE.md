@@ -17,7 +17,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
-  js/hero.js          Hero: Scroll spult das Video, sonst nichts
+  js/hero.js          Hero: Scroll spult das Video, Maus bewegt Ebenen, Licht und Funken
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
@@ -47,8 +47,8 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
   Ausnahme: Knöpfe haben runde Enden (`--radius-round`). Beim Überfahren wischt
   eine Füllfarbe herein (`--fuellung`, je nach Untergrund).
-- Im Hero gibt es genau einen Effekt: Scrollen spult das Video. Keine
-  Maus-Effekte, kein Licht, keine Funken, keine Blüten.
+- Im Hero hinterlässt der Zeiger rote Blüten (Canvas in `js/hero.js`), dazu
+  Glutfunken und Laternenlicht. Bei reduzierter Bewegung ist das alles aus.
 - Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem
   Washi-Papier (`.papier`).
 - Japanische Abschnittszeichen in Pinselschrift **Yuji Boku** (`.pinsel`, senkrecht
@@ -59,26 +59,12 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Navigation liegt auf einer Katana-Scheide (`.saya`): Griff, Stichblatt,
   Kordel, Endkappe sind reine CSS-Zierde, Farben dafür in `tokens.css`
   (`--urushi`, `--kin`, `--hagane`). Beim Überfahren wird das Schwert gezogen.
-- Kapitel wechseln zwischen `.kapitel--papier` und `.kapitel--tusche`. Aufbau
-  angelehnt an antica-weyhe.vercel.app.
+- Kapitel wechseln zwischen `.kapitel--papier` und `.kapitel--tusche`, jedes mit
+  Kapitelzeile (`.kicker`). Aufbau angelehnt an antica-weyhe.vercel.app.
 - Bewegung: Tokens `--ease-out` und `--ease-in-out`, Hover-Bewegung nur bei
   `(hover: hover) and (pointer: fine)`, Einblenden 600 ms. Der Hero setzt
   Transformationen direkt an den Ebenen, nicht über Variablen am Elternelement.
 - Hero-Name: 明石 als Pinselzug, „Akashi“ in Mincho, roter Hanko-Stempel.
-
-## Nicht nach Vorlage aussehen
-
-Die Seite soll nach einem echten Restaurant aussehen, nicht nach einem
-KI-Baukasten. Deshalb:
-
-- Keine Kapitelzeilen in gesperrten Großbuchstaben über Überschriften (`.kicker`).
-- Keine Pfeile in Knöpfen, keine Mittelpunkte als Trenner.
-- Keine Zahlenreihen und „Vertrauensbausteine“ (72 Gerichte, 4,7 Sterne …).
-  Eine Bewertung höchstens als echtes Zitat eines Gastes.
-- Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
-  Text und Liste.
-- Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.
-- Echte Fotos vor Effekten. KI-Bilder nur, wo es kein eigenes Foto gibt.
 
 ## Sprache und Ton
 
@@ -145,14 +131,6 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
   (Stand September 2026). Daten in `daten/speisekarte.json`. `python3 tools/speisekarte.py` erzeugt
   die ganze Karte in `speisekarte.html` (`KARTE:START`/`KARTE:ENDE`) und die
   Kacheln in `index.html` (`KACHELN:START`/`KACHELN:ENDE`). Nie das erzeugte HTML von Hand ändern.
-- Fotos: nur eigene Fotos des Restaurants, als WebP in `site/assets/raeume/`.
-  Das Teamfoto liegt nur in 399 px vor, deshalb klein unter Über uns.
-
-## Ältere Fassungen
-
-Nicht löschen, nur zum Vergleichen: Branch `alte-version` (Samurai-Hero mit
-Funken, Kacheln und Zahlenreihe) und Branch `vor-fotos` (ohne Vorlagen-Muster,
-vor den echten Fotos). Weitergebaut wird nur auf `main`.
 
 ## Arbeitsweise
 
