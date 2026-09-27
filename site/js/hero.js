@@ -23,6 +23,7 @@
   const leinwand = buehne.querySelector(".hero__funken");
 
   const ruhig = matchMedia("(prefers-reduced-motion: reduce)");
+  const breitBild = matchMedia("(min-width: 60.01rem)");
   const VIDEO_ENDE = 0.85;
 
   let p = 0; // Scrollfortschritt 0..1
@@ -98,7 +99,10 @@
     p = scrollLesen();
 
     if (!still) {
-      const mediaT = `translate3d(${(-2 * p).toFixed(3)}%, ${(-3 * p).toFixed(3)}%, 0) scale(${(1.04 + p * 0.14).toFixed(4)})`;
+      // Am Computer etwas stärker vergrößert, damit das Kling-Wasserzeichen unten rechts
+      // außerhalb des Bildes liegt (siehe .hero__video in site.css).
+      const basis = breitBild.matches ? 1.12 : 1.04;
+      const mediaT = `translate3d(${(-2 * p).toFixed(3)}%, ${(-3 * p).toFixed(3)}%, 0) scale(${(basis + p * 0.12).toFixed(4)})`;
       for (const m of medien) m.style.transform = mediaT;
       if (nebelHinten) nebelHinten.style.transform = `translate3d(${(-8 * p).toFixed(3)}%, 0, 0)`;
       if (nebelVorne) nebelVorne.style.transform = `translate3d(${(-22 * p).toFixed(3)}%, ${(-6 * p).toFixed(3)}%, 0)`;

@@ -2084,3 +2084,12 @@ section[id],
 @media (prefers-reduced-motion: reduce) {
   .hero { height: auto; }
 }
+
+/* Am Computer liegt das Kling-Wasserzeichen unten rechts im Video. Leicht
+   vergrößert und zur oberen linken Ecke hin verankert, rutscht es aus dem Bild.
+   Farben bleiben unverändert. js/hero.js nutzt dieselbe Grundvergrößerung. */
+@media (min-width: 60.01rem) {
+  .hero__bild,
+  .hero__video,
+  .hero__torii { transform-origin: 35% 25%; transform: scale(1.12); }
+}
