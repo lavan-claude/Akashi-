@@ -90,6 +90,9 @@ KI-Baukasten. Deshalb:
   Kapitelzeile „Japanese Restaurant & Izakaya · Bremen“, die Bedeutung von 明石,
   Pfeile in den beiden Knöpfen und die Merkmal-Zeile mit „4,7 bei Google“.
   Nicht wieder entfernen.
+- Ausnahme Izakaya (Wunsch von Lavan, 27.09.2026): Kapitelzeile „Izakaya“,
+  erklärender Text, Liste Vor Ort / Abholen / Lieferung und rechts die rote
+  Sonne mit 居酒屋 statt Foto. Nicht wieder entfernen.
 - Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
   Text und Liste.
 - Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.
