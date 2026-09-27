@@ -11,7 +11,7 @@ wie `mi-elevate`.
 
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
-  index.html          Startseite: Hero (Foto), Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Stimmen, Samurai, Reservierung
+  index.html          Startseite: Hero (Foto), Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Stimmen, Reservierung
   speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie;
                       ohne Fotos (Wunsch von Lavan). Das Skript kann sie noch:
                       "foto" in speisekarte.json zeigt es rechts neben der Liste
@@ -23,14 +23,12 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
   js/hero.js          Hero: Foto zoomt beim Scrollen, rote Glutpunkte steigen auf
-  js/samurai.js       Samurai-Abschnitt vor der Reservierung: Scroll spult das Video
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/stimmen.js      Slideshow der Google-Bewertungen
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
   assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
   assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
-  assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
 netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
 docs/                 Schnittstelle der Reservierung
@@ -144,40 +142,12 @@ Felder an n8n: `name`, `email`, `telefon`, `datum`, `uhrzeit`, `beginn`,
 `personen`, `grosse_gruppe`, `nachricht`, `quelle`, `einwilligung`. Änderungen
 müssen zum n8n-Workflow passen.
 
-## Hero-Video
+## Kein Samurai-Video mehr
 
-Das Samurai-Video steht seit 28.09.2026 nicht mehr im Hero, sondern in einem
-eigenen Abschnitt `.samurai` direkt vor der Reservierung. Es wird nicht
-abgespielt, sondern beim Scrollen vor- und zurückgespult (`js/samurai.js`),
-die Bühne bleibt dabei stehen. Damit das flüssig läuft, braucht es in kurzen Abständen
-Schlüsselbilder und keinen Ton:
-
-```sh
-ffmpeg -i kling.mp4 -an -vf "scale=1600:-2" -c:v libx264 -crf 23 -g 6 \
-  -pix_fmt yuv420p -movflags +faststart site/assets/hero/samurai.mp4
-```
-
-Dazu eine WebM-Fassung für Chrome und Firefox:
-
-```sh
-ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
-  site/assets/hero/samurai.webm
-```
-
-Ziel: höchstens 4 MB.
-
-Seit 28.09.2026: neues Kling-Video (Samurai im Gras vor der roten Sonne,
-zieht nach der Hälfte das Schwert), 1920 × 1080, 8 s. Quelle
-`Downloads/kling_20260928_VIDEO_Create_an__422_0.mp4`, nicht im Repo. Farben
-bewusst unverändert wie im Original (Wunsch von Lavan), nur der Ton ist
-entfernt. Nicht nachfärben.
-
-Das Video trägt unten rechts das Wasserzeichen „KlingAI 3.0 Omni“. Vor
-Livegang durch die Fassung ohne Wasserzeichen ersetzen und die
-Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
-
-Das Standbild `samurai.jpg` ist das erste Bild des Videos und zugleich die
-Ansicht bei reduzierter Bewegung.
+Seit 28.09.2026 gibt es auf der Seite kein Kling-Video mehr (Wunsch von Lavan).
+Der Hero zeigt das echte Foto der Rolls. Die alten Videos (Samurai im Gras,
+Samurai in Rüstung) liegen nur noch im Git-Verlauf, etwa auf `live-bis-27-09`.
+Nicht wieder einbauen, ohne dass Lavan es ausdrücklich möchte.
 
 ## Inhalte
 
