@@ -86,13 +86,14 @@ KI-Baukasten. Deshalb:
   Eine Bewertung höchstens als echtes Zitat eines Gastes.
   Ausnahme auf Wunsch von Lavan: Die Karten-Kästen auf der Startseite behalten
   ihre roten Nummern 01–08 und die Zahl der Gerichte.
-- Ausnahme Hero (Wunsch von Lavan, 27.09.2026): Der Textblock im Hero hat die
-  Kapitelzeile „Japanese Restaurant & Izakaya · Bremen“, die Bedeutung von 明石,
-  Pfeile in den beiden Knöpfen und die Merkmal-Zeile mit „4,7 bei Google“.
-  Nicht wieder entfernen.
+- Hero-Text (27.09.2026, abends): nur 明石 Akashi mit Stempel, ein Satz, zwei
+  Knöpfe ohne Pfeile. Keine Kapitelzeile, keine Merkmal-Zeile, keine Sterne.
 - Ausnahme Izakaya (Wunsch von Lavan, 27.09.2026): Kapitelzeile „Izakaya“,
-  erklärender Text, Liste Vor Ort / Abholen / Lieferung und rechts die rote
-  Sonne mit 居酒屋 statt Foto. Nicht wieder entfernen.
+  Überschrift, Liste Vor Ort / Abholen / Lieferung und rechts die rote Sonne
+  mit 居酒屋 statt Foto. Kein erklärender Text.
+- Stimmen (`#stimmen`, vor der Reservierung): echte Google-Bewertungen,
+  wörtlich, Namen gekürzt, Stand im Kommentar. Nie Zitate erfinden oder
+  umformulieren. Gesamtwert 4,7 und 367 Bewertungen von Hand aktualisieren.
 - Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
   Text und Liste.
 - Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.

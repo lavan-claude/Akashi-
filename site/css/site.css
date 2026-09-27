@@ -1751,3 +1751,115 @@ section[id],
   letter-spacing: 0;
   color: var(--sabi-on-paper);
 }
+
+/* ── Stimmen von Gästen: große Zahl links, ein großes Zitat, drei kleine ─────
+   Bewusst ohne Kästen, damit der Abschnitt anders aussieht als die übrigen. */
+.stimmen {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--space-xl) clamp(2rem, 6vw, 6rem);
+  padding: var(--space-2xl) max(clamp(1rem, 4vw, 3rem), calc((100% - 76rem) / 2));
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .07 0 0 0 0 .06 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+    var(--washi);
+  color: var(--sumi);
+  color-scheme: light;
+}
+.stimmen a:hover { text-decoration-color: var(--shu); }
+.stimmen :focus-visible { outline-color: var(--shu); }
+.stimmen__titel { margin: 0 0 var(--space-m); font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); }
+.stimmen__zahl {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(5rem, 3rem + 7vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+}
+.stimmen__sterne { position: relative; width: fit-content; margin: var(--space-s) 0 var(--space-2xs); font-size: 1.3rem; letter-spacing: 0.12em; line-height: 1; }
+.stimmen__sterne::before { content: "★★★★★"; color: var(--washi-line); }
+.stimmen__sterne span { position: absolute; inset: 0 auto 0 0; width: var(--anteil); overflow: hidden; white-space: nowrap; }
+.stimmen__sterne span::before { content: "★★★★★"; color: var(--shu); }
+.stimmen__quelle { margin: 0 0 var(--space-m); color: var(--sabi-on-paper); font-size: var(--step--1); }
+.stimmen__link { font-size: var(--step--1); font-weight: 500; }
+
+.stimmen blockquote { margin: 0; }
+.stimmen blockquote p { margin: 0; }
+.stimmen__gross { margin: 0; align-self: end; }
+.stimmen__gross blockquote p {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.7rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.stimmen__gross blockquote p::before { content: "„"; color: var(--shu); }
+.stimmen__gross blockquote p::after { content: "“"; color: var(--shu); }
+.stimmen__gross figcaption,
+.stimmen__wer { margin: var(--space-s) 0 0; font-weight: 700; font-size: var(--step--1); }
+.stimmen__gross figcaption span,
+.stimmen__wer span { font-weight: 400; color: var(--sabi-on-paper); }
+
+.stimmen__liste {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--washi-line);
+}
+.stimmen__liste li { padding: var(--space-m) var(--space-m) 0 0; }
+.stimmen__liste li + li { padding-left: var(--space-m); border-left: 1px solid var(--washi-line); }
+.stimmen__liste blockquote p { line-height: 1.55; }
+.stimmen__liste blockquote p::before { content: "„"; }
+.stimmen__liste blockquote p::after { content: "“"; }
+
+@media (max-width: 52rem) {
+  .stimmen { grid-template-columns: 1fr; gap: var(--space-l); }
+  .stimmen__liste { grid-template-columns: 1fr; }
+  .stimmen__liste li,
+  .stimmen__liste li + li { padding: var(--space-m) 0; border-left: 0; }
+  .stimmen__liste li + li { border-top: 1px solid var(--washi-line); }
+}
+
+/* ── Standort: Karte als schmale Leiste, öffnet sich erst beim Klick ─────── */
+.standort__karte {
+  height: auto;
+  background: transparent;
+  border: 1px solid var(--washi-line);
+  transition: height 500ms var(--ease-out);
+}
+.standort__karte[data-geladen] { height: clamp(16rem, 30vw, 22rem); }
+.standort__freigabe {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "nadel ort knopf" "nadel hinweis knopf";
+  place-content: initial;
+  justify-items: start;
+  align-items: center;
+  column-gap: var(--space-m);
+  row-gap: 0.15rem;
+  height: auto;
+  padding: var(--space-s) var(--space-m);
+  text-align: left;
+}
+.standort__nadel { grid-area: nadel; width: 1.9rem; height: 1.9rem; fill: none; stroke: var(--shu); stroke-width: 1.6; }
+.standort__freigabe .standort__ort { grid-area: ort; margin: 0; max-width: none; color: var(--sumi); font-size: var(--step--1); }
+.standort__ort strong { margin-right: var(--space-xs); }
+.standort__freigabe .knopf { grid-area: knopf; }
+.standort__freigabe .standort__hinweis { grid-area: hinweis; margin: 0; max-width: none; font-size: 0.78rem; }
+@media (max-width: 34rem) {
+  .standort__freigabe { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "nadel ort" "knopf knopf" "hinweis hinweis"; row-gap: var(--space-xs); }
+  .standort__freigabe .knopf { justify-self: stretch; text-align: center; }
+  .standort__karte { height: auto; }
+}
+
+/* ── Über uns: Foto reicht bis an den linken Bildschirmrand ──────────────── */
+@media (min-width: 52.01rem) {
+  .ueber__bild {
+    margin-left: calc(-1 * max(clamp(1rem, 4vw, 3rem), (100vw - 76rem) / 2));
+    border-radius: 0;
+  }
+  .ueber__bild img { aspect-ratio: 4 / 3.6; }
+}
