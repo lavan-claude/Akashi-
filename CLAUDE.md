@@ -162,16 +162,19 @@ ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
 
 Ziel: höchstens 4 MB.
 
-Das Original aus Kling liegt nicht im Repo. Die aktuelle Fassung (1920 × 1080,
-Stand 26.09.2026) ist aus der alten 1276er-Datei hochgerechnet, entrauscht
-(`hqdn3d`, `gradfun`) und nachgeschärft (`cas`). Mit dem Original als Quelle
-wird sie noch einmal deutlich besser. Das Standbild `samurai.jpg` ist das erste Bild des Videos
-und zugleich die Ansicht bei reduzierter Bewegung. Das Video ist bei 85 %
-Scrollweg zu Ende, danach blendet die Bühne ab.
+Seit 28.09.2026: neues Kling-Video (Samurai in Rüstung rechts vor der roten
+Sonne, fallende Blütenblätter), 1920 × 1080, 8 s, ohne Wasserzeichen. Quelle
+`Downloads/kling_20260928_VIDEO_Create_an__313_0.mp4`, nicht im Repo. Ton
+entfernt, Farben an das Torii-Rot angeglichen:
 
-Das aktuelle Video trägt das Kling-Wasserzeichen (kostenloses Konto). Vor
-Livegang durch die Fassung ohne Wasserzeichen ersetzen und die
-Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
+```sh
+-vf "eq=contrast=1.25:saturation=1.55:gamma=0.85,colorbalance=bh=-0.18:bm=-0.1:gh=-0.06:rh=0.08,curves=all='0/0 0.2/0.06 0.6/0.6 1/1'"
+```
+
+Das Standbild `samurai.jpg` ist das erste Bild des Videos und zugleich die
+Ansicht bei reduzierter Bewegung. Die Kamera fährt nur leicht heran, beim
+Scrollen passiert deshalb wenig. Vor Livegang die Nutzungsbedingungen von Kling
+für gewerbliche Nutzung prüfen.
 
 ## Inhalte
 
