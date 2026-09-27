@@ -1,7 +1,9 @@
-// Hero: Das Samurai-Video läuft genau wie geliefert einmal ab und bleibt auf dem
-// letzten Bild stehen (Wunsch von Lavan): kein Zoom, kein Abdunkeln, kein Spulen.
-// Darüber steigen rote Glutpunkte langsam auf.
-// Bei reduzierter Bewegung bleibt das Standbild stehen, ohne Glutpunkte.
+// Hero: Scrollen durch die hohe Hero-Sektion spult das Samurai-Video vor und
+// zurück, zoomt die Bilder leicht und blendet am Ende zur Tusche ab. Dazu steigen
+// rote Glutpunkte langsam auf. Keine Effekte, die dem Mauszeiger folgen.
+// Transformationen werden direkt an den Ebenen gesetzt, nicht über eine Variable am
+// Elternelement, damit nicht bei jedem Bild alle Kinder neu berechnet werden.
+// Bei reduzierter Bewegung bleibt der Hero still auf dem Standbild.
 
 (function () {
   "use strict";
@@ -12,34 +14,32 @@
   if (!hero || !buehne) return;
 
   const video = buehne.querySelector(".hero__video");
+  const medien = [...buehne.querySelectorAll(".hero__bild, .hero__video, .hero__torii")];
+  const nebelHinten = buehne.querySelector(".hero__nebel--hinten");
+  const nebelVorne = buehne.querySelector(".hero__nebel--vorne");
+  const text = buehne.querySelector(".hero__text");
+  const abblende = buehne.querySelector(".hero__abblende");
+  const runter = buehne.querySelector(".hero__runter");
   const leinwand = buehne.querySelector(".hero__funken");
-  const ruhig = matchMedia("(prefers-reduced-motion: reduce)");
 
+  const ruhig = matchMedia("(prefers-reduced-motion: reduce)");
+  const VIDEO_ENDE = 0.85;
+
+  let p = 0; // Scrollfortschritt 0..1
+  let videoZeit = 0;
   let laeuft = false;
   let sichtbar = true;
+
+  function scrollLesen() {
+    const r = hero.getBoundingClientRect();
+    const weg = r.height - innerHeight;
+    return weg > 0 ? Math.min(1, Math.max(0, -r.top / weg)) : 0;
+  }
 
   function kopfSetzen() {
     if (!kopf) return;
     const ueberHero = hero.getBoundingClientRect().bottom > kopf.offsetHeight;
     kopf.toggleAttribute("data-gescrollt", scrollY > 24 && !ueberHero);
-  }
-
-  // ── Video ─────────────────────────────────────────────────────────────────
-  function videoStarten() {
-    if (!video || ruhig.matches) return;
-    video.play().catch(() => {});
-  }
-
-  if (video) {
-    video.addEventListener("loadeddata", () => {
-      if (ruhig.matches) { video.pause(); return; }
-      video.toggleAttribute("data-bereit", true);
-      videoStarten();
-    });
-    video.addEventListener("error", () => video.remove());
-    // iPhone im Stromsparmodus startet stumme Videos erst nach einer Berührung.
-    addEventListener("touchstart", videoStarten, { once: true, passive: true });
-    if (ruhig.matches) video.pause();
   }
 
   // ── Glutpunkte, die langsam aufsteigen ────────────────────────────────────
@@ -73,9 +73,8 @@
     };
   }
 
-  function bild(t) {
-    laeuft = false;
-    if (!ctx || ruhig.matches) return;
+  function funkenZeichnen(t) {
+    if (!ctx) return;
     ctx.clearRect(0, 0, breite, hoehe);
     ctx.fillStyle = FARBE;
     for (const f of funken) {
@@ -90,7 +89,41 @@
       ctx.fill();
     }
     ctx.globalAlpha = 1;
-    if (sichtbar && !document.hidden) planen();
+  }
+
+  // ── Ein Bild ──────────────────────────────────────────────────────────────
+  function bild(t) {
+    laeuft = false;
+    const still = ruhig.matches;
+    p = scrollLesen();
+
+    if (!still) {
+      const mediaT = `translate3d(${(-2 * p).toFixed(3)}%, ${(-3 * p).toFixed(3)}%, 0) scale(${(1.04 + p * 0.14).toFixed(4)})`;
+      for (const m of medien) m.style.transform = mediaT;
+      if (nebelHinten) nebelHinten.style.transform = `translate3d(${(-8 * p).toFixed(3)}%, 0, 0)`;
+      if (nebelVorne) nebelVorne.style.transform = `translate3d(${(-22 * p).toFixed(3)}%, ${(-6 * p).toFixed(3)}%, 0)`;
+      if (text) {
+        text.style.opacity = String(Math.max(0, 1 - Math.max(0, p - 0.55) * 2.5));
+        text.style.transform = `translate3d(0, ${(p * -32).toFixed(2)}px, 0)`;
+      }
+      if (abblende) abblende.style.opacity = String(Math.max(0, (p - 0.85) / 0.15) * 0.9);
+      if (runter) runter.style.opacity = String(Math.max(0, 1 - p * 4));
+      if (sichtbar) funkenZeichnen(t);
+      videoSpulen();
+    }
+
+    kopfSetzen();
+
+    // Weiterlaufen, solange der Hero im Bild ist; die Glutpunkte brauchen jedes Bild.
+    if (sichtbar && !still && !document.hidden) planen();
+  }
+
+  function videoSpulen() {
+    if (!video || !video.duration) return;
+    const ziel = Math.min(1, p / VIDEO_ENDE) * (video.duration - 0.05);
+    videoZeit += (ziel - videoZeit) * 0.18;
+    if (Math.abs(ziel - videoZeit) < 0.005) videoZeit = ziel;
+    if (Math.abs(video.currentTime - videoZeit) > 1 / 60) video.currentTime = videoZeit;
   }
 
   function planen() {
@@ -105,12 +138,32 @@
     if (sichtbar) planen();
   }).observe(buehne);
 
-  addEventListener("scroll", kopfSetzen, { passive: true });
+  if (video) {
+    video.pause();
+    // iPhone: Safari lädt stumme Videos oft erst nach einem ersten Abspielen.
+    // Bei der ersten Berührung einmal kurz starten und anhalten, dann lässt es sich spulen.
+    const freischalten = () => {
+      if (video.readyState < 2) video.load();
+      video.play().then(() => video.pause()).catch(() => {});
+    };
+    addEventListener("touchstart", freischalten, { once: true, passive: true });
+    setTimeout(() => { if (video.isConnected && video.readyState < 2) video.load(); }, 1500);
+    video.addEventListener("loadeddata", () => {
+      if (ruhig.matches) return;
+      video.toggleAttribute("data-bereit", true);
+      planen();
+    });
+    video.addEventListener("error", () => video.remove());
+  }
+
+  addEventListener("scroll", planen, { passive: true });
   addEventListener("resize", () => { leinwandAnpassen(); planen(); });
   document.addEventListener("visibilitychange", planen);
   ruhig.addEventListener("change", () => {
-    if (ruhig.matches) { video?.pause(); ctx?.clearRect(0, 0, breite, hoehe); }
-    else { video?.toggleAttribute("data-bereit", video.readyState >= 2); videoStarten(); planen(); }
+    for (const el of [...medien, nebelHinten, nebelVorne, text]) el?.style.removeProperty("transform");
+    video?.toggleAttribute("data-bereit", !ruhig.matches && video.readyState >= 2);
+    ctx?.clearRect(0, 0, breite, hoehe);
+    planen();
   });
 
   leinwandAnpassen();

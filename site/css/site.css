@@ -2074,24 +2074,3 @@ section[id],
   .ueber .ueber__team { width: 30%; right: 0.25rem; }
   .ueber .ueber__team figcaption { font-size: 0.7rem; }
 }
-
-/* ── Hero-Video genau wie geliefert (28.09.2026, Wunsch von Lavan) ─────────
-   Kein Abdunkel-Verlauf, kein Zoom, kein Abblenden, kein Spulen beim Scrollen:
-   Das Video läuft einmal ab und bleibt auf dem letzten Bild stehen. */
-.hero { height: 100vh; height: 100svh; min-height: 40rem; }
-.hero__buehne::after,
-.hero__abblende { display: none; }
-.hero__bild,
-.hero__video,
-.hero__torii { transform: none; will-change: auto; }
-@media (max-width: 60rem) {
-  .hero { height: auto; min-height: 0; }
-  .hero__buehne { position: relative; height: auto; }
-}
-/* Handy: Video oben frei, Text darunter statt darüber */
-@media (max-width: 60rem) {
-  .hero__bild,
-  .hero__video,
-  .hero__torii { inset: 0 0 auto 0; height: 58svh; }
-  .hero__raster { padding-top: calc(58svh + var(--space-l)); }
-}
