@@ -83,10 +83,8 @@
   --hagane: #dfe3e6;        /* Stahl der Klinge */
   --hagane-dunkel: #7d858c;
 
-  /* Hero: Licht und Funken, die der Maus folgen */
-  --laterne: rgb(255 128 72 / 0.22); /* warmes Laternenlicht */
+  /* Hero: rote Glutpunkte */
   --glut: #ff8a4c;                   /* Glutfunken */
-  --bluete-hell: #e8646a;            /* helle Blüte in der Zeigerspur */
 
   /* Schrift */
   --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;

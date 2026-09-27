@@ -13,8 +13,8 @@ wie `mi-elevate`.
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
   index.html          Startseite: Hero, Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Reservierung
   speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie;
-                      Kategorien mit eigenem Foto ("foto" in speisekarte.json)
-                      zeigen es rechts neben der Liste, es bleibt beim Scrollen stehen
+                      ohne Fotos (Wunsch von Lavan). Das Skript kann sie noch:
+                      "foto" in speisekarte.json zeigt es rechts neben der Liste
   favicon.ico         Browser-Symbol: roter Hanko-Stempel 明石
   assets/icon/        icon-192.png, icon-512.png, apple-touch-icon.png
   assets/og-akashi.jpg  Vorschaubild für WhatsApp und Co. (1200 × 630)
@@ -22,7 +22,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
-  js/hero.js          Hero: Scroll spult das Video, sonst nichts
+  js/hero.js          Hero: Scroll spult das Video, rote Glutpunkte steigen auf
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
@@ -52,10 +52,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
   Ausnahme: Knöpfe haben runde Enden (`--radius-round`). Beim Überfahren wischt
   eine Füllfarbe herein (`--fuellung`, je nach Untergrund).
-- Hero-Animation (ausdrücklicher Wunsch von Lavan, 27.09.2026): Scrollen spult
-  das Video, die Maus verschiebt die Ebenen, zieht Laternenlicht mit, schiebt
-  Glutfunken beiseite und hinterlässt rote Blüten. Auf dem Handy bleibt die
-  Bühne stehen, Blüten fallen von selbst und entstehen beim Wischen.
+- Hero-Animation (Wunsch von Lavan, 27.09.2026): Die einzige Animation sind
+  rote Glutpunkte, die langsam aufsteigen, dazu spult Scrollen das Video.
+  Nichts folgt dem Mauszeiger: keine Blüten, kein Laternenlicht, keine
+  Parallaxe. Auf dem Handy bleibt die Bühne beim Scrollen stehen.
   Alles in `js/hero.js`, bei reduzierter Bewegung aus. Keine Karten und kein
   Schild rechts im Hero.
 - Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem

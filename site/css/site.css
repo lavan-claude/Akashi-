@@ -556,28 +556,11 @@ a[href^="tel:"] { white-space: nowrap; }
     radial-gradient(30% 12% at 15% 88%, var(--nebel) 0%, transparent 70%);
 }
 
-/* Laternenlicht: folgt der Maus, hellt das Rot warm auf */
-.hero__licht {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 46rem;
-  height: 46rem;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(closest-side, var(--laterne), transparent);
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: opacity 600ms var(--ease-out);
-  will-change: transform;
-}
-.hero__buehne[data-maus] .hero__licht { opacity: 1; }
 /* Glutfunken */
 .hero__funken {
   position: absolute;
   inset: 0;
-  z-index: 5; /* über dem Text, damit die Blüten überall liegen */
+  z-index: 3; /* unter dem Text */
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -1014,7 +997,6 @@ a[href^="tel:"] { white-space: nowrap; }
   .hero { height: auto; }
   .hero__buehne { position: relative; }
   .hero__abblende,
-  .hero__licht,
   .hero__funken { display: none; }
 }
 

@@ -125,13 +125,7 @@
      "preis": "9,5"
     }
    ],
-   "kanji": "前菜",
-   "foto": {
-    "src": "assets/raeume/tofu-salat-640.webp",
-    "breite": 640,
-    "hoehe": 480,
-    "alt": "Schale mit knusprigem Tofu auf Rucola, dahinter Edamame und Stäbchen"
-   }
+   "kanji": "前菜"
   },
   {
    "kategorie": "Sashimi",
@@ -289,14 +283,7 @@
      "veggie": true
     }
    ],
-   "kanji": "巻き寿司",
-   "foto": {
-    "src": "assets/raeume/rolls-1200.webp",
-    "srcset": "assets/raeume/rolls-720.webp 720w, assets/raeume/rolls-1200.webp 1200w",
-    "breite": 1200,
-    "hoehe": 675,
-    "alt": "Uramaki Rolls mit Soße und Kresse auf einer dunklen Platte, dahinter die Bar"
-   }
+   "kanji": "巻き寿司"
   },
   {
    "kategorie": "Maki & Crispy",
@@ -502,14 +489,7 @@
      "preis": "50"
     }
    ],
-   "kanji": "寿司",
-   "foto": {
-    "src": "assets/raeume/sushi-1200.webp",
-    "srcset": "assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w",
-    "breite": 1200,
-    "hoehe": 1500,
-    "alt": "Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"
-   }
+   "kanji": "寿司"
   },
   {
    "kategorie": "Ramen",
@@ -632,14 +612,7 @@
      "veggie": true
     }
    ],
-   "kanji": "とんかつ",
-   "foto": {
-    "src": "assets/raeume/tonkatsu-800.webp",
-    "srcset": "assets/raeume/tonkatsu-540.webp 540w, assets/raeume/tonkatsu-800.webp 800w",
-    "breite": 800,
-    "hoehe": 1067,
-    "alt": "Tonkatsu-Menü auf dem Holztablett mit Reis, Miso-Suppe und Beilagen am Fenster"
-   }
+   "kanji": "とんかつ"
   },
   {
    "kategorie": "Japanisches Curry",
