@@ -146,7 +146,7 @@ müssen zum n8n-Workflow passen.
 
 Seit 28.09.2026 gibt es auf der Seite kein Kling-Video mehr (Wunsch von Lavan).
 Der Hero zeigt das echte Foto der Rolls. Die alten Videos (Samurai im Gras,
-Samurai in Rüstung) liegen nur noch im Git-Verlauf, etwa auf `live-bis-27-09`.
+Samurai in Rüstung) liegen nur noch im Git-Verlauf.
 Nicht wieder einbauen, ohne dass Lavan es ausdrücklich möchte.
 
 ## Inhalte
@@ -165,12 +165,16 @@ Nicht wieder einbauen, ohne dass Lavan es ausdrücklich möchte.
 
 ## Branches
 
-- `main` ist die Seite, die live auf akashibremen.netlify.app steht. Seit dem
-  27.09.2026 ist das die überarbeitete Fassung (vorher auf `neue-version`).
-  Hier wird weitergebaut.
-- `neue-version` ist in `main` aufgegangen und wird nicht mehr gebraucht.
-- `live-bis-27-09` ist die alte Live-Fassung (Blüten, Laternenlicht, Karten im
-  Hero). `alte-version` und `vor-fotos` sind ältere Sicherungen.
+Zwei Fassungen, strikt getrennt halten (Wunsch von Lavan, 27.09.2026):
+
+- `main` = Samurai-Hero (Video im Gras, zieht beim Scrollen das Schwert), live
+  auf akashibremen.netlify.app. Nicht mit der Essen-Fassung überschreiben.
+  `version-samurai` ist eine Sicherung davon.
+- `version-essen` = Hero mit dem Foto der Rolls, ohne Samurai-Video. Eigenes
+  Netlify-Projekt `akashi-essen` (akashi-essen.netlify.app), deployt per
+  `npx @netlify/mcp` aus diesem Branch, nicht über GitHub.
+- `neue-version`, `alte-version`, `vor-fotos` sind ältere Sicherungen. Die
+  verspielte Fassung mit Blüten und Laternenlicht ist bewusst entfernt.
 
 ## Arbeitsweise
 
