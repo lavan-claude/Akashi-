@@ -6,6 +6,9 @@
   <title>Datenschutz – Akashi Japanese Restaurant &amp; Izakaya Bremen</title>
   <meta name="description" content="Datenschutzerklärung von Akashi – Japanese Restaurant &amp; Izakaya, Bremen.">
   <meta name="theme-color" content="#15120f">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icon/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/site.css">
 </head>
@@ -171,12 +174,37 @@
   </main>
 
   <footer class="fuss">
-    <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
-    <p>Ludwig-Franzius-Platz 13, 28217 Bremen<br><a href="tel:+4942143093028">0421 43093028</a></p>
-    <nav class="fuss__recht" aria-label="Rechtliches">
-      <a href="/impressum.html">Impressum</a>
-      <a href="/datenschutz.html" aria-current="page">Datenschutz</a>
-    </nav>
+    <div class="fuss__marke">
+      <img class="fuss__logo" src="/assets/logo/akashi-logo.webp" width="420" height="166" alt="Akashi">
+      <p>Japanese Restaurant &amp; Izakaya in der Bremer Überseestadt.</p>
+    </div>
+    <div class="fuss__spalte">
+      <h2 class="fuss__titel">Adresse</h2>
+      <p>Ludwig-Franzius-Platz 13<br>28217 Bremen</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route in Google Maps</a></p>
+    </div>
+    <div class="fuss__spalte">
+      <h2 class="fuss__titel">Geöffnet</h2>
+      <!-- Muss zu den Zeiten in js/reservierung.js und netlify/functions/reservierung.mjs passen. -->
+      <table class="fuss__zeiten">
+        <tr><th scope="row">Mo bis Do</th><td>12:00–14:30<br>17:00–21:00</td></tr>
+        <tr><th scope="row">Freitag</th><td>12:00–14:30<br>17:00–21:30</td></tr>
+        <tr><th scope="row">Samstag</th><td>17:00–21:30</td></tr>
+        <tr><th scope="row">Sonntag</th><td>Ruhetag</td></tr>
+      </table>
+    </div>
+    <div class="fuss__spalte">
+      <h2 class="fuss__titel">Kontakt</h2>
+      <p><a href="tel:+4942143093028">0421 43093028</a><br><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></p>
+      <p><a href="/#reservieren">Tisch reservieren</a></p>
+    </div>
+    <div class="fuss__unten">
+      <p>© 2026 Akashi Bremen</p>
+      <nav class="fuss__recht" aria-label="Rechtliches">
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
   </footer>
 </body>
 </html>

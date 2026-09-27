@@ -12,7 +12,12 @@ wie `mi-elevate`.
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
   index.html          Startseite: Hero, Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Reservierung
-  speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie
+  speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie;
+                      Kategorien mit eigenem Foto ("foto" in speisekarte.json)
+                      zeigen es rechts neben der Liste, es bleibt beim Scrollen stehen
+  favicon.ico         Browser-Symbol: roter Hanko-Stempel 明石
+  assets/icon/        icon-192.png, icon-512.png, apple-touch-icon.png
+  assets/og-akashi.jpg  Vorschaubild für WhatsApp und Co. (1200 × 630)
   danke.html          Bestätigung ohne JavaScript
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
@@ -147,6 +152,9 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
   (Stand September 2026). Daten in `daten/speisekarte.json`. `python3 tools/speisekarte.py` erzeugt
   die ganze Karte in `speisekarte.html` (`KARTE:START`/`KARTE:ENDE`) und die
   Kacheln in `index.html` (`KACHELN:START`/`KACHELN:ENDE`). Nie das erzeugte HTML von Hand ändern.
+- Vorschaubild und og:url stehen mit voller Adresse akashibremen.netlify.app im
+  Kopf von index.html und speisekarte.html. Beim Umzug auf akashi-bremen.de
+  anpassen. Solange Netlify einen Login verlangt, sieht WhatsApp kein Vorschaubild.
 - Fotos: nur eigene Fotos des Restaurants, als WebP in `site/assets/raeume/`.
   Das Teamfoto liegt nur in 399 px vor, deshalb klein unter Über uns.
 

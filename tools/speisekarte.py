@@ -63,13 +63,26 @@ def gericht(g):
     return "\n".join(zeilen)
 
 
+def foto(f):
+    """Eigenes Foto neben der Liste; bleibt auf breiten Bildschirmen beim Scrollen stehen."""
+    srcset = f' srcset="{e(f["srcset"])}"' if f.get("srcset") else ""
+    return (
+        f'  <figure class="kategorie__foto"><img src="{e(f["src"])}"{srcset}'
+        f' sizes="(max-width: 52rem) 100vw, 38vw" width="{f["breite"]}" height="{f["hoehe"]}"'
+        f' loading="lazy" decoding="async" alt="{e(f["alt"])}"></figure>'
+    )
+
+
 def kategorie(k):
+    klasse = "kategorie kategorie--foto" if k.get("foto") else "kategorie"
     teile = [
-        f'<section class="kategorie" id="karte-{k["id"]}" aria-labelledby="karte-{k["id"]}-titel">',
+        f'<section class="{klasse}" id="karte-{k["id"]}" aria-labelledby="karte-{k["id"]}-titel">',
         f'  <h3 class="kategorie__titel" id="karte-{k["id"]}-titel">{e(k["kategorie"])}</h3>',
     ]
     if k.get("kanji"):
         teile.insert(1, f'  <span class="kategorie__kanji" aria-hidden="true">{e(k["kanji"])}</span>')
+    if k.get("foto"):
+        teile.append(foto(k["foto"]))
     if k.get("intro"):
         teile.append(f'  <p class="kategorie__intro">{e(k["intro"])}</p>')
     teile.append(f'  <ul class="kategorie__liste{" kategorie__liste--sets" if k["id"] == "sets" else ""}">')

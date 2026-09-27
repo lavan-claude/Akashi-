@@ -7,6 +7,21 @@
   <title>Speisekarte – Akashi Japanese Restaurant &amp; Izakaya Bremen</title>
   <meta name="description" content="Die ganze Speisekarte des Akashi in Bremen: Starter, Sashimi, Uramaki, Maki, Sushi Sets, Ramen, Tonkatsu und japanisches Curry.">
   <meta name="theme-color" content="#15120f">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icon/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Akashi Bremen">
+  <meta property="og:title" content="Speisekarte – Akashi Bremen">
+  <meta property="og:description" content="Starter, Sashimi, Uramaki, Maki, Sushi Sets, Ramen, Tonkatsu und japanisches Curry. Vor Ort, zum Mitnehmen oder geliefert.">
+  <meta property="og:url" content="https://akashibremen.netlify.app/speisekarte.html">
+  <!-- Vorschaubild für WhatsApp und Co. braucht eine volle Adresse. Beim Umzug auf akashi-bremen.de anpassen. -->
+  <meta property="og:image" content="https://akashibremen.netlify.app/assets/og-akashi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Akashi, Japanese Restaurant und Izakaya in Bremen: Schriftzug vor einem Samurai im roten Sonnenuntergang">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="fonts/shippori-mincho-800-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/zen-kaku-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/tokens.css">
@@ -38,8 +53,8 @@
   <main class="papier papier--seite">
     <section class="karte" id="karte" aria-labelledby="karte-titel">
       <a class="karte__zurueck" href="/#karte">Zurück zur Startseite</a>
-      <div class="karte__kopf aufdeck">
-        <span class="pinsel karte__pinsel" aria-hidden="true">お品書き</span>
+      <div class="karte__kopf karte__kopf--seite aufdeck">
+        <span class="kategorie__kanji" aria-hidden="true">お品書き</span>
         <h1 id="karte-titel" class="karte__titel">Speisekarte</h1>
         <p class="karte__text">Vor Ort, zum Mitnehmen oder geliefert. Fragen zu Zutaten und Allergenen beantworten wir dir gern.</p>
       </div>
@@ -48,9 +63,10 @@
 <nav class="karte__nav" aria-label="Kategorien der Speisekarte">
   <ul class="karte__nav-liste"><li><a href="#karte-starter">Starter &amp; Beilagen</a></li><li><a href="#karte-sashimi">Sashimi</a></li><li><a href="#karte-uramaki">Uramaki Rolls</a></li><li><a href="#karte-maki">Maki &amp; Crispy</a></li><li><a href="#karte-sets">Sushi Sets</a></li><li><a href="#karte-ramen">Ramen</a></li><li><a href="#karte-tonkatsu">Tonkatsu Menü</a></li><li><a href="#karte-curry">Japanisches Curry</a></li></ul>
 </nav>
-<section class="kategorie" id="karte-starter" aria-labelledby="karte-starter-titel">
+<section class="kategorie kategorie--foto" id="karte-starter" aria-labelledby="karte-starter-titel">
   <span class="kategorie__kanji" aria-hidden="true">前菜</span>
   <h3 class="kategorie__titel" id="karte-starter-titel">Starter &amp; Beilagen</h3>
+  <figure class="kategorie__foto"><img src="assets/raeume/tofu-salat-640.webp" sizes="(max-width: 52rem) 100vw, 38vw" width="640" height="480" loading="lazy" decoding="async" alt="Schale mit knusprigem Tofu auf Rucola, dahinter Edamame und Stäbchen"></figure>
   <ul class="kategorie__liste">
     <li class="gericht">
       <div class="gericht__kopf">
@@ -215,9 +231,10 @@
     </li>
   </ul>
 </section>
-<section class="kategorie" id="karte-uramaki" aria-labelledby="karte-uramaki-titel">
+<section class="kategorie kategorie--foto" id="karte-uramaki" aria-labelledby="karte-uramaki-titel">
   <span class="kategorie__kanji" aria-hidden="true">巻き寿司</span>
   <h3 class="kategorie__titel" id="karte-uramaki-titel">Uramaki Rolls</h3>
+  <figure class="kategorie__foto"><img src="assets/raeume/rolls-1200.webp" srcset="assets/raeume/rolls-720.webp 720w, assets/raeume/rolls-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 38vw" width="1200" height="675" loading="lazy" decoding="async" alt="Uramaki Rolls mit Soße und Kresse auf einer dunklen Platte, dahinter die Bar"></figure>
   <ul class="kategorie__liste">
     <li class="gericht">
       <div class="gericht__kopf">
@@ -428,9 +445,10 @@
     </li>
   </ul>
 </section>
-<section class="kategorie" id="karte-sets" aria-labelledby="karte-sets-titel">
+<section class="kategorie kategorie--foto" id="karte-sets" aria-labelledby="karte-sets-titel">
   <span class="kategorie__kanji" aria-hidden="true">寿司</span>
   <h3 class="kategorie__titel" id="karte-sets-titel">Sushi Sets</h3>
+  <figure class="kategorie__foto"><img src="assets/raeume/sushi-1200.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 38vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></figure>
   <p class="kategorie__intro">Die Sets sind für 2 Personen. Weitere Sushi können hinzugefügt werden. Die Sushi-Sets sind auf beliebig viele Personen erweiterbar. Nennt uns hierzu nur eure Personenanzahl.</p>
   <ul class="kategorie__liste kategorie__liste--sets">
     <li class="gericht">
@@ -545,9 +563,10 @@
     </li>
   </ul>
 </section>
-<section class="kategorie" id="karte-tonkatsu" aria-labelledby="karte-tonkatsu-titel">
+<section class="kategorie kategorie--foto" id="karte-tonkatsu" aria-labelledby="karte-tonkatsu-titel">
   <span class="kategorie__kanji" aria-hidden="true">とんかつ</span>
   <h3 class="kategorie__titel" id="karte-tonkatsu-titel">Tonkatsu Menü</h3>
+  <figure class="kategorie__foto"><img src="assets/raeume/tonkatsu-800.webp" srcset="assets/raeume/tonkatsu-540.webp 540w, assets/raeume/tonkatsu-800.webp 800w" sizes="(max-width: 52rem) 100vw, 38vw" width="800" height="1067" loading="lazy" decoding="async" alt="Tonkatsu-Menü auf dem Holztablett mit Reis, Miso-Suppe und Beilagen am Fenster"></figure>
   <p class="kategorie__intro">Das Tonkatsu original aus Japan. Ein Schnitzel nach japanischer Art, serviert auf einem Holztablett. Inklusive: eine Schale Reis mit Wasabi Furikake (jap. Reiswürzung), eine kleine Miso Suppe, ein Kartoffelsalat nach japanischer Art, eine Kohlbeilage mit jap. Dressing, Tonkatsu Sauce (oder andere, je nach Menü) und gerösteter Sesam im Suribachi Mörser.</p>
   <ul class="kategorie__liste">
     <li class="gericht">
@@ -671,13 +690,32 @@
   </main>
 
   <footer class="fuss">
+    <div class="fuss__marke">
+      <img class="fuss__logo" src="/assets/logo/akashi-logo.webp" width="420" height="166" alt="Akashi">
+      <p>Japanese Restaurant &amp; Izakaya in der Bremer Überseestadt.</p>
+    </div>
     <div class="fuss__spalte">
-      <p class="fuss__name">Akashi – Japanese Restaurant &amp; Izakaya</p>
+      <h2 class="fuss__titel">Adresse</h2>
       <p>Ludwig-Franzius-Platz 13<br>28217 Bremen</p>
       <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Route in Google Maps</a></p>
     </div>
     <div class="fuss__spalte">
+      <h2 class="fuss__titel">Geöffnet</h2>
+      <!-- Muss zu den Zeiten in js/reservierung.js und netlify/functions/reservierung.mjs passen. -->
+      <table class="fuss__zeiten">
+        <tr><th scope="row">Mo bis Do</th><td>12:00–14:30<br>17:00–21:00</td></tr>
+        <tr><th scope="row">Freitag</th><td>12:00–14:30<br>17:00–21:30</td></tr>
+        <tr><th scope="row">Samstag</th><td>17:00–21:30</td></tr>
+        <tr><th scope="row">Sonntag</th><td>Ruhetag</td></tr>
+      </table>
+    </div>
+    <div class="fuss__spalte">
+      <h2 class="fuss__titel">Kontakt</h2>
       <p><a href="tel:+4942143093028">0421 43093028</a><br><a href="mailto:info@akashi-bremen.de">info@akashi-bremen.de</a></p>
+      <p><a href="/#reservieren">Tisch reservieren</a></p>
+    </div>
+    <div class="fuss__unten">
+      <p>© 2026 Akashi Bremen</p>
       <nav class="fuss__recht" aria-label="Rechtliches">
         <a href="/impressum.html">Impressum</a>
         <a href="/datenschutz.html">Datenschutz</a>

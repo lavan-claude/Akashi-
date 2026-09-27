@@ -358,20 +358,48 @@ a[href^="tel:"] { white-space: nowrap; }
   }
 }
 
-/* Fuß */
+/* Fuß: Logo, Adresse, Zeiten, Kontakt; darunter die Rechtslinks */
 .fuss {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--space-l);
-  padding: var(--space-xl) clamp(1rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+  gap: var(--space-l) clamp(1.5rem, 4vw, 3.5rem);
+  padding: var(--space-xl) max(clamp(1rem, 4vw, 3rem), calc((100% - 76rem) / 2)) var(--space-m);
   border-top: 1px solid var(--sumi-line);
   color: var(--sabi);
   font-size: var(--step--1);
 }
-.fuss__spalte { display: grid; gap: var(--space-s); align-content: start; }
-.fuss p { margin: 0; }
-.fuss__name { color: var(--washi); font-family: var(--font-display); font-weight: 700; font-size: var(--step-0); }
+.fuss p { margin: 0 0 var(--space-xs); }
+.fuss a { color: var(--washi); }
+.fuss__logo { display: block; width: auto; height: 3rem; margin-bottom: var(--space-s); }
+.fuss__marke p { max-width: 24ch; }
+.fuss__titel {
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-0);
+  color: var(--washi);
+}
+.fuss__zeiten { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.fuss__zeiten th { text-align: left; font-weight: 400; padding: 0 var(--space-m) var(--space-xs) 0; vertical-align: top; white-space: nowrap; }
+.fuss__zeiten td { padding: 0 0 var(--space-xs); color: var(--washi); }
+.fuss__unten {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-s);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--sumi-line);
+}
+.fuss__unten p { margin: 0; }
 .fuss__recht { display: flex; gap: var(--space-m); }
+@media (max-width: 52rem) {
+  .fuss { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fuss__marke { grid-column: 1 / -1; }
+}
+@media (max-width: 30rem) {
+  .fuss { grid-template-columns: 1fr; gap: var(--space-m); }
+}
 
 /* Schmale Bildschirme */
 @media (max-width: 52rem) {
@@ -1680,4 +1708,40 @@ section[id],
 }
 @media (max-width: 34rem) {
   .leiste figure { height: 11rem; }
+}
+
+/* ── Kartenseite: ruhiger Kopf, eigene Fotos neben den Kategorien ─────────── */
+.papier .karte__kopf--seite { display: block; margin-bottom: var(--space-l); }
+.karte__kopf--seite .karte__text { margin-top: var(--space-s); }
+
+/* Kategorie mit Foto: Liste links, Foto rechts, das Foto bleibt beim Scrollen stehen */
+.kategorie--foto {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.kategorie--foto > * { grid-column: 1; }
+.kategorie--foto .kategorie__liste,
+.kategorie--foto .kategorie__liste--sets { grid-template-columns: 1fr; }
+.kategorie__foto {
+  grid-column: 2;
+  grid-row: 1 / span 12;
+  position: sticky;
+  top: 10rem;
+  margin: 0;
+}
+.kategorie__foto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 12rem);
+  object-fit: cover;
+  border-radius: var(--radius-s);
+}
+
+@media (max-width: 52rem) {
+  .kategorie--foto { display: block; }
+  .kategorie__foto { position: static; margin: var(--space-s) 0 var(--space-m); }
+  .kategorie__foto img { aspect-ratio: 16 / 10; max-height: none; }
 }
