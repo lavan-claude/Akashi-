@@ -22,7 +22,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
-  js/hero.js          Hero: Scroll spult das Video, rote Glutpunkte steigen auf
+  js/hero.js          Hero: Video läuft einmal ab, rote Glutpunkte steigen auf
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/stimmen.js      Slideshow der Google-Bewertungen
@@ -55,10 +55,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
   schräg abgeschnitten (`clip-path`, Fokusring innen). Nebenknöpfe
   (`.knopf--hell`, `.knopf--linie`, `.kopf__knopf`) sind eckige Rahmen.
   Beim Überfahren wischt eine Füllfarbe herein (`--fuellung`).
-- Hero-Animation (Wunsch von Lavan, 27.09.2026): Die einzige Animation sind
-  rote Glutpunkte, die langsam aufsteigen, dazu spult Scrollen das Video.
+- Hero-Animation (Wunsch von Lavan): Das Video läuft einmal ab, darüber steigen
+  rote Glutpunkte auf. Sonst nichts, auch kein Effekt beim Scrollen.
   Nichts folgt dem Mauszeiger: keine Blüten, kein Laternenlicht, keine
-  Parallaxe. Auf dem Handy bleibt die Bühne beim Scrollen stehen.
+  Parallaxe. Siehe „Hero-Video“.
   Alles in `js/hero.js`, bei reduzierter Bewegung aus. Keine Karten und kein
   Schild rechts im Hero.
 - Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem
@@ -144,29 +144,25 @@ müssen zum n8n-Workflow passen.
 
 ## Hero-Video
 
-Das Video wird nicht abgespielt, sondern beim Scrollen vor- und zurückgespult
-(`js/hero.js`). Damit das flüssig läuft, braucht es in kurzen Abständen
-Schlüsselbilder und keinen Ton:
+Das Video steht genau so im Hero, wie Lavan es geliefert hat (28.09.2026):
+Es startet von selbst, läuft einmal ab und bleibt auf dem letzten Bild stehen.
+Kein Spulen beim Scrollen, kein Zoom, kein Abdunkel-Verlauf, kein Nebel, kein
+Abblenden. Einzige Zutat sind die aufsteigenden Glutpunkte. Auf dem Handy steht
+das Video oben frei, der Text darunter.
+
+Kling-Video: Samurai im Gras vor der roten Sonne, zieht nach der Hälfte das
+Schwert, 1920 × 1080, 8 s. Quelle
+`Downloads/kling_20260928_VIDEO_Create_an__422_0.mp4`, nicht im Repo. Farben
+unverändert, nicht nachfärben. Nur der Ton ist entfernt, weil Browser nur
+stumme Videos von selbst starten:
 
 ```sh
-ffmpeg -i kling.mp4 -an -vf "scale=1600:-2" -c:v libx264 -crf 23 -g 6 \
+ffmpeg -i kling.mp4 -an -c:v libx264 -preset slow -crf 19 -tune film \
   -pix_fmt yuv420p -movflags +faststart site/assets/hero/samurai.mp4
-```
-
-Dazu eine WebM-Fassung für Chrome und Firefox:
-
-```sh
-ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 36 -g 6 -row-mt 1 \
-  site/assets/hero/samurai.webm
+ffmpeg -i kling.mp4 -an -c:v libvpx-vp9 -b:v 0 -crf 30 -row-mt 1 site/assets/hero/samurai.webm
 ```
 
 Ziel: höchstens 4 MB.
-
-Seit 28.09.2026: neues Kling-Video (Samurai im Gras vor der roten Sonne,
-zieht nach der Hälfte das Schwert), 1920 × 1080, 8 s. Quelle
-`Downloads/kling_20260928_VIDEO_Create_an__422_0.mp4`, nicht im Repo. Farben
-bewusst unverändert wie im Original (Wunsch von Lavan), nur der Ton ist
-entfernt. Nicht nachfärben.
 
 Das Video trägt unten rechts das Wasserzeichen „KlingAI 3.0 Omni“. Vor
 Livegang durch die Fassung ohne Wasserzeichen ersetzen und die
