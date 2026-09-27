@@ -1,6 +1,8 @@
-// Hero: Scrollen durch die hohe Hero-Sektion spult das Samurai-Video vor und
-// zurück, zoomt das Bild leicht und blendet am Ende zur Tusche ab. Das ist der
-// einzige Effekt; Maus, Licht, Funken und Blüten sind bewusst entfernt.
+// Hero: Scrollen und Maus bewegen die Bühne.
+// - Scrollen durch die hohe Hero-Sektion spult das Samurai-Video vor und zurück,
+//   zoomt die Bilder leicht und blendet am Ende zur Tusche ab.
+// - Die Maus (oder ein Finger) verschiebt die Ebenen gegeneinander, zieht ein warmes
+//   Laternenlicht mit und schiebt Glutfunken beiseite.
 // Transformationen werden direkt an den Ebenen gesetzt, nicht über eine Variable am
 // Elternelement, damit nicht bei jedem Bild alle Kinder neu berechnet werden.
 // Bei reduzierter Bewegung bleibt der Hero still auf dem Standbild.
@@ -114,21 +116,24 @@
     k.fill();
     return c;
   });
+  let letzteX = -999, letzteY = -999;
 
-  function bluetenStreuen(x, y, anzahl) {
+  // fallend: Blüte schwebt als Regen von oben herab statt aus der Zeigerspur aufzuspringen.
+  function bluetenStreuen(x, y, anzahl, fallend = false) {
     if (!vorlagen.length) return;
     for (let i = 0; i < anzahl; i++) {
       if (blueten.length >= MAX_BLUETEN) blueten.shift();
       blueten.push({
         x: x + (Math.random() - 0.5) * 14,
         y: y + (Math.random() - 0.5) * 14,
-        vx: (Math.random() - 0.5) * 0.9,
-        vy: -0.2 - Math.random() * 0.5,
+        vx: (Math.random() - 0.5) * (fallend ? 0.5 : 0.9),
+        vy: fallend ? 0.5 + Math.random() * 0.5 : -0.2 - Math.random() * 0.5,
+        schwere: fallend ? 0.003 : 0.018,
         dreh: Math.random() * Math.PI * 2,
         drall: (Math.random() - 0.5) * 0.05,
         groesse: 9 + Math.random() * 13,
         alter: 0,
-        dauer: 110 + Math.random() * 80, // Bilder, bei 60 fps knapp 2–3 s
+        dauer: fallend ? 360 + Math.random() * 200 : 110 + Math.random() * 80, // Bilder bei 60 fps
         bild: vorlagen[(Math.random() * vorlagen.length) | 0],
       });
     }
@@ -139,7 +144,7 @@
       const b = blueten[i];
       b.alter++;
       if (b.alter > b.dauer) { blueten.splice(i, 1); continue; }
-      b.vy += 0.018;             // sinkt langsam
+      b.vy += b.schwere;         // sinkt langsam
       b.vx *= 0.99;
       b.x += b.vx + Math.sin((b.alter + i) / 18) * 0.25; // schaukelt beim Fallen
       b.y += b.vy;
@@ -190,7 +195,6 @@
   function bild(t) {
     laeuft = false;
     const still = ruhig.matches;
-    const klein = schmal.matches;
 
     p = scrollLesen();
     mx += (zielX - mx) * NACHFUEHRUNG;
@@ -205,16 +209,19 @@
       if (nebelHinten) nebelHinten.style.transform = `translate3d(${(-8 * p + 2 * mx).toFixed(3)}%, ${(1.5 * my).toFixed(3)}%, 0)`;
       if (nebelVorne) nebelVorne.style.transform = `translate3d(${(-22 * p + 5 * mx).toFixed(3)}%, ${(-6 * p + 3 * my).toFixed(3)}%, 0)`;
 
-      if (!klein) {
-        if (text) {
-          text.style.opacity = String(Math.max(0, 1 - Math.max(0, p - 0.55) * 2.5));
-          text.style.transform = `translate3d(${(mx * 6).toFixed(2)}px, ${(p * -32 + my * 4).toFixed(2)}px, 0)`;
-        }
-        if (karten) {
-          karten.style.transform = `translate3d(${(mx * -12).toFixed(2)}px, ${(p * -48 + my * -8).toFixed(2)}px, 0) rotateY(${(mx * -6).toFixed(2)}deg) rotateX(${(my * 5).toFixed(2)}deg)`;
-        }
-        if (abblende) abblende.style.opacity = String(Math.max(0, (p - 0.85) / 0.15) * 0.9);
-        if (runter) runter.style.opacity = String(Math.max(0, 1 - p * 4));
+      if (text) {
+        text.style.opacity = String(Math.max(0, 1 - Math.max(0, p - 0.55) * 2.5));
+        text.style.transform = `translate3d(${(mx * 6).toFixed(2)}px, ${(p * -32 + my * 4).toFixed(2)}px, 0)`;
+      }
+      if (karten && !schmal.matches) {
+        karten.style.transform = `translate3d(${(mx * -12).toFixed(2)}px, ${(p * -48 + my * -8).toFixed(2)}px, 0) rotateY(${(mx * -6).toFixed(2)}deg) rotateX(${(my * 5).toFixed(2)}deg)`;
+      }
+      if (abblende) abblende.style.opacity = String(Math.max(0, (p - 0.85) / 0.15) * 0.9);
+      if (runter) runter.style.opacity = String(Math.max(0, 1 - p * 4));
+
+      // Ohne Maus (Handy, Tablet) fallen die Blüten von selbst, wie ein leichter Regen.
+      if (sichtbar && !feineMaus.matches && Math.random() < 0.04) {
+        bluetenStreuen(Math.random() * breite, -12, 1, true);
       }
 
       if (licht) licht.style.transform = `translate3d(${lichtX.toFixed(1)}px, ${lichtY.toFixed(1)}px, 0) translate(-50%, -50%)`;
@@ -243,13 +250,70 @@
     }
   }
 
+  // ── Eingaben ──────────────────────────────────────────────────────────────
+  function zeigen(e) {
+    if (e.pointerType === "touch") return; // Finger laufen über die Touch-Ereignisse unten
+    const r = buehne.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    zielX = (x / r.width) * 2 - 1;
+    zielY = (y / r.height) * 2 - 1;
+    lichtZielX = x;
+    lichtZielY = y;
+    buehne.setAttribute("data-maus", "");
+    // Alle paar Pixel Weg eine neue Blüte, beim Tippen ein kleiner Strauß.
+    if (!ruhig.matches) {
+      const weg = Math.hypot(x - letzteX, y - letzteY);
+      if (e.type === "pointerdown") bluetenStreuen(x, y, 7);
+      else if (weg > 16) bluetenStreuen(x, y, weg > 60 ? 2 : 1);
+      if (e.type === "pointerdown" || weg > 16) { letzteX = x; letzteY = y; }
+    }
+    planen();
+  }
+  buehne.addEventListener("pointermove", zeigen, { passive: true });
+  buehne.addEventListener("pointerdown", zeigen, { passive: true });
+  buehne.addEventListener("pointerleave", () => {
+    zielX = zielY = 0;
+    buehne.removeAttribute("data-maus");
+    planen();
+  });
+
+  // Finger: Touch-Ereignisse laufen auch weiter, während die Seite scrollt,
+  // Zeiger-Ereignisse brechen dann ab. So bleibt beim Wischen eine Blütenspur.
+  function beruehren(e) {
+    const t = e.touches[0];
+    if (!t) return;
+    zeigen({ clientX: t.clientX, clientY: t.clientY, type: e.type === "touchstart" ? "pointerdown" : "pointermove" });
+  }
+  buehne.addEventListener("touchstart", beruehren, { passive: true });
+  buehne.addEventListener("touchmove", beruehren, { passive: true });
+  buehne.addEventListener("touchend", () => { zielX = zielY = 0; planen(); }, { passive: true });
+
+  // Ohne feine Maus (Handy) wandert das Licht langsam von selbst.
+  let wandern = 0;
+  function lichtWandern() {
+    if (feineMaus.matches || ruhig.matches || !sichtbar) return;
+    wandern += 0.004;
+    lichtZielX = breite * (0.6 + 0.25 * Math.sin(wandern * 1.3));
+    lichtZielY = hoehe * (0.45 + 0.2 * Math.cos(wandern));
+    buehne.setAttribute("data-maus", "");
+    setTimeout(lichtWandern, 50);
+  }
+
   new IntersectionObserver(([e]) => {
     sichtbar = e.isIntersecting;
-    if (sichtbar) planen();
+    if (sichtbar) { planen(); lichtWandern(); }
   }).observe(buehne);
 
   if (video) {
     video.pause();
+    // iPhone: Safari lädt stumme Videos oft erst nach einem ersten Abspielen.
+    // Bei der ersten Berührung einmal kurz starten und anhalten, dann lässt es sich spulen.
+    const freischalten = () => {
+      if (video.readyState < 2) video.load();
+      video.play().then(() => video.pause()).catch(() => {});
+    };
+    addEventListener("touchstart", freischalten, { once: true, passive: true });
+    setTimeout(() => { if (video.isConnected && video.readyState < 2) video.load(); }, 1500);
     video.addEventListener("loadeddata", () => {
       if (ruhig.matches) return;
       video.toggleAttribute("data-bereit", true);
@@ -273,4 +337,5 @@
   lichtY = lichtZielY = hoehe * 0.45;
   kopfSetzen();
   planen();
+  lichtWandern();
 })();

@@ -52,8 +52,12 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
   Ausnahme: Knöpfe haben runde Enden (`--radius-round`). Beim Überfahren wischt
   eine Füllfarbe herein (`--fuellung`, je nach Untergrund).
-- Im Hero gibt es genau einen Effekt: Scrollen spult das Video. Keine
-  Maus-Effekte, kein Licht, keine Funken, keine Blüten.
+- Hero-Animation (ausdrücklicher Wunsch von Lavan, 27.09.2026): Scrollen spult
+  das Video, die Maus verschiebt die Ebenen, zieht Laternenlicht mit, schiebt
+  Glutfunken beiseite und hinterlässt rote Blüten. Auf dem Handy bleibt die
+  Bühne stehen, Blüten fallen von selbst und entstehen beim Wischen.
+  Alles in `js/hero.js`, bei reduzierter Bewegung aus. Keine Karten und kein
+  Schild rechts im Hero.
 - Hero und Reservierung dunkel (Tusche), Über uns und Speisekarte auf hellem
   Washi-Papier (`.papier`).
 - Japanische Abschnittszeichen in Pinselschrift **Yuji Boku** (`.pinsel`, senkrecht
@@ -82,9 +86,16 @@ KI-Baukasten. Deshalb:
   Eine Bewertung höchstens als echtes Zitat eines Gastes.
   Ausnahme auf Wunsch von Lavan: Die Karten-Kästen auf der Startseite behalten
   ihre roten Nummern 01–08 und die Zahl der Gerichte.
+- Ausnahme Hero (Wunsch von Lavan, 27.09.2026): Der Textblock im Hero hat die
+  Kapitelzeile „Japanese Restaurant & Izakaya · Bremen“, die Bedeutung von 明石,
+  Pfeile in den beiden Knöpfen und die Merkmal-Zeile mit „4,7 bei Google“.
+  Nicht wieder entfernen.
 - Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
   Text und Liste.
 - Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.
+- Über uns: Text von Lavan (Herkunft aus dem Streetfood-Restaurant Doki Doki,
+  Rosu Katsukaré, Softshell-Crab Roll). Auf der Karte heißt die Roll
+  „Softshell-Crab Roll“, nicht „Softshell-Caviar Roll“.
 - Echte Fotos vor Effekten. KI-Bilder nur, wo es kein eigenes Foto gibt.
 
 ## Sprache und Ton
