@@ -2065,30 +2065,11 @@ section[id],
 .standort .standort__bild { overflow: visible; border-radius: var(--radius-s); }
 .standort .standort__bild img { aspect-ratio: 4 / 5; object-fit: cover; }
 
-/* Bilderleiste: vier gerahmte Abzüge auf Tusche statt randloser Kante */
-.leiste {
-  gap: clamp(0.75rem, 2vw, 1.5rem);
-  padding: var(--space-xl) max(clamp(1rem, 4vw, 3rem), calc((100% - 84rem) / 2));
-}
-.leiste figure { height: auto; overflow: visible; }
-.leiste .rahmen__fenster { height: clamp(11rem, 22vw, 20rem); }
-.leiste .rahmen__fenster img { height: 100%; object-fit: cover; }
-.leiste .rahmen:nth-child(odd) { translate: 0 0.75rem; }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .leiste .rahmen__fenster img { height: 114%; margin-top: -7%; }
-  }
-}
 @media (max-width: 52rem) {
   .ueber .ueber__bild img { aspect-ratio: 16 / 11; }
   .ueber .ueber__team { right: 0.5rem; width: 36%; }
 }
 @media (max-width: 34rem) {
-  .leiste { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: var(--space-l); }
-  .leiste figure { height: auto; }
-  .leiste .rahmen__fenster { height: 9.5rem; }
-  .leiste .rahmen__fenster img { height: 100%; margin-top: 0; animation: none; }
-  .leiste .rahmen:nth-child(odd) { translate: none; }
   .ueber__bilder { padding-bottom: 3.5rem; }
   .ueber .ueber__team { width: 30%; right: 0.25rem; }
   .ueber .ueber__team figcaption { font-size: 0.7rem; }
