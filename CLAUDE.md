@@ -11,7 +11,7 @@ wie `mi-elevate`.
 
 ```
 site/                 wird veröffentlicht (netlify.toml: publish = "site")
-  index.html          Startseite: Hero, Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Reservierung
+  index.html          Startseite: Hero (Foto), Über uns, Izakaya, Standort, Karten-Kacheln, Bilderleiste, Stimmen, Samurai, Reservierung
   speisekarte.html    die ganze Speisekarte, die Kacheln springen zur Kategorie;
                       ohne Fotos (Wunsch von Lavan). Das Skript kann sie noch:
                       "foto" in speisekarte.json zeigt es rechts neben der Liste
@@ -22,7 +22,8 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   css/tokens.css      Designsystem: Farben, Schrift, Abstände, Radien
   css/site.css        Gestaltung
   js/reservierung.js  Prüfung und Versand des Formulars
-  js/hero.js          Hero: Scroll spult das Video, rote Glutpunkte steigen auf
+  js/hero.js          Hero: Foto zoomt beim Scrollen, rote Glutpunkte steigen auf
+  js/samurai.js       Samurai-Abschnitt vor der Reservierung: Scroll spult das Video
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/stimmen.js      Slideshow der Google-Bewertungen
@@ -55,8 +56,9 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
   schräg abgeschnitten (`clip-path`, Fokusring innen). Nebenknöpfe
   (`.knopf--hell`, `.knopf--linie`, `.kopf__knopf`) sind eckige Rahmen.
   Beim Überfahren wischt eine Füllfarbe herein (`--fuellung`).
-- Hero-Animation (Wunsch von Lavan, 27.09.2026): Die einzige Animation sind
-  rote Glutpunkte, die langsam aufsteigen, dazu spult Scrollen das Video.
+- Hero (Wunsch von Lavan, 28.09.2026): echtes Foto der Rolls an der Bar
+  (`rolls-1920.webp`) statt KI-Samurai. Beim Scrollen zoomt es langsam heran,
+  dazu steigen rote Glutpunkte auf.
   Nichts folgt dem Mauszeiger: keine Blüten, kein Laternenlicht, keine
   Parallaxe. Auf dem Handy bleibt die Bühne beim Scrollen stehen.
   Alles in `js/hero.js`, bei reduzierter Bewegung aus. Keine Karten und kein
@@ -144,8 +146,10 @@ müssen zum n8n-Workflow passen.
 
 ## Hero-Video
 
-Das Video wird nicht abgespielt, sondern beim Scrollen vor- und zurückgespult
-(`js/hero.js`). Damit das flüssig läuft, braucht es in kurzen Abständen
+Das Samurai-Video steht seit 28.09.2026 nicht mehr im Hero, sondern in einem
+eigenen Abschnitt `.samurai` direkt vor der Reservierung. Es wird nicht
+abgespielt, sondern beim Scrollen vor- und zurückgespult (`js/samurai.js`),
+die Bühne bleibt dabei stehen. Damit das flüssig läuft, braucht es in kurzen Abständen
 Schlüsselbilder und keinen Ton:
 
 ```sh

@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/site.css">
   <script src="js/reservierung.js" defer></script>
   <script src="js/hero.js" defer></script>
+  <script src="js/samurai.js" defer></script>
   <script src="js/anfahrt.js" defer></script>
   <script src="js/stimmen.js" defer></script>
   <script src="js/aufdecken.js" defer></script>
@@ -56,26 +57,11 @@
   <main>
     <!-- Hero: Samurai-Video über die ganze Breite, Text links.
          Die Bühne bleibt stehen, während man durch die hohe Sektion scrollt;
-         js/hero.js setzt dabei --fortschritt von 0 bis 1 und spult das Video. -->
+         js/hero.js zoomt dabei das Foto und blendet am Ende ab. -->
     <section class="hero" aria-labelledby="hero-titel">
       <div class="hero__buehne">
-        <svg class="hero__torii" viewBox="0 0 400 320" aria-hidden="true" focusable="false">
-          <path d="M18 46 Q200 16 382 46 L376 70 Q200 46 24 70 Z" />
-          <rect x="46" y="84" width="308" height="16" />
-          <rect x="92" y="62" width="24" height="258" />
-          <rect x="284" y="62" width="24" height="258" />
-          <rect x="190" y="70" width="20" height="30" />
-        </svg>
-        <!-- Standbild aus Kling. Fehlt die Datei, bleibt das gezeichnete Torii sichtbar. -->
-        <img class="hero__bild" src="assets/hero/samurai.jpg" alt="" width="1920" height="1080" fetchpriority="high" onerror="this.remove()">
-        <!-- Video aus Kling, läuft mit dem Scrollen vor und zurück (js/hero.js).
-             Fehlt es, bleibt das Standbild. -->
-        <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-          <source src="assets/hero/samurai.mp4" type="video/mp4">
-          <source src="assets/hero/samurai.webm" type="video/webm" onerror="this.parentElement.remove()">
-        </video>
-        <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
-        <div class="hero__nebel hero__nebel--vorne" aria-hidden="true"></div>
+        <!-- Echtes Foto aus dem Akashi: Rolls an der Bar. Zoomt beim Scrollen langsam heran (js/hero.js). -->
+        <img class="hero__bild hero__bild--foto" src="assets/raeume/rolls-1920.webp" srcset="assets/raeume/rolls-1200.webp 1200w, assets/raeume/rolls-1920.webp 1920w" sizes="100vw" alt="Uramaki Rolls mit Lachs, Soße und Kresse auf einer Schieferplatte, dahinter die Bar des Akashi am Abend" width="1920" height="1080" fetchpriority="high">
         <!-- Rote Glutpunkte, die langsam aufsteigen (js/hero.js) -->
         <canvas class="hero__funken" aria-hidden="true"></canvas>
         <div class="hero__abblende" aria-hidden="true"></div>
@@ -326,6 +312,19 @@
           <div class="stimmen__punkte" role="tablist" aria-label="Bewertung wählen"></div>
           <button class="stimmen__pfeil" type="button" data-weiter aria-label="Nächste Bewertung"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
         </div>
+      </div>
+    </section>
+
+    <!-- Samurai-Video aus Kling als eigener Abschnitt vor der Reservierung. Die Bühne
+         bleibt stehen, beim Scrollen zieht er das Schwert (js/samurai.js). Farben unverändert. -->
+    <section class="samurai" data-samurai aria-label="Samurai vor der roten Sonne">
+      <div class="samurai__buehne">
+        <img class="samurai__standbild" src="assets/hero/samurai.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+        <video class="samurai__video" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+          <source src="assets/hero/samurai.mp4" type="video/mp4">
+          <source src="assets/hero/samurai.webm" type="video/webm">
+        </video>
+        <span class="samurai__zeichen pinsel" aria-hidden="true">予約</span>
       </div>
     </section>
 

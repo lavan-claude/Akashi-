@@ -2084,3 +2084,68 @@ section[id],
 @media (prefers-reduced-motion: reduce) {
   .hero { height: auto; }
 }
+
+/* ── Hero mit echtem Foto (28.09.2026) ─────────────────────────────────────
+   Rolls an der Bar statt KI-Samurai. Das Foto zoomt beim Scrollen langsam
+   heran, links ein stärkerer Verlauf, damit der Text lesbar bleibt. */
+.hero { height: 190vh; }
+.hero__bild--foto { object-position: 62% 60%; opacity: 1; }
+.hero__buehne::after {
+  display: block;
+  background:
+    linear-gradient(to right, var(--sumi) 0%, var(--sumi-schleier) 28%, var(--sumi-dunst) 48%, transparent 70%),
+    linear-gradient(to top, var(--sumi) 0%, transparent 30%),
+    linear-gradient(to bottom, var(--sumi-dunst) 0%, transparent 22%);
+}
+@media (max-width: 60rem) {
+  .hero { height: auto; }
+  .hero__bild--foto { object-position: 78% 70%; }
+  .hero__buehne::after {
+    background:
+      linear-gradient(to bottom, var(--sumi-dunst) 0%, transparent 25%, transparent 38svh, var(--sumi) 64svh, var(--sumi) 100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+}
+
+/* ── Samurai vor der Reservierung (js/samurai.js) ──────────────────────
+   Eigener Abschnitt über die volle Breite, Bühne bleibt beim Scrollen stehen.
+   Nur oben und unten ein Übergang in die Tusche, das Bild selbst unverändert. */
+.samurai { position: relative; height: 240vh; background: var(--sumi); }
+.samurai__buehne { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.samurai__standbild,
+.samurai__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% 50%;
+}
+.samurai__video { opacity: 0; transition: opacity 500ms var(--ease-out); }
+.samurai__video[data-bereit] { opacity: 1; }
+.samurai__buehne::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--sumi) 0%, transparent 16%, transparent 80%, var(--sumi) 100%);
+}
+.samurai__zeichen {
+  position: absolute;
+  z-index: 1;
+  left: max(clamp(1rem, 4vw, 3rem), calc((100% - 76rem) / 2));
+  bottom: 18%;
+  font-size: clamp(2.6rem, 2rem + 2.5vw, 4.5rem);
+  color: var(--shu-on-dark);
+}
+@media (max-width: 60rem) {
+  .samurai { height: 180vh; height: 180svh; }
+  .samurai__standbild,
+  .samurai__video { object-position: 68% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .samurai { height: auto; }
+  .samurai__buehne { position: relative; height: 70vh; }
+}
