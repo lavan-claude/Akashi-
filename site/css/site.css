@@ -2074,3 +2074,13 @@ section[id],
   .ueber .ueber__team { width: 30%; right: 0.25rem; }
   .ueber .ueber__team figcaption { font-size: 0.7rem; }
 }
+
+/* Längerer Scrollweg im Hero, damit der Samurai das Schwert sichtbar langsam
+   zieht statt nach einem Mausraddreh fertig zu sein (28.09.2026). */
+.hero { height: 340vh; }
+@media (max-width: 60rem) {
+  .hero { height: 260vh; height: 260svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+}

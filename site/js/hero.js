@@ -121,7 +121,7 @@
   function videoSpulen() {
     if (!video || !video.duration) return;
     const ziel = Math.min(1, p / VIDEO_ENDE) * (video.duration - 0.05);
-    videoZeit += (ziel - videoZeit) * 0.18;
+    videoZeit += (ziel - videoZeit) * 0.12;
     if (Math.abs(ziel - videoZeit) < 0.005) videoZeit = ziel;
     if (Math.abs(video.currentTime - videoZeit) > 1 / 60) video.currentTime = videoZeit;
   }
