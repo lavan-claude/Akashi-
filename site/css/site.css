@@ -1670,3 +1670,26 @@ section[id],
 }
 .kachel__kanji { writing-mode: horizontal-tb; }
 .saya a { text-transform: none; letter-spacing: 0.02em; font-size: var(--step--1); }
+
+/* ── Echte Fotos (27.09.2026) ─────────────────────────────────────────────
+   Izakaya mit Foto statt Sonnen-Emblem, Teamfoto unter Über uns,
+   Bilderleiste mit vier eigenen Fotos. */
+.izakaya { align-items: center; }
+.izakaya__bild { margin: 0 calc(-1 * clamp(0rem, 3vw, 3rem)) 0 0; overflow: hidden; border-radius: var(--radius-s); }
+.izakaya__bild img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3.4; object-fit: cover; object-position: 62% 50%; }
+.ueber__team { display: flex; align-items: end; gap: var(--space-s); margin: var(--space-l) 0 0; }
+.ueber__team img { display: block; width: clamp(7rem, 12vw, 10rem); height: auto; border-radius: var(--radius-s); }
+.ueber__team figcaption { font-size: var(--step--1); color: var(--sabi-on-paper); }
+.leiste { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 52rem) {
+  .izakaya__bild { margin: 0; }
+  .izakaya__bild img { aspect-ratio: 16 / 10; }
+  .izakaya .kapitel__titel { padding-right: 0; }
+}
+@media (max-width: 48rem) {
+  .leiste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .leiste figure:first-child { grid-column: auto; }
+}
+@media (max-width: 34rem) {
+  .leiste figure { height: 11rem; }
+}

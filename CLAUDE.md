@@ -145,6 +145,14 @@ Nutzungsbedingungen von Kling für gewerbliche Nutzung prüfen.
   (Stand September 2026). Daten in `daten/speisekarte.json`. `python3 tools/speisekarte.py` erzeugt
   die ganze Karte in `speisekarte.html` (`KARTE:START`/`KARTE:ENDE`) und die
   Kacheln in `index.html` (`KACHELN:START`/`KACHELN:ENDE`). Nie das erzeugte HTML von Hand ändern.
+- Fotos: nur eigene Fotos des Restaurants, als WebP in `site/assets/raeume/`.
+  Das Teamfoto liegt nur in 399 px vor, deshalb klein unter Über uns.
+
+## Ältere Fassungen
+
+Nicht löschen, nur zum Vergleichen: Branch `alte-version` (Samurai-Hero mit
+Funken, Kacheln und Zahlenreihe) und Branch `vor-fotos` (ohne Vorlagen-Muster,
+vor den echten Fotos). Weitergebaut wird nur auf `main`.
 
 ## Arbeitsweise
 
