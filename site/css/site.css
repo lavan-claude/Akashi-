@@ -1334,10 +1334,15 @@ section[id],
     transition-delay: calc(var(--i, 0) * 70ms);
   }
   /* Bilder werden von unten nach oben aufgedeckt, das Foto setzt sich dabei. */
-  .js .aufdeck--bild:not([data-da]) { opacity: 1; transform: none; clip-path: inset(100% 0 0 0); }
-  .js .aufdeck--bild:not([data-da]) img { transform: scale(1.12); }
-  .js .aufdeck--bild[data-da] { clip-path: inset(0 0 0 0); transition: clip-path 900ms var(--ease-in-out); transition-delay: calc(var(--i, 0) * 90ms); }
-  .js .aufdeck--bild img { transition: transform 1400ms var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+  /* Zugeschnitten wird nur das Bild innen: Ein komplett verdecktes Element meldet
+     Chrome sonst beim Scrollen nicht als sichtbar, und es bliebe unsichtbar. */
+  .js .aufdeck--bild:not([data-da]) { opacity: 1; transform: none; }
+  .js .aufdeck--bild:not([data-da]) img { clip-path: inset(100% 0 0 0); transform: scale(1.12); }
+  .js .aufdeck--bild img {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 900ms var(--ease-in-out), transform 1400ms var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
   /* Der Strich der Kapitelzeile zieht sich auf. */
   .js .kicker.aufdeck:not([data-da])::before { transform: scaleX(0); }
   .js .kicker.aufdeck[data-da]::before { transition: transform 700ms var(--ease-out) 150ms; }
@@ -1783,44 +1788,96 @@ section[id],
 .stimmen__quelle { margin: 0 0 var(--space-m); color: var(--sabi-on-paper); font-size: var(--step--1); }
 .stimmen__link { font-size: var(--step--1); font-weight: 500; }
 
-.stimmen blockquote { margin: 0; }
-.stimmen blockquote p { margin: 0; }
-.stimmen__gross { margin: 0; align-self: end; }
-.stimmen__gross blockquote p {
+/* Slideshow: Bewertungen im Stil einer Google-Rezension, eine nach der anderen.
+   Alle Folien liegen im selben Rasterfeld, so bestimmt die längste die Höhe. */
+.stimmen__schau { align-self: center; }
+.stimmen__folien { display: grid; margin: 0; padding: 0; list-style: none; }
+.bewertung { grid-area: 1 / 1; display: flex; }
+.bewertung figure {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background: var(--papier-hell);
+  border: 1px solid var(--washi-line);
+  border-radius: var(--radius-m);
+  box-shadow: 0 1px 0 var(--washi-line), 0 24px 50px -30px rgb(21 18 15 / 0.35);
+}
+.bewertung__kopf { display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-s); align-items: center; }
+.bewertung__bild {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--farbe);
+  color: var(--washi);
+  font-weight: 700;
+  font-size: var(--step-1);
+}
+.bewertung__name { font-weight: 700; }
+.bewertung__datum { font-size: var(--step--1); color: var(--sabi-on-paper); }
+.bewertung__sterne { margin: var(--space-m) 0 var(--space-xs); color: var(--shu); letter-spacing: 0.12em; line-height: 1; }
+.bewertung__text { margin: 0; }
+.bewertung__text p {
+  margin: 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.7rem);
-  line-height: 1.2;
-  text-wrap: balance;
+  font-size: clamp(1.2rem, 1rem + 0.9vw, 1.7rem);
+  line-height: 1.35;
+  text-wrap: pretty;
 }
-.stimmen__gross blockquote p::before { content: "„"; color: var(--shu); }
-.stimmen__gross blockquote p::after { content: "“"; color: var(--shu); }
-.stimmen__gross figcaption,
-.stimmen__wer { margin: var(--space-s) 0 0; font-weight: 700; font-size: var(--step--1); }
-.stimmen__gross figcaption span,
-.stimmen__wer span { font-weight: 400; color: var(--sabi-on-paper); }
+.bewertung__quelle { margin: auto 0 0; padding-top: var(--space-m); font-size: var(--step--1); color: var(--sabi-on-paper); }
 
-.stimmen__liste {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--washi-line);
+/* Mit JavaScript: nur die aktive Folie ist sichtbar, die anderen blenden aus */
+[data-schau][data-bereit] .bewertung { opacity: 0; visibility: hidden; transform: translateY(0.75rem); }
+[data-schau][data-bereit] .bewertung[data-aktiv] { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  [data-schau][data-bereit] .bewertung { transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out), visibility 0s linear 600ms; }
+  [data-schau][data-bereit] .bewertung[data-aktiv] { transition-delay: 150ms, 150ms, 0s; }
 }
-.stimmen__liste li { padding: var(--space-m) var(--space-m) 0 0; }
-.stimmen__liste li + li { padding-left: var(--space-m); border-left: 1px solid var(--washi-line); }
-.stimmen__liste blockquote p { line-height: 1.55; }
-.stimmen__liste blockquote p::before { content: "„"; }
-.stimmen__liste blockquote p::after { content: "“"; }
+/* Ohne JavaScript: alle Bewertungen untereinander */
+[data-schau]:not([data-bereit]) .stimmen__folien { gap: var(--space-s); }
+[data-schau]:not([data-bereit]) .bewertung { grid-area: auto; }
+[data-schau]:not([data-bereit]) .stimmen__steuerung { display: none; }
+
+.stimmen__steuerung { display: flex; align-items: center; gap: var(--space-s); margin-top: var(--space-m); }
+.stimmen__pfeil {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--washi-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sumi);
+  cursor: pointer;
+  transition: border-color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.stimmen__pfeil:hover { border-color: var(--sumi); background: var(--papier-hell); }
+.stimmen__pfeil svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.stimmen__punkte { display: flex; gap: 0.35rem; }
+.stimmen__punkt {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-round);
+  background: var(--washi-line);
+  cursor: pointer;
+  transition: width 300ms var(--ease-out), background-color 300ms var(--ease-out);
+}
+.stimmen__punkt[aria-selected="true"] { width: 1.6rem; background: var(--shu); }
+/* Größere Tippfläche, ohne den Punkt zu vergrößern */
+.stimmen__punkt { position: relative; }
+.stimmen__punkt::after { content: ""; position: absolute; inset: -0.9rem -0.2rem; }
 
 @media (max-width: 52rem) {
   .stimmen { grid-template-columns: 1fr; gap: var(--space-l); }
-  .stimmen__liste { grid-template-columns: 1fr; }
-  .stimmen__liste li,
-  .stimmen__liste li + li { padding: var(--space-m) 0; border-left: 0; }
-  .stimmen__liste li + li { border-top: 1px solid var(--washi-line); }
+  .stimmen__zahl { font-size: 4.5rem; }
 }
 
 /* ── Standort: Karte als schmale Leiste, öffnet sich erst beim Klick ─────── */

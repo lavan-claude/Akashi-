@@ -25,6 +25,7 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   js/hero.js          Hero: Scroll spult das Video, rote Glutpunkte steigen auf
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
+  js/stimmen.js      Slideshow der Google-Bewertungen
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
   assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
   assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
@@ -91,9 +92,13 @@ KI-Baukasten. Deshalb:
 - Ausnahme Izakaya (Wunsch von Lavan, 27.09.2026): Kapitelzeile „Izakaya“,
   Überschrift, Liste Vor Ort / Abholen / Lieferung und rechts die rote Sonne
   mit 居酒屋 statt Foto. Kein erklärender Text.
-- Stimmen (`#stimmen`, vor der Reservierung): echte Google-Bewertungen,
-  wörtlich, Namen gekürzt, Stand im Kommentar. Nie Zitate erfinden oder
-  umformulieren. Gesamtwert 4,7 und 367 Bewertungen von Hand aktualisieren.
+- Stimmen (`#stimmen`, vor der Reservierung): Slideshow mit echten
+  Google-Bewertungen (`js/stimmen.js`), wörtlich, Namen gekürzt, Quelle und
+  Stand im Kommentar. Nie Zitate erfinden oder umformulieren, Kürzungen mit […].
+  Gesamtwert 4,7 und 367 Bewertungen von Hand aktualisieren. Achtung: Die
+  Tripadvisor-Einträge „Akashi Restaurant Bremen“ gehören zu einem anderen Lokal.
+- Einblenden von Bildern (`.aufdeck--bild`): zugeschnitten wird nur das `img`,
+  nie das beobachtete Element selbst, sonst meldet Chrome es nicht als sichtbar.
 - Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
   Text und Liste.
 - Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.
