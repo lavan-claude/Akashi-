@@ -164,12 +164,9 @@ Ziel: höchstens 4 MB.
 
 Seit 28.09.2026: neues Kling-Video (Samurai in Rüstung rechts vor der roten
 Sonne, fallende Blütenblätter), 1920 × 1080, 8 s, ohne Wasserzeichen. Quelle
-`Downloads/kling_20260928_VIDEO_Create_an__313_0.mp4`, nicht im Repo. Ton
-entfernt, Farben an das Torii-Rot angeglichen:
-
-```sh
--vf "eq=contrast=1.25:saturation=1.55:gamma=0.85,colorbalance=bh=-0.18:bm=-0.1:gh=-0.06:rh=0.08,curves=all='0/0 0.2/0.06 0.6/0.6 1/1'"
-```
+`Downloads/kling_20260928_VIDEO_Create_an__313_0.mp4`, nicht im Repo. Farben
+bewusst unverändert wie im Original (Wunsch von Lavan), nur der Ton ist
+entfernt. Nicht nachfärben.
 
 Das Standbild `samurai.jpg` ist das erste Bild des Videos und zugleich die
 Ansicht bei reduzierter Bewegung. Die Kamera fährt nur leicht heran, beim
