@@ -1920,3 +1920,10 @@ section[id],
   }
   .ueber__bild img { aspect-ratio: 4 / 3.6; }
 }
+
+/* Handy: Bewertungstext kleiner, damit die Karten nicht zu hoch werden */
+@media (max-width: 34rem) {
+  .bewertung__text p { font-size: 1.08rem; line-height: 1.4; }
+  .bewertung figure { padding: var(--space-m); }
+  .bewertung__sterne { margin-top: var(--space-s); }
+}
