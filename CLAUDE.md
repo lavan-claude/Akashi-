@@ -75,6 +75,8 @@ KI-Baukasten. Deshalb:
 - Keine Pfeile in Knöpfen, keine Mittelpunkte als Trenner.
 - Keine Zahlenreihen und „Vertrauensbausteine“ (72 Gerichte, 4,7 Sterne …).
   Eine Bewertung höchstens als echtes Zitat eines Gastes.
+  Ausnahme auf Wunsch von Lavan: Die Karten-Kästen auf der Startseite behalten
+  ihre roten Nummern 01–08 und die Zahl der Gerichte.
 - Abschnitte bewusst unterschiedlich bauen, nicht jeder braucht Wort, Titel,
   Text und Liste.
 - Texte in der Stimme des Restaurants, kurz. Nichts erklären, was Gäste wissen.

@@ -1655,20 +1655,8 @@ section[id],
 }
 
 /* ── Weniger Vorlage (27.09.2026) ─────────────────────────────────────────
-   Karte als ruhige Liste statt acht gleicher Kästen, Navigation ohne
-   gesperrte Großbuchstaben. */
-.kacheln { gap: 0 clamp(2rem, 5vw, 4rem); }
-.kachel {
-  min-height: 0;
-  padding: var(--space-s) 0;
-  border: 0;
-  border-bottom: 1px solid var(--sumi-line);
-  border-radius: 0;
-  background: none;
-  grid-template-rows: auto;
-  align-items: baseline;
-}
-.kachel__kanji { writing-mode: horizontal-tb; }
+   Navigation ohne gesperrte Großbuchstaben. Die Karten-Kästen mit den roten
+   Nummern bleiben auf Wunsch von Lavan wie sie sind. */
 .saya a { text-transform: none; letter-spacing: 0.02em; font-size: var(--step--1); }
 
 /* ── Echte Fotos (27.09.2026) ─────────────────────────────────────────────
