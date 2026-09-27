@@ -965,9 +965,9 @@ a[href^="tel:"] { white-space: nowrap; }
 
 /* Schmal: alles untereinander, ohne stehende Bühne */
 @media (max-width: 60rem) {
-  .hero { height: auto; }
-  .hero__buehne { position: relative; height: auto; min-height: 0; }
-  .hero__abblende { display: none; }
+  /* Auch schmal bleibt die Bühne stehen, damit das Video beim Scrollen spult. */
+  .hero { height: 175vh; height: 175svh; }
+  .hero__buehne { min-height: 0; }
   .hero__buehne::after { background: linear-gradient(to bottom, var(--sumi-schleier) 0%, var(--sumi-schleier) 45%, var(--sumi) 100%); }
   .hero__raster { grid-template-columns: 1fr; padding-top: 7rem; padding-bottom: 4rem; }
   .hero__bildseite { height: auto; padding: 0; align-items: stretch; }
@@ -1592,7 +1592,14 @@ section[id],
       var(--sumi-schleier) 0, transparent 7rem,
       transparent 30svh, var(--sumi) 62svh, var(--sumi) 100%);
   }
-  .hero__raster { padding-top: 42svh; }
+  .hero__raster { padding-top: 42svh; align-content: end; }
+}
+/* Kleine Handys (z. B. iPhone SE): Text muss in die stehende Bühne passen */
+@media (max-width: 34rem) and (max-height: 44rem) {
+  .hero__raster { padding-top: 34svh; }
+  .hero__bedeutung { display: none; }
+  .hero__name .hero__schrift { font-size: 3.4rem; }
+  .hero__merk { display: none; }
 }
 
 @media (max-width: 34rem) {
@@ -1652,4 +1659,10 @@ section[id],
   .fakten { grid-template-columns: 1fr 1fr; gap: var(--space-s) var(--space-m); }
   .fakten > div:last-child { grid-column: 1 / -1; }
   .reservieren__text { margin-bottom: var(--space-m); }
+}
+
+/* Weniger Bewegung: Hero ohne stehende Bühne, auch auf schmalen Bildschirmen */
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .hero__buehne { position: relative; height: auto; }
 }
