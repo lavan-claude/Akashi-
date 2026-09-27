@@ -107,9 +107,14 @@
 
     <!-- Über uns: Bild links, Text rechts. Alle Angaben aus Karte, Fotos und Impressum. -->
     <section class="kapitel kapitel--papier ueber" id="ueber-uns" aria-labelledby="ueber-titel">
-      <figure class="ueber__bild aufdeck aufdeck--bild">
-        <img src="assets/raeume/gastraum-1200.webp" srcset="assets/raeume/gastraum-720.webp 720w, assets/raeume/gastraum-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 46vw" width="1200" height="799" loading="lazy" decoding="async" alt="Der Gastraum am Abend: Holztische vor einer dunklen Bank, darüber ein großes Wandbild einer Frau mit Blumenschmuck im Haar in rotem Licht, links die Fensterbar">
-      </figure>
+      <div class="ueber__bilder">
+        <figure class="ueber__bild rahmen aufdeck aufdeck--bild"><span class="rahmen__fenster"><img src="assets/raeume/gastraum-1200.webp" srcset="assets/raeume/gastraum-720.webp 720w, assets/raeume/gastraum-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 46vw" width="1200" height="799" loading="lazy" decoding="async" alt="Der Gastraum am Abend: Holztische vor einer dunklen Bank, darüber ein großes Wandbild einer Frau mit Blumenschmuck im Haar in rotem Licht, links die Fensterbar"></span>
+          <span class="rahmen__stempel" aria-hidden="true">明石</span>
+        </figure>
+          <figure class="ueber__team rahmen aufdeck" style="--i: 2"><span class="rahmen__fenster"><img src="assets/raeume/team-400.webp" width="399" height="501" loading="lazy" decoding="async" alt="Das Team des Akashi, vier Personen im Gastraum vor dem Wandbild mit dem Samurai"></span>
+          <figcaption>Das Team vom Akashi</figcaption>
+        </figure>
+      </div>
       <div class="ueber__text">
         <h2 id="ueber-titel" class="kapitel__titel aufdeck">Über Akashi <span class="ueber__zusatz">Japanese Restaurant &amp; Izakaya Bremen</span></h2>
         <div class="fliess aufdeck">
@@ -131,10 +136,6 @@
             Ludwig-Franzius-Platz.
           </p>
         </div>
-        <figure class="ueber__team aufdeck">
-          <img src="assets/raeume/team-400.webp" width="399" height="501" loading="lazy" decoding="async" alt="Das Team des Akashi, vier Personen im Gastraum vor dem Wandbild mit dem Samurai">
-          <figcaption>Das Team vom Akashi</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -170,8 +171,8 @@
         </table>
       </div>
 
-      <figure class="standort__bild aufdeck aufdeck--bild" style="--i: 1">
-        <img src="assets/raeume/fensterbar-720.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 30vw" width="720" height="406" loading="lazy" decoding="async" alt="Fensterbar am Abend mit Blick auf die Straßen der Überseestadt">
+      <figure class="standort__bild rahmen aufdeck aufdeck--bild" style="--i: 1">
+        <span class="rahmen__fenster"><img src="assets/raeume/fensterbar-720.webp" srcset="assets/raeume/fensterbar-720.webp 720w, assets/raeume/fensterbar-1200.webp 1200w" sizes="(max-width: 52rem) 100vw, 30vw" width="720" height="406" loading="lazy" decoding="async" alt="Fensterbar am Abend mit Blick auf die Straßen der Überseestadt"></span>
       </figure>
 
       <div class="standort__adresse aufdeck" style="--i: 2">
@@ -226,10 +227,10 @@
 
     <!-- Eigene Fotos des Restaurants, bearbeitet in assets/raeume/. -->
     <section class="leiste" aria-label="Eindrücke aus dem Akashi">
-      <figure><img src="assets/raeume/tonkatsu-540.webp" srcset="assets/raeume/tonkatsu-540.webp 540w, assets/raeume/tonkatsu-800.webp 800w" sizes="(max-width: 48rem) 50vw, 25vw" width="540" height="720" loading="lazy" decoding="async" alt="Tonkatsu Menü auf einem Holzbrett mit Reis, Misosuppe und Soßen, dahinter das Fenster zur Straße"></figure>
-      <figure><img src="assets/raeume/sushi-720.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 48rem) 50vw, 25vw" width="720" height="900" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></figure>
-      <figure><img src="assets/raeume/wandbild-760.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="764" height="1020" loading="lazy" decoding="async" alt="Lange Tischreihe vor einem großen Wandbild mit Samurai, Drache und Bergen"></figure>
-      <figure><img src="assets/raeume/tofu-salat-640.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="640" height="480" loading="lazy" decoding="async" alt="Schale mit knusprigem Tofu auf Rucola, dazu Zitrone, im Hintergrund Edamame"></figure>
+      <figure class="rahmen rahmen--lack"><span class="rahmen__fenster"><img src="assets/raeume/tonkatsu-540.webp" srcset="assets/raeume/tonkatsu-540.webp 540w, assets/raeume/tonkatsu-800.webp 800w" sizes="(max-width: 48rem) 50vw, 25vw" width="540" height="720" loading="lazy" decoding="async" alt="Tonkatsu Menü auf einem Holzbrett mit Reis, Misosuppe und Soßen, dahinter das Fenster zur Straße"></span></figure>
+      <figure class="rahmen rahmen--lack"><span class="rahmen__fenster"><img src="assets/raeume/sushi-720.webp" srcset="assets/raeume/sushi-720.webp 720w, assets/raeume/sushi-1200.webp 1200w" sizes="(max-width: 48rem) 50vw, 25vw" width="720" height="900" loading="lazy" decoding="async" alt="Holzbrett mit Uramaki, Maki und Crispy Rolls, dazu Ingwer, Zitrone und Salat"></span></figure>
+      <figure class="rahmen rahmen--lack"><span class="rahmen__fenster"><img src="assets/raeume/wandbild-760.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="764" height="1020" loading="lazy" decoding="async" alt="Lange Tischreihe vor einem großen Wandbild mit Samurai, Drache und Bergen"></span></figure>
+      <figure class="rahmen rahmen--lack"><span class="rahmen__fenster"><img src="assets/raeume/tofu-salat-640.webp" sizes="(max-width: 48rem) 50vw, 25vw" width="640" height="480" loading="lazy" decoding="async" alt="Schale mit knusprigem Tofu auf Rucola, dazu Zitrone, im Hintergrund Edamame"></span></figure>
     </section>
 
     <!-- Öffentliche Google-Bewertungen, wörtlich übernommen, Namen gekürzt.

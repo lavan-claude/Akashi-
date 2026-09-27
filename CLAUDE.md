@@ -87,6 +87,10 @@ KI-Baukasten. Deshalb:
 - Keine Standard-Tabellenlinien: Öffnungszeiten mit gepunkteter Führungslinie
   wie auf einer gedruckten Karte, „heute“ als kleiner roter Stempel.
 - Im Hero steht alles linksbündig, auch der Hinweis „Weiter“.
+- Fotos stehen nie nackt: `.rahmen` (Passepartout wie ein Abzug, versetzte rote
+  Linie dahinter) auf Papier, `.rahmen--lack` (Lack mit Messinglinie) auf
+  Tusche. Das Bild sitzt in `.rahmen__fenster`. Teamfoto liegt schräg über der
+  Ecke des Gastraum-Fotos, darauf ein kleiner 明石-Stempel.
 - Keine Pfeile in Knöpfen, keine Mittelpunkte als Trenner.
 - Keine Zahlenreihen und „Vertrauensbausteine“ (72 Gerichte, 4,7 Sterne …).
   Eine Bewertung höchstens als echtes Zitat eines Gastes.
