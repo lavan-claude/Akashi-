@@ -75,6 +75,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Bewegung: Tokens `--ease-out` und `--ease-in-out`, Hover-Bewegung nur bei
   `(hover: hover) and (pointer: fine)`, Einblenden 600 ms. Der Hero setzt
   Transformationen direkt an den Ebenen, nicht über Variablen am Elternelement.
+- Tusche-Design (28.09.2026, Wunsch von Lavan: japanisch, edel): Unter jeder
+  Abschnittsüberschrift ein roter Pinselstrich (`assets/tusche/strich.svg` als
+  Maske), dahinter ein zarter Tuschefleck (`fleck.svg`). Der Strich wird beim
+  Hereinscrollen gemalt, unter „Akashi“ im Hero nach dem Laden.
 - Hero-Name: 明石 als Pinselzug, „Akashi“ in Mincho, roter Hanko-Stempel.
 
 ## Nicht nach Vorlage aussehen
