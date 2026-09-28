@@ -2221,3 +2221,47 @@ section[id],
   .band-karte { width: 17rem; }
   .band__spur { animation-duration: 45s; }
 }
+
+
+/* ── Aus der Küche (28.09.2026): drei eigene Fotos über den Karten-Kacheln ──
+   Bewusst unterschiedliche Formate (hoch, quadratisch, breit), damit es nicht
+   wie drei gleiche Karten wirkt. Name und Preis stehen unter dem Foto. */
+.kueche {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 6fr);
+  align-items: end;
+  gap: var(--space-m);
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  list-style: none;
+}
+.kueche__gericht a { display: block; color: var(--washi); text-decoration: none; }
+.kueche__bild { margin: 0; overflow: hidden; border-radius: var(--radius-s); }
+.kueche__bild img { display: block; width: 100%; height: auto; object-fit: cover; transition: transform 700ms var(--ease-out); }
+.kueche__gericht--hoch .kueche__bild img { aspect-ratio: 3 / 4; }
+.kueche__gericht--quadrat .kueche__bild img { aspect-ratio: 1; }
+.kueche__gericht--breit .kueche__bild img { aspect-ratio: 4 / 3; }
+.kueche__gericht--quadrat { margin-bottom: var(--space-xl); }
+.kueche__text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-s);
+  margin: var(--space-s) 0 0;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--sumi-line);
+}
+.kueche__name { font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); }
+.kueche__preis { font-variant-numeric: tabular-nums; color: var(--shu-on-dark); white-space: nowrap; }
+.kueche__gericht a:hover .kueche__text { border-bottom-color: var(--shu-on-dark); }
+.kueche__gericht a:focus-visible { outline: 2px solid var(--shu-on-dark); outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .kueche__gericht a:hover .kueche__bild img { transform: scale(1.04); }
+}
+@media (max-width: 52rem) {
+  .kueche { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .kueche__gericht--quadrat { margin-bottom: 0; }
+  .kueche__gericht--breit { grid-column: 1 / -1; }
+  .kueche__gericht--breit .kueche__bild img { aspect-ratio: 16 / 9; }
+  .kueche__name { font-size: var(--step-0); }
+}
