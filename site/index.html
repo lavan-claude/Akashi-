@@ -29,7 +29,6 @@
   <script src="js/reservierung.js" defer></script>
   <script src="js/hero.js" defer></script>
   <script src="js/anfahrt.js" defer></script>
-  <script src="js/stimmen.js" defer></script>
   <script src="js/aufdecken.js" defer></script>
 </head>
 <body>
@@ -236,96 +235,119 @@
     <!-- Öffentliche Google-Bewertungen, wörtlich übernommen, Namen gekürzt.
          Gelesen am 27.09.2026 auf Google Maps (Constantin F., Holger L.) und in der
          Google-Übersicht bei wanderlog.com (übrige). Lange Texte mit […] gekürzt,
-         Emojis weggelassen. Nie Zitate erfinden oder umformulieren. -->
-    <section class="stimmen" id="stimmen" aria-labelledby="stimmen-titel">
-      <div class="stimmen__wert aufdeck">
+         Emojis weggelassen. Nie Zitate erfinden oder umformulieren.
+         Laufband wie bei MI Elevate: reines CSS, die zweite Hälfte ist eine Kopie
+         für den nahtlosen Übergang und für Vorlesegeräte ausgeblendet. -->
+    <section class="stimmen stimmen--band" id="stimmen" aria-labelledby="stimmen-titel">
+      <div class="stimmen__kopf aufdeck">
         <h2 id="stimmen-titel" class="stimmen__titel">Was Gäste sagen</h2>
-        <p class="stimmen__zahl">4,7</p>
-        <p class="stimmen__sterne" role="img" aria-label="4,7 von 5 Sternen"><span style="--anteil: 94%"></span></p>
-        <p class="stimmen__quelle">aus 367 Bewertungen bei Google</p>
+        <p class="stimmen__gesamt">
+          <span class="stimmen__zahl">4,7</span>
+          <span class="stimmen__sterne" role="img" aria-label="4,7 von 5 Sternen"><span style="--anteil: 94%"></span></span>
+          <span class="stimmen__quelle">aus 367 Bewertungen bei Google</span>
+        </p>
         <a class="stimmen__link" href="https://www.google.com/maps/search/?api=1&amp;query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen" target="_blank" rel="noopener">Alle Bewertungen lesen</a>
       </div>
 
-      <div class="stimmen__schau aufdeck" style="--i: 1" data-schau aria-roledescription="Karussell" aria-label="Bewertungen von Gästen">
-        <ul class="stimmen__folien" aria-live="polite">
-          <li class="bewertung" id="bewertung-1" role="group" aria-roledescription="Folie" aria-label="1 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--shu)" aria-hidden="true">C</span>
-                <span class="bewertung__name">Constantin F.</span>
-                <span class="bewertung__datum">Mai 2026</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>Arigato heißt Danke auf Japanisch – und genau das möchte ich nach diesem Abend dem Team Akashi sagen!</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
-          <li class="bewertung" id="bewertung-2" role="group" aria-roledescription="Folie" aria-label="2 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--sumi)" aria-hidden="true">D</span>
-                <span class="bewertung__name">Dilay K.</span>
-                <span class="bewertung__datum">November 2025</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>Wow, ich hab echt noch nie so leckeres Sushi gegessen! Alles so frisch, mega lecker und total schön angerichtet. Der Service war unnormal freundlich und aufmerksam man fühlt sich einfach wohl.</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
-          <li class="bewertung" id="bewertung-3" role="group" aria-roledescription="Folie" aria-label="3 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--matcha-auf-papier)" aria-hidden="true">H</span>
-                <span class="bewertung__name">Holger L.</span>
-                <span class="bewertung__datum">Juli 2026</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>Wir waren am 14.07.2026 anlässlich unseres Hochzeitstags hier, um ein neues Restaurant auszuprobieren. Unsere Erwartungen wurden bei Weitem übertroffen.</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
-          <li class="bewertung" id="bewertung-4" role="group" aria-roledescription="Folie" aria-label="4 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--kin-dunkel)" aria-hidden="true">A</span>
-                <span class="bewertung__name">Ali R.</span>
-                <span class="bewertung__datum">Dezember 2025</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>Wundervolles Ambiente, toller Gastgeber, super leckeres Essen und gute Beratung. Für uns wurde eine Auswahl an Vorspeisen und Sushi zusammengestellt, alle waren zufrieden und die Menge perfekt abgestimmt.</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
-          <li class="bewertung" id="bewertung-5" role="group" aria-roledescription="Folie" aria-label="5 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--shu-deep)" aria-hidden="true">K</span>
-                <span class="bewertung__name">Katharina N.</span>
-                <span class="bewertung__datum">Juli 2025</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>[…] Das Sushi ist wirklich eine 10/10 frisch und lecker! Die Ramen sind einfach wie eine warme Umarmung und eine wahrliche Geschmacksexplosion! […] Wir kommen gerne wieder zu Besuch!</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
-          <li class="bewertung" id="bewertung-6" role="group" aria-roledescription="Folie" aria-label="6 von 6">
-            <figure>
-              <figcaption class="bewertung__kopf">
-                <span class="bewertung__bild" style="--farbe: var(--sumi)" aria-hidden="true">M</span>
-                <span class="bewertung__name">Margarita W.</span>
-                <span class="bewertung__datum">August 2025</span>
-              </figcaption>
-              <p class="bewertung__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
-              <blockquote class="bewertung__text"><p>[…] Das Personal hat uns sehr gut beraten! Und die Drinks waren auch spitze. Es ist auf jeden Fall empfehlenswert!!!</p></blockquote>
-              <p class="bewertung__quelle">bei Google</p>
-            </figure>
-          </li>
+      <div class="band" aria-label="Bewertungen von Gästen">
+        <ul class="band__spur">
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Arigato heißt Danke auf Japanisch – und genau das möchte ich nach diesem Abend dem Team Akashi sagen!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--shu)" aria-hidden="true">C</span>
+            <span><span class="band-karte__name">Constantin F.</span><span class="band-karte__datum">Mai 2026 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wow, ich hab echt noch nie so leckeres Sushi gegessen! Alles so frisch, mega lecker und total schön angerichtet. Der Service war unnormal freundlich und aufmerksam man fühlt sich einfach wohl.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--sumi)" aria-hidden="true">D</span>
+            <span><span class="band-karte__name">Dilay K.</span><span class="band-karte__datum">November 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wir waren am 14.07.2026 anlässlich unseres Hochzeitstags hier, um ein neues Restaurant auszuprobieren. Unsere Erwartungen wurden bei Weitem übertroffen.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--matcha-auf-papier)" aria-hidden="true">H</span>
+            <span><span class="band-karte__name">Holger L.</span><span class="band-karte__datum">Juli 2026 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wundervolles Ambiente, toller Gastgeber, super leckeres Essen und gute Beratung. Für uns wurde eine Auswahl an Vorspeisen und Sushi zusammengestellt, alle waren zufrieden und die Menge perfekt abgestimmt.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--kin-dunkel)" aria-hidden="true">A</span>
+            <span><span class="band-karte__name">Ali R.</span><span class="band-karte__datum">Dezember 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>[…] Das Sushi ist wirklich eine 10/10 frisch und lecker! Die Ramen sind einfach wie eine warme Umarmung und eine wahrliche Geschmacksexplosion! […] Wir kommen gerne wieder zu Besuch!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--shu-deep)" aria-hidden="true">K</span>
+            <span><span class="band-karte__name">Katharina N.</span><span class="band-karte__datum">Juli 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte">
+          <p class="band-karte__sterne" role="img" aria-label="5 von 5 Sternen">★★★★★</p>
+          <blockquote class="band-karte__text"><p>[…] Das Personal hat uns sehr gut beraten! Und die Drinks waren auch spitze. Es ist auf jeden Fall empfehlenswert!!!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--sumi)" aria-hidden="true">M</span>
+            <span><span class="band-karte__name">Margarita W.</span><span class="band-karte__datum">August 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Arigato heißt Danke auf Japanisch – und genau das möchte ich nach diesem Abend dem Team Akashi sagen!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--shu)" aria-hidden="true">C</span>
+            <span><span class="band-karte__name">Constantin F.</span><span class="band-karte__datum">Mai 2026 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wow, ich hab echt noch nie so leckeres Sushi gegessen! Alles so frisch, mega lecker und total schön angerichtet. Der Service war unnormal freundlich und aufmerksam man fühlt sich einfach wohl.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--sumi)" aria-hidden="true">D</span>
+            <span><span class="band-karte__name">Dilay K.</span><span class="band-karte__datum">November 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wir waren am 14.07.2026 anlässlich unseres Hochzeitstags hier, um ein neues Restaurant auszuprobieren. Unsere Erwartungen wurden bei Weitem übertroffen.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--matcha-auf-papier)" aria-hidden="true">H</span>
+            <span><span class="band-karte__name">Holger L.</span><span class="band-karte__datum">Juli 2026 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>Wundervolles Ambiente, toller Gastgeber, super leckeres Essen und gute Beratung. Für uns wurde eine Auswahl an Vorspeisen und Sushi zusammengestellt, alle waren zufrieden und die Menge perfekt abgestimmt.</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--kin-dunkel)" aria-hidden="true">A</span>
+            <span><span class="band-karte__name">Ali R.</span><span class="band-karte__datum">Dezember 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>[…] Das Sushi ist wirklich eine 10/10 frisch und lecker! Die Ramen sind einfach wie eine warme Umarmung und eine wahrliche Geschmacksexplosion! […] Wir kommen gerne wieder zu Besuch!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--shu-deep)" aria-hidden="true">K</span>
+            <span><span class="band-karte__name">Katharina N.</span><span class="band-karte__datum">Juli 2025 · bei Google</span></span>
+          </p>
+        </li>
+        <li class="band-karte" aria-hidden="true">
+          <p class="band-karte__sterne">★★★★★</p>
+          <blockquote class="band-karte__text"><p>[…] Das Personal hat uns sehr gut beraten! Und die Drinks waren auch spitze. Es ist auf jeden Fall empfehlenswert!!!</p></blockquote>
+          <p class="band-karte__wer">
+            <span class="band-karte__bild" style="--farbe: var(--sumi)" aria-hidden="true">M</span>
+            <span><span class="band-karte__name">Margarita W.</span><span class="band-karte__datum">August 2025 · bei Google</span></span>
+          </p>
+        </li>
         </ul>
-        <div class="stimmen__steuerung">
-          <button class="stimmen__pfeil" type="button" data-zurueck aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
-          <div class="stimmen__punkte" role="tablist" aria-label="Bewertung wählen"></div>
-          <button class="stimmen__pfeil" type="button" data-weiter aria-label="Nächste Bewertung"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
-        </div>
       </div>
     </section>
 

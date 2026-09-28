@@ -25,7 +25,6 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   js/hero.js          Hero: Scroll spult das Video, rote Glutpunkte steigen auf
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
-  js/stimmen.js      Slideshow der Google-Bewertungen
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
   assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
   assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
@@ -101,8 +100,8 @@ KI-Baukasten. Deshalb:
   Knöpfe ohne Pfeile. Keine Kapitelzeile, keine Merkmal-Zeile, keine Sterne.
 - Izakaya (Wunsch von Lavan, 27.09.2026): Überschrift, Liste Vor Ort / Abholen / Lieferung und rechts die rote Sonne
   mit 居酒屋 statt Foto. Kein erklärender Text.
-- Stimmen (`#stimmen`, vor der Reservierung): Slideshow mit echten
-  Google-Bewertungen (`js/stimmen.js`), wörtlich, Namen gekürzt, Quelle und
+- Stimmen (`#stimmen`, vor der Reservierung): Laufband wie bei MI Elevate mit echten
+  Google-Bewertungen (reines CSS, `.band`), wörtlich, Namen gekürzt, Quelle und
   Stand im Kommentar. Nie Zitate erfinden oder umformulieren, Kürzungen mit […].
   Gesamtwert 4,7 und 367 Bewertungen von Hand aktualisieren. Achtung: Die
   Tripadvisor-Einträge „Akashi Restaurant Bremen“ gehören zu einem anderen Lokal.
