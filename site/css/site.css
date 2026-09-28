@@ -2222,3 +2222,20 @@ section[id],
   .band__spur { animation-duration: 45s; }
 }
 
+
+/* ── Speisekarte: Kategorienleiste dunkel unter dem Kopf (28.09.2026) ─────
+   Kopf und Kategorien bilden einen durchgehenden dunklen Block über die volle
+   Breite, unten eine feine rote Kante. So trennt sich die Navigation klar von
+   der hellen Karte. Der Schatten zieht die Fläche bis an den Bildschirmrand. */
+.papier--seite .karte__nav {
+  background: var(--sumi);
+  border-bottom: 0;
+  box-shadow: 0 0 0 100vmax var(--sumi), 0 2px 0 100vmax var(--shu);
+  clip-path: inset(0 -100vmax -2px);
+}
+.papier--seite .karte__nav-liste a { color: var(--sabi); }
+.papier--seite .karte__nav-liste a:hover,
+.papier--seite .karte__nav-liste a[aria-current="true"] { color: var(--washi); }
+.papier--seite .karte__nav-liste a[aria-current="true"] { border-bottom-color: var(--shu-on-dark); }
+.papier--seite .karte__nav :focus-visible { outline-color: var(--shu-on-dark); }
+.papier--seite .kopf--fest { border-bottom-color: var(--sumi); }
