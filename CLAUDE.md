@@ -51,10 +51,10 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
 - Kanji immer in Gewicht 800. Neue Kanji müssen in die Datei
   `fonts/shippori-mincho-800-kanji.woff2` und in deren `unicode-range`.
 - Radien fast eckig (`--radius-s`, `--radius-m`), kein Karten-Baukasten.
-  Knöpfe (27.09.2026): Der Hauptknopf ist kantig wie eine Klinge, zwei Ecken
-  schräg abgeschnitten (`clip-path`, Fokusring innen). Nebenknöpfe
-  (`.knopf--hell`, `.knopf--linie`, `.kopf__knopf`) sind eckige Rahmen.
-  Beim Überfahren wischt eine Füllfarbe herein (`--fuellung`).
+  Knöpfe (28.09.2026, Wunsch von Lavan): Hauptknopf asymmetrisch gerundet
+  (`border-radius: 4px 16px 4px 16px`). Im Hero ist „Speisekarte“ ein Textlink
+  mit Pfeil. Andere Nebenknöpfe bleiben eckige Rahmen. Beim Überfahren wischt
+  eine Füllfarbe herein (`--fuellung`).
 - Hero-Animation (Wunsch von Lavan, 27.09.2026): Die einzige Animation sind
   rote Glutpunkte, die langsam aufsteigen, dazu spult Scrollen das Video.
   Nichts folgt dem Mauszeiger: keine Blüten, kein Laternenlicht, keine

@@ -2093,3 +2093,47 @@ section[id],
   .hero__video,
   .hero__torii { transform-origin: 35% 25%; transform: scale(1.12); }
 }
+
+/* ── Knöpfe, Fassung vom 28.09.2026 (Wunsch von Lavan) ─────────────────────
+   Hauptknopf: asymmetrisch gerundet wie eine Klinge (4 / 16 / 4 / 16) statt
+   abgeschnittener Ecken. Im Hero ist der zweite Knopf ein reiner Textlink
+   mit Pfeil. Die rote Füllung beim Überfahren bleibt. */
+.knopf:not(.knopf--hell):not(.knopf--linie) {
+  clip-path: none;
+  border-radius: 4px 16px 4px 16px;
+}
+.knopf:not(.knopf--hell):not(.knopf--linie):focus-visible { outline: 2px solid var(--washi); outline-offset: 3px; }
+.papier .knopf:not(.knopf--hell):not(.knopf--linie):focus-visible,
+.kapitel--papier .knopf:not(.knopf--hell):not(.knopf--linie):focus-visible,
+.blatt .knopf:focus-visible { outline-color: var(--sumi); }
+
+.hero .knopf.knopf--hell {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 0;
+  padding: 0.5rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--washi);
+  font-weight: 600;
+}
+.hero .knopf.knopf--hell::before { display: none; }
+.hero .knopf.knopf--hell::after {
+  content: "→";
+  transition: transform 200ms var(--ease-out);
+}
+.hero .knopf.knopf--hell:hover,
+.hero .knopf.knopf--hell:focus-visible { background: transparent; box-shadow: none; color: var(--washi); }
+.hero .knopf.knopf--hell:hover::after { transform: translateX(4px); }
+.hero .knopf.knopf--hell:focus-visible { outline: 2px solid var(--washi); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .hero .knopf.knopf--hell::after { transition: none; }
+}
+@media (max-width: 34rem) {
+  .hero .hero__handlung { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s) var(--space-l); }
+  .hero .hero__handlung .knopf:not(.knopf--hell) { flex: 0 1 auto; }
+  .hero .hero__handlung .knopf.knopf--hell { flex: 0 0 auto; padding-inline: 0; }
+}
