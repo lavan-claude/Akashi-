@@ -2,3 +2,6 @@ node_modules/
 .netlify/
 .DS_Store
 *.log
+
+# Einzeldatei zum Öffnen per Doppelklick (erzeugt, 4,8 MB), nicht ins Repo
+/index.html
