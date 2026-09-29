@@ -1905,7 +1905,7 @@ section[id],
 .standort__freigabe .standort__ort { grid-area: ort; margin: 0; max-width: none; color: var(--sumi); font-size: var(--step--1); }
 .standort__ort strong { margin-right: var(--space-xs); }
 .standort__freigabe .knopf { grid-area: knopf; }
-.standort__freigabe .standort__hinweis { grid-area: hinweis; margin: 0; max-width: none; font-size: 0.78rem; }
+.standort__freigabe .standort__hinweis { grid-area: hinweis; margin: 0; max-width: none; font-size: 0.84rem; }
 @media (max-width: 34rem) {
   .standort__freigabe { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "nadel ort" "knopf knopf" "hinweis hinweis"; row-gap: var(--space-xs); }
   .standort__freigabe .knopf { justify-self: stretch; text-align: center; }
@@ -2216,7 +2216,7 @@ section[id],
   font-weight: 700;
 }
 .band-karte__name { display: block; font-weight: 700; font-size: var(--step--1); }
-.band-karte__datum { display: block; font-size: 0.8rem; color: var(--sabi-on-paper); }
+.band-karte__datum { display: block; font-size: 0.84rem; color: var(--sabi-on-paper); }
 @media (max-width: 34rem) {
   .band-karte { width: 17rem; }
   .band__spur { animation-duration: 45s; }

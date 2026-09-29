@@ -62,8 +62,8 @@
   --washi: #eeebe5;         /* Papier – Text auf Schwarz, Formularfläche */
   --washi-line: #cbc4b8;    /* Linien auf Papier */
   --papier-hell: #f8f6f1;   /* Karte auf Papier, z. B. Bewertungen */
-  --sabi: #8f877c;          /* gedämpfter Text */
-  --sabi-on-paper: #6b645b; /* gedämpfter Text auf Papier (AA) */
+  --sabi: #a39b8f;          /* gedämpfter Text (Kontrast 6,8 auf Sumi) */
+  --sabi-on-paper: #57514a; /* gedämpfter Text auf Papier (Kontrast 6+) */
   --shu: #b3262b;           /* Torii-Rot – nur Handlung und Stempel */
   --shu-deep: #8e1c21;      /* Torii-Rot, gedrückt */
   --shu-on-dark: #d8474c;   /* Torii-Rot für Text auf Schwarz (AA) */
@@ -92,7 +92,7 @@
   --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
   --font-pinsel: "Yuji Boku", "Shippori Mincho", "Hiragino Mincho ProN", serif;
 
-  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step--1: clamp(0.875rem, 0.84rem + 0.15vw, 0.94rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
   --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
   --step-2: clamp(1.6rem, 1.35rem + 1.2vw, 2.25rem);
