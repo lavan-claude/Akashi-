@@ -143,9 +143,9 @@
         <!-- Video aus Kling, läuft mit dem Scrollen vor und zurück (js/hero.js).
              Fehlt es, bleibt das Standbild. -->
         <video class="hero__video" muted playsinline preload="auto" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-          <!-- Handy bekommt 720p (0,9 MB), Computer 1080p (1,4 MB). Alle 0,25 s ein
-               Stützbild, damit das Spulen beim Scrollen flüssig bleibt. -->
-          <source src="assets/hero/samurai-720.mp4" type="video/mp4" media="(max-width: 48rem)">
+          <!-- Original aus Kling in voller Schärfe (1080p, 3,4 MB). Komprimierte
+               Fassungen waren sichtbar weicher, deshalb bewusst unverändert.
+               Stützbild alle 0,25 s, damit das Spulen flüssig bleibt. -->
           <source src="assets/hero/samurai.mp4" type="video/mp4" onerror="this.parentElement.remove()">
         </video>
         <div class="hero__nebel hero__nebel--hinten" aria-hidden="true"></div>
