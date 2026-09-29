@@ -24,6 +24,79 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="fonts/shippori-mincho-800-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/zen-kaku-gothic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Angaben für Google (Restaurant, Adresse, Zeiten). Zeiten müssen zu
+       OEFFNUNGSZEITEN in js/reservierung.js passen. Beim Umzug auf
+       akashi-bremen.de die Adressen hier und bei og:url mit umstellen.
+       Keine Bewertungen eintragen: Google wertet eigene Sterne als unzulässig. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "@id": "https://akashibremen.netlify.app/#restaurant",
+    "name": "Akashi",
+    "alternateName": "Akashi Japanese Restaurant & Izakaya",
+    "description": "Japanisches Restaurant und Izakaya in der Bremer Überseestadt: Sushi, Ramen, Tonkatsu und kleine Teller zum Teilen. Vor Ort, zum Mitnehmen oder geliefert.",
+    "url": "https://akashibremen.netlify.app/",
+    "image": [
+      "https://akashibremen.netlify.app/assets/og-akashi.jpg"
+    ],
+    "logo": "https://akashibremen.netlify.app/assets/icon/icon-192.png",
+    "telephone": "+49 421 43093028",
+    "email": "info@akashi-bremen.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ludwig-Franzius-Platz 13",
+      "postalCode": "28217",
+      "addressLocality": "Bremen",
+      "addressRegion": "Bremen",
+      "addressCountry": "DE"
+    },
+    "servesCuisine": [
+      "Japanisch",
+      "Sushi",
+      "Ramen"
+    ],
+    "priceRange": "€€",
+    "menu": "https://akashibremen.netlify.app/speisekarte.html",
+    "hasMenu": "https://akashibremen.netlify.app/speisekarte.html",
+    "acceptsReservations": true,
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "12:00",
+        "closes": "14:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "opens": "17:00",
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "17:00",
+        "closes": "21:30"
+      }
+    ],
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Akashi+Japanese+Restaurant+Ludwig-Franzius-Platz+13+28217+Bremen"
+  }
+  </script>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/site.css">
   <script src="js/reservierung.js" defer></script>

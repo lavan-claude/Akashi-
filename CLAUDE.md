@@ -206,3 +206,6 @@ Ansicht bei reduzierter Bewegung.
 - Vor dem Commit im Browser prüfen, auf Desktop und bei 390 px Breite.
 - Impressum und Datenschutz nur nach Vorlage des Restaurants.
 - Vor Livegang `X-Robots-Tag: noindex` aus `netlify.toml` entfernen.
+- Google-Angaben (JSON-LD `Restaurant`) im Kopf von index.html: beim Umzug
+  alle `akashibremen.netlify.app`-Adressen auf akashi-bremen.de umstellen.
+  Öffnungszeiten dort bei jeder Änderung mitpflegen. Keine `aggregateRating`.
