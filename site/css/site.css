@@ -2240,29 +2240,11 @@ section[id],
 .papier--seite .karte__nav :focus-visible { outline-color: var(--shu-on-dark); }
 .papier--seite .kopf--fest { border-bottom-color: var(--sumi); }
 
-/* ── Tusche-Design für Überschriften (28.09.2026) ─────────────────────────
-   Unter jeder Abschnittsüberschrift ein roter Pinselstrich, dahinter ein zarter
-   Tuschefleck wie verlaufene Tinte auf Washi. Der Strich wird beim Hereinscrollen
-   von links gemalt (über .aufdeck[data-da]). Grafiken: assets/tusche/. */
-.kapitel__titel,
-.stimmen__titel,
-.reservieren__titel,
-.papier--seite .karte__titel,
-.hero__schrift {
-  position: relative;
-  isolation: isolate;
-}
-.kapitel__titel,
-.stimmen__titel,
-.reservieren__titel,
-.papier--seite .karte__titel { padding-bottom: 0.32em; }
-
-/* Pinselstrich */
-.kapitel__titel::after,
-.stimmen__titel::after,
-.reservieren__titel::after,
-.papier--seite .karte__titel::after,
-.hero__schrift::after {
+/* ── Tusche-Design nur bei „Über Akashi“ (28.09.2026, Wunsch von Lavan) ────
+   Roter Pinselstrich unter der Überschrift, dahinter ein zarter Tuschefleck.
+   Der Strich wird beim Hereinscrollen gemalt. Grafiken: assets/tusche/. */
+#ueber-titel { position: relative; isolation: isolate; padding-bottom: 0.32em; }
+#ueber-titel::after {
   content: "";
   position: absolute;
   left: -0.12em;
@@ -2275,19 +2257,7 @@ section[id],
   mask: url("../assets/tusche/strich.svg") left center / 100% 100% no-repeat;
   pointer-events: none;
 }
-.kapitel--tusche .kapitel__titel::after,
-.reservieren__titel::after,
-.hero__schrift::after { background: var(--shu-on-dark); }
-.kapitel__titel--klein::after { width: clamp(6rem, 70%, 13rem); }
-
-/* Der Name im Hero bekommt den Strich darunter, etwas tiefer und breiter */
-.hero__schrift::after { width: 104%; bottom: -0.12em; height: 0.16em; opacity: 0.9; }
-
-/* Tuschefleck hinter der Überschrift */
-.kapitel__titel::before,
-.stimmen__titel::before,
-.reservieren__titel::before,
-.papier--seite .karte__titel::before {
+#ueber-titel::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -2302,28 +2272,8 @@ section[id],
   mask: url("../assets/tusche/fleck.svg") center / 100% 100% no-repeat;
   pointer-events: none;
 }
-.kapitel--tusche .kapitel__titel::before,
-.reservieren__titel::before { background: var(--washi); opacity: 0.06; }
-
-/* Der Strich wird gemalt, sobald der Abschnitt ins Bild kommt */
 @media (prefers-reduced-motion: no-preference) {
-  .js .kapitel__titel::after,
-  .js .stimmen__titel::after,
-  .js .reservieren__titel::after,
-  .js .papier--seite .karte__titel::after {
-    clip-path: inset(0 100% 0 0);
-    transition: clip-path 1100ms var(--ease-out) 250ms;
-  }
-  .js .aufdeck[data-da].kapitel__titel::after,
-  .js .aufdeck[data-da] .kapitel__titel::after,
-  .js .aufdeck[data-da] .stimmen__titel::after,
-  .js .aufdeck[data-da] .reservieren__titel::after,
-  .js .aufdeck[data-da] .karte__titel::after { clip-path: inset(0 0 0 0); }
-
-  .hero__schrift::after { animation: pinselzug-quer 1100ms var(--ease-out) 1.5s both; }
-}
-@keyframes pinselzug-quer {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+  .js #ueber-titel::after { clip-path: inset(0 100% 0 0); transition: clip-path 1100ms var(--ease-out) 250ms; }
+  .js #ueber-titel[data-da]::after { clip-path: inset(0 0 0 0); }
 }
 .ueber__text .ueber__zusatz { margin: var(--space-xs) 0 0; }
