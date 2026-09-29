@@ -1,11 +1,18 @@
-// Nimmt eine Reservierungsanfrage aus dem Formular entgegen und reicht sie an
-// den n8n-Workflow weiter – nach demselben Prinzip wie das Leadflow-Formular.
+// Nimmt eine Reservierungsanfrage aus dem Formular entgegen und stellt sie zu:
+//
+// 1. Ist RESEND_API_KEY gesetzt, verschickt die Funktion selbst eine E-Mail ans
+//    Restaurant (RESERVIERUNG_AN) über Resend. Mit RESERVIERUNG_VON (Absender auf
+//    der eigenen, bei Resend bestätigten Domain) bekommt auch der Gast eine
+//    Bestätigung. Ohne eigene Domain darf Resend nur an die Adresse des
+//    Resend-Kontos schicken, deshalb geht die Gästemail dann nicht raus.
+// 2. Sonst, falls RESERVIERUNG_WEBHOOK_URL gesetzt ist, an einen n8n-Workflow.
+// 3. Ist beides leer, bekommt der Gast den Hinweis anzurufen.
 //
 // Der Aufruf läuft bewusst über den Server: So landet die Webhook-Adresse nie
 // im Browser und kann von außen weder ausgelesen noch direkt beschickt werden.
 //
-// Adresse nur über die Umgebungsvariable RESERVIERUNG_WEBHOOK_URL in Netlify.
-// Sie steht bewusst nicht im Code, weil das Repo öffentlich sein kann.
+// Schlüssel und Adressen nur über Umgebungsvariablen in Netlify. Sie stehen
+// bewusst nicht im Code, weil das Repo öffentlich sein kann.
 //
 // Fehlermeldungen aus dieser Funktion zeigt das Formular dem Gast an. Also
 // nichts hineinschreiben, was Besucher nicht sehen sollen.
@@ -158,6 +165,122 @@ export function validate(input) {
   };
 }
 
+// ── E-Mails ───────────────────────────────────────────────────────────────
+const TELEFON = "0421 43093028";
+const RESEND_TEST_ABSENDER = "Akashi Reservierung <onboarding@resend.dev>";
+
+const esc = (w) =>
+  String(w).replace(/[&<>"']/g, (z) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[z]);
+
+function datumLang(datum) {
+  return new Intl.DateTimeFormat("de-DE", { timeZone: "UTC", weekday: "long", day: "numeric", month: "long", year: "numeric" })
+    .format(new Date(`${datum}T12:00:00Z`));
+}
+
+const personenText = (d) => (d.grosse_gruppe ? "9 oder mehr Personen" : d.personen === 1 ? "1 Person" : `${d.personen} Personen`);
+
+// Tabellenlayout mit Inline-Stilen, weil Mailprogramme kaum CSS können.
+function mailRahmen(titel, inhalt) {
+  return `<!doctype html><html lang="de"><body style="margin:0;padding:0;background:#eeebe5">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eeebe5;padding:24px 12px">
+<tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#f8f6f1;border:1px solid #cbc4b8">
+<tr><td style="background:#15120f;padding:22px 28px;border-bottom:3px solid #b3262b">
+<span style="font-family:Georgia,'Times New Roman',serif;font-size:26px;color:#eeebe5;letter-spacing:.02em">Akashi</span>
+<span style="font-family:Georgia,serif;font-size:18px;color:#d8474c;padding-left:8px">明石</span>
+</td></tr>
+<tr><td style="padding:28px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#15120f">
+<h1 style="margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:bold;color:#15120f">${esc(titel)}</h1>
+${inhalt}
+</td></tr>
+<tr><td style="padding:16px 28px;border-top:1px solid #cbc4b8;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#57514a">
+Akashi · Japanese Restaurant &amp; Izakaya · Ludwig-Franzius-Platz 13 · 28217 Bremen · ${TELEFON.replace(/ /g, "&nbsp;")}
+</td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+function zeilen(paare) {
+  const zeile = ([k, v]) =>
+    `<tr><td style="padding:9px 0;border-bottom:1px solid #e0dbd2;color:#57514a;width:38%;vertical-align:top">${esc(k)}</td>` +
+    `<td style="padding:9px 0;border-bottom:1px solid #e0dbd2;font-weight:bold;vertical-align:top">${v}</td></tr>`;
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 18px;border-collapse:collapse">${paare.map(zeile).join("")}</table>`;
+}
+
+function mailAnsRestaurant(d) {
+  const wann = `${datumLang(d.datum)}, ${d.uhrzeit} Uhr`;
+  const tel = d.telefon.replace(/[^\d+]/g, "");
+  const gruppe = d.grosse_gruppe ? ` <span style="color:#b3262b">(große Gruppe, bitte absprechen)</span>` : "";
+  const html = mailRahmen(
+    "Neue Reservierungsanfrage",
+    `<p style="margin:0 0 18px">Über die Website ist eine Anfrage eingegangen. Bitte bestätige sie dem Gast per Telefon oder E-Mail.</p>
+${zeilen([
+  ["Wann", esc(wann)],
+  ["Personen", esc(personenText(d)) + gruppe],
+  ["Name", esc(d.name)],
+  ["Telefon", `<a href="tel:${esc(tel)}" style="color:#b3262b">${esc(d.telefon)}</a>`],
+  ["E-Mail", `<a href="mailto:${esc(d.email)}" style="color:#b3262b">${esc(d.email)}</a>`],
+  ...(d.nachricht ? [["Anmerkung", esc(d.nachricht).replace(/\n/g, "<br>")]] : []),
+])}
+<p style="margin:0;color:#57514a;font-size:13px">Tipp: „Antworten“ schreibt direkt an den Gast.</p>`,
+  );
+  const text = [
+    "Neue Reservierungsanfrage über die Website",
+    "",
+    `Wann: ${wann}`,
+    `Personen: ${personenText(d)}`,
+    `Name: ${d.name}`,
+    `Telefon: ${d.telefon}`,
+    `E-Mail: ${d.email}`,
+    ...(d.nachricht ? [`Anmerkung: ${d.nachricht}`] : []),
+  ].join("\n");
+  return { subject: `Reservierung: ${wann}, ${personenText(d)}, ${d.name}`, html, text };
+}
+
+function mailAnGast(d) {
+  const wann = `${datumLang(d.datum)}, ${d.uhrzeit} Uhr`;
+  const html = mailRahmen(
+    "Danke für deine Anfrage",
+    `<p style="margin:0 0 18px">Hallo ${esc(d.name)},<br>wir haben deine Reservierungsanfrage erhalten und melden uns kurz zur Bestätigung.</p>
+${zeilen([
+  ["Wann", esc(wann)],
+  ["Personen", esc(personenText(d))],
+])}
+<p style="margin:0 0 6px">Die Reservierung gilt, sobald wir sie bestätigt haben. Wenn sich etwas ändert, ruf uns gern an unter <a href="tel:+4942143093028" style="color:#b3262b">${TELEFON}</a>.</p>
+<p style="margin:18px 0 0">Bis bald im Akashi</p>`,
+  );
+  const text = `Hallo ${d.name},\n\nwir haben deine Reservierungsanfrage für ${wann} (${personenText(d)}) erhalten und melden uns kurz zur Bestätigung.\nDie Reservierung gilt, sobald wir sie bestätigt haben. Bei Änderungen: ${TELEFON}\n\nBis bald im Akashi`;
+  return { subject: `Deine Anfrage im Akashi: ${wann}`, html, text };
+}
+
+async function resendSenden(schluessel, mail) {
+  const antwort = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${schluessel}`, "Content-Type": "application/json" },
+    body: JSON.stringify(mail),
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!antwort.ok) throw new Error(`Resend HTTP ${antwort.status}: ${(await antwort.text()).slice(0, 200)}`);
+}
+
+export async function perMailZustellen(d, senden = resendSenden) {
+  const schluessel = process.env.RESEND_API_KEY;
+  const an = process.env.RESERVIERUNG_AN;
+  if (!an) throw new Error("RESERVIERUNG_AN ist nicht gesetzt.");
+  const eigenerAbsender = process.env.RESERVIERUNG_VON;
+
+  // Die Mail ans Restaurant muss ankommen, sonst ist die Anfrage verloren.
+  await senden(schluessel, { from: eigenerAbsender || RESEND_TEST_ABSENDER, to: [an], reply_to: d.email, ...mailAnsRestaurant(d) });
+
+  // Die Bestätigung an den Gast ist ein Extra: Schlägt sie fehl, bleibt die Anfrage gültig.
+  if (eigenerAbsender) {
+    try {
+      await senden(schluessel, { from: eigenerAbsender, to: [d.email], reply_to: an, ...mailAnGast(d) });
+    } catch (error) {
+      console.error(`Bestätigung an den Gast fehlgeschlagen: ${error.message}`);
+    }
+  }
+}
+
 async function eingabeLesen(req) {
   const typ = req.headers.get("content-type") ?? "";
   if (typ.includes("application/json")) return { daten: await req.json(), alsFormular: false };
@@ -198,9 +321,23 @@ export default async (req, context) => {
     return antwort(alsFormular, 429, "Zu viele Anfragen in kurzer Zeit. Bitte versuch es gleich noch einmal.");
   }
 
+  if (process.env.RESEND_API_KEY) {
+    try {
+      await perMailZustellen(data);
+    } catch (error) {
+      console.error(`Reservierungsmail fehlgeschlagen: ${error.message}`);
+      return antwort(
+        alsFormular,
+        502,
+        "Das hat leider nicht geklappt. Versuch es gleich noch einmal oder ruf uns an unter 0421 43093028.",
+      );
+    }
+    return antwort(alsFormular, 200);
+  }
+
   const webhookUrl = process.env.RESERVIERUNG_WEBHOOK_URL;
   if (!webhookUrl) {
-    console.error("RESERVIERUNG_WEBHOOK_URL ist nicht gesetzt.");
+    console.error("Weder RESEND_API_KEY noch RESERVIERUNG_WEBHOOK_URL ist gesetzt.");
     return antwort(
       alsFormular,
       503,

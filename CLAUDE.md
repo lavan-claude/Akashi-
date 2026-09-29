@@ -126,12 +126,21 @@ Deutsch, **Du**-Form. Klar, gastfreundlich, keine Ausrufezeichen, keine Emojis.
 
 Aufgebaut wie das Kontaktformular von Leadflow, Details in
 `docs/reservierung-schnittstelle.md`. Das Formular ruft `/api/reservierung`
-auf (`netlify/functions/reservierung.mjs`), die Funktion reicht die Anfrage an
-den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
+auf (`netlify/functions/reservierung.mjs`). Zustellung (29.09.2026):
 
-- Adresse nur über die Umgebungsvariable `RESERVIERUNG_WEBHOOK_URL` in Netlify,
-  nie im Code, das Repo ist öffentlich. Fehlt sie, zeigt das Formular die
-  Telefonnummer.
+1. **Resend-Mail (Standard):** `RESEND_API_KEY` und `RESERVIERUNG_AN` gesetzt,
+   dann Mail ans Restaurant mit Antworten-an = Gast. Ohne eigene Domain Absender
+   `onboarding@resend.dev`, dann darf Resend nur an die Adresse des Resend-Kontos
+   schicken (Vorführung beim Termin: Lavans Adresse). Mit `RESERVIERUNG_VON`
+   (Absender auf bei Resend bestätigter Domain akashi-bremen.de) geht zusätzlich
+   eine Bestätigung an den Gast. Schlägt nur die Gästemail fehl, bleibt die
+   Anfrage gültig.
+2. **n8n:** nur wenn kein Resend-Schlüssel da ist, `RESERVIERUNG_WEBHOOK_URL`.
+3. Beides leer: Formular zeigt die Telefonnummer.
+
+- Schlüssel und Adressen nur als Umgebungsvariablen in Netlify, nie im Code,
+  das Repo ist öffentlich.
+- Nutzereingaben in den Mails immer mit `esc()` maskieren.
 - Prüfung von Hand in `validate()`, auch der Öffnungszeiten.
 - Honigtopf-Feld `website`: ausgefüllt heißt stillschweigend verwerfen, der
   Absender sieht trotzdem die Bestätigung.

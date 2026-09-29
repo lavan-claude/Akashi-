@@ -2277,3 +2277,12 @@ section[id],
   .js #ueber-titel[data-da]::after { clip-path: inset(0 0 0 0); }
 }
 .ueber__text .ueber__zusatz { margin: var(--space-xs) 0 0; }
+
+/* Danke- und Fehlerseite: eine Karte, mittig im Bild statt in der linken Spalte */
+.reservieren--danke {
+  grid-template-columns: minmax(0, 32rem);
+  justify-content: center;
+  align-content: center;
+  min-height: calc(100svh - 6rem);
+}
+.bestaetigung__wege { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); margin: var(--space-2xs) 0 0; }
