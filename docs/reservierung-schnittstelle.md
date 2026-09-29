@@ -45,6 +45,20 @@ E-Mail ans Restaurant, eatbu, FoodAmigos, Google Sheet – was der Workflow vors
    Environment variables als `RESERVIERUNG_WEBHOOK_URL` eintragen und neu
    deployen.
 
+### Fertiger Workflow (29.09.2026)
+
+Der Workflow „Akashi Reservierung“ liegt als Importdatei außerhalb des Repos
+(`Getlayed vlaude/akashi-reservierung-n8n.json`), weil er den geheimen
+Webhook-Pfad enthält und das Repo öffentlich sein kann. Ablauf:
+
+Webhook (Antwort erst über den Knoten „Website: angekommen“) → Code „Mails
+bauen“ (Akashi-Stil, Eingaben maskiert) → Gmail „Mail ans Restaurant“
+(Antworten-an = Gast) → Antwort `{"ok": true}` an die Website → Gmail
+„Bestätigung an den Gast“ (Fehler hier bricht nichts ab).
+
+Die Website bekommt ihr OK also erst, wenn die Mail ans Restaurant raus ist.
+Scheitert sie, sieht der Gast die Meldung mit der Telefonnummer.
+
 ## Datensatz an n8n (POST, `application/json`)
 
 ```json
