@@ -2286,3 +2286,105 @@ section[id],
   min-height: calc(100svh - 6rem);
 }
 .bestaetigung__wege { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); margin: var(--space-2xs) 0 0; }
+
+/* ── Handy-Menü: Katana als Knopf (30.09.2026) ─────────────────────────────
+   Unter 52rem passt die Scheide mit vier Einträgen nicht mehr in den Kopf.
+   Stattdessen sitzt dort ein kleines Katana. Beim Öffnen gleitet die Scheide
+   von der Klinge, das Schwert ist gezogen, und das Menü klappt darunter auf.
+   Verhalten in js/menue.js. */
+.schwertknopf,
+.schwertmenue { display: none; }
+
+@media (max-width: 52rem) {
+  .kopf--mitte { grid-template-columns: auto minmax(0, 1fr) auto auto; column-gap: var(--space-xs); }
+  .kopf--mitte .kopf__knopf { grid-column: 3; }
+
+  .schwertknopf {
+    grid-column: 4;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    margin-right: -0.35rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .schwertknopf svg { width: 2.8rem; height: 2.8rem; overflow: visible; }
+  .schwertknopf__klinge { fill: var(--hagane); }
+  .schwertknopf__saya { fill: var(--shu-deep); stroke: var(--kin); stroke-width: 0.7; }
+  .schwertknopf__tsuka { fill: var(--washi); }
+  .schwertknopf__wicklung { fill: none; stroke: var(--urushi); stroke-width: 1.1; stroke-linecap: round; }
+  .schwertknopf__tsuba { fill: var(--kin); }
+  .schwertknopf__saya {
+    transition: transform 420ms var(--ease-out), opacity 300ms var(--ease-out);
+  }
+  .schwertknopf:focus-visible { outline: 2px solid var(--shu-on-dark); outline-offset: 2px; }
+  /* Gezogen: die Scheide gleitet von der Klinge und verschwindet */
+  .schwertknopf[aria-expanded="true"] .schwertknopf__saya { transform: translateX(14px); opacity: 0; }
+
+  /* Das Menü klappt unter dem Kopf auf */
+  .kopf[data-menue-offen] { background: var(--sumi); border-bottom-color: var(--sumi-line); }
+  .schwertmenue {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    padding: var(--space-2xs) clamp(1rem, 4vw, 3rem) var(--space-m);
+    background: var(--sumi);
+    border-bottom: 2px solid var(--shu);
+    box-shadow: 0 24px 40px -20px rgb(0 0 0 / 0.7);
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 380ms var(--ease-out), visibility 0s linear 380ms;
+  }
+  .schwertmenue[data-offen] {
+    visibility: visible;
+    clip-path: inset(0 0 -2.5rem 0);
+    transition: clip-path 420ms var(--ease-out), visibility 0s;
+  }
+  .schwertmenue > a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-s);
+    min-height: 3.4rem;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--sumi-line);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 700;
+    color: var(--washi);
+    text-decoration: none;
+  }
+  .schwertmenue > a[aria-current] { color: var(--shu-on-dark); }
+  .schwertmenue__zeichen {
+    width: 2.6em;
+    flex: none;
+    font-family: var(--font-pinsel);
+    font-size: 0.62em;
+    font-weight: 400;
+    color: var(--shu-on-dark);
+  }
+  .schwertmenue__fuss { margin: var(--space-s) 0 0; font-size: var(--step--1); color: var(--sabi); }
+  .schwertmenue__fuss a { color: var(--washi); }
+
+  /* Einträge schieben sich nacheinander herein */
+  @media (prefers-reduced-motion: no-preference) {
+    .schwertmenue > a { opacity: 0; transform: translateY(-0.5rem); transition: opacity 260ms var(--ease-out), transform 360ms var(--ease-out); }
+    .schwertmenue[data-offen] > a { opacity: 1; transform: none; }
+    .schwertmenue[data-offen] > a:nth-child(2) { transition-delay: 40ms; }
+    .schwertmenue[data-offen] > a:nth-child(3) { transition-delay: 80ms; }
+    .schwertmenue[data-offen] > a:nth-child(4) { transition-delay: 120ms; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .schwertmenue, .schwertmenue[data-offen], .schwertknopf__saya { transition: none; }
+  }
+}
+/* Ganz schmal: der Reservieren-Knopf wird etwas kompakter, damit alles passt */
+@media (max-width: 24rem) {
+  .kopf--mitte .kopf__knopf { padding-inline: 0.85rem; font-size: 0.8rem; }
+}

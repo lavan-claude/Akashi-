@@ -66,6 +66,11 @@ Tusche, Washi-Papier und das Rot der Torii. Filmisch, ruhig, hochwertig.
   mit Tuschestrich). Texte bleiben Deutsch. Nur echtes Japanisch, kein
   vereinfachtes Chinesisch. Die Schriftdatei enthält nur die verwendeten
   Zeichen; neue Zeichen erst in `fonts/yuji-boku-pinsel.woff2` aufnehmen.
+  Neu zuschneiden: volle YujiBoku-Regular.ttf aus google/fonts, mit npm `subset-font`
+  auf die Zeichen der `unicode-range` in tokens.css plus die neuen, dann Liste dort ergänzen.
+- Handy-Menü (unter 52rem): Katana-Knopf `.schwertknopf` neben „Tisch reservieren“,
+  Klick zieht die Klinge und öffnet `.schwertmenue` (js/menue.js). Einträge müssen zur
+  Scheide `.saya` passen, auf index.html und speisekarte.html.
 
 - Navigation liegt auf einer Katana-Scheide (`.saya`): Griff, Stichblatt,
   Kordel, Endkappe sind reine CSS-Zierde, Farben dafür in `tokens.css`

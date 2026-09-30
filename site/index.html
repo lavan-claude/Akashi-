@@ -103,6 +103,7 @@
   <script src="js/hero.js" defer></script>
   <script src="js/anfahrt.js" defer></script>
   <script src="js/aufdecken.js" defer></script>
+  <script src="js/menue.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
@@ -123,6 +124,25 @@
       <span class="saya__kojiri" aria-hidden="true"></span>
     </nav>
     <a class="kopf__knopf" href="#reservieren">Tisch reservieren</a>
+    <!-- Handy: Katana als Menü-Knopf, beim Öffnen wird die Klinge gezogen (js/menue.js). -->
+    <button class="schwertknopf" type="button" aria-expanded="false" aria-controls="schwertmenue" aria-label="Menü öffnen">
+      <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <g transform="rotate(-38 24 24)">
+          <path class="schwertknopf__klinge" d="M19 22.9 H43.5 Q46 24 43.5 25.1 H19 Z"/>
+          <rect class="schwertknopf__saya" x="19" y="21.7" width="26" height="4.6" rx="2.3"/>
+          <rect class="schwertknopf__tsuka" x="3.5" y="21.9" width="13" height="4.2" rx="1.3"/>
+          <path class="schwertknopf__wicklung" d="M5.5 22.2 l2 3.6 M8.5 22.2 l2 3.6 M11.5 22.2 l2 3.6 M7.5 22.2 l-2 3.6 M10.5 22.2 l-2 3.6 M13.5 22.2 l-2 3.6"/>
+          <rect class="schwertknopf__tsuba" x="16.3" y="19.2" width="2.9" height="9.6" rx="1.3"/>
+        </g>
+      </svg>
+    </button>
+    <nav class="schwertmenue" id="schwertmenue" aria-label="Menü" inert>
+      <a href="speisekarte.html"><span class="schwertmenue__zeichen" aria-hidden="true">品書</span>Speisekarte</a>
+      <a href="#reservieren"><span class="schwertmenue__zeichen" aria-hidden="true">予約</span>Reservierung</a>
+      <a href="#ueber-uns"><span class="schwertmenue__zeichen" aria-hidden="true">明石</span>Über uns</a>
+      <a href="#standort"><span class="schwertmenue__zeichen" aria-hidden="true">地図</span>Standort</a>
+      <p class="schwertmenue__fuss">Lieber anrufen? <a href="tel:+4942143093028">0421 43093028</a></p>
+    </nav>
   </header>
 
   <main>
