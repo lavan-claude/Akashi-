@@ -443,7 +443,7 @@ kasse.addEventListener("submit", async (e) => {
     if (!antwort.ok || !daten.ok) throw new Error(daten.fehler || "Das hat leider nicht geklappt. Ruf uns gern an unter 0421 43093028.");
     $(".korb__danke-text").innerHTML = `Bestellnummer <strong>${esc(daten.nummer)}</strong>. ${
       art() === "lieferung" ? "Wir liefern" : "Abholbereit"
-    } ${esc(daten.wannText)}. Gesamt ${esc(euro(daten.gesamtCent))}, bezahlt wird ${f.zahlung.value === "bar" ? "bar" : "mit Karte"} bei Übergabe. Eine Bestätigung kommt per E-Mail.`;
+    } ${esc(daten.wannText)}. Gesamt ${esc(euro(daten.gesamtCent))}, bezahlt wird ${f.zahlung.value === "bar" ? "bar" : "mit Karte"} bei Übergabe. Die Bestätigung kommt gleich per E-Mail, eine zweite, sobald die Küche deine Bestellung angenommen hat.`;
     korb = [];
     speichern();
     aktualisieren();

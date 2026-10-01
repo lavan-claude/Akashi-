@@ -119,7 +119,7 @@ export function pruefen(input, jetzt = new Date()) {
   };
 }
 
-// Kurze, gut vorlesbare Bestellnummer, z. B. A-4821
+// Ersatznummer, falls n8n keine eigene zurückgibt, z. B. A-4821
 const bestellnummer = () => `A-${Math.floor(1000 + Math.random() * 9000)}`;
 
 const antwort = (status, daten) => Response.json(daten, { status });
@@ -135,7 +135,7 @@ export default async (req, context) => {
     return antwort(400, { ok: false, fehler: meldung });
   }
 
-  const nummer = bestellnummer();
+  let nummer = bestellnummer();
   // Honigtopf gefüllt: so tun, als wäre alles gut, und nichts weiterleiten.
   if (b.website) return antwort(200, { ok: true, nummer, wannText: b.wannText, gesamtCent: b.gesamtCent });
 
@@ -156,6 +156,9 @@ export default async (req, context) => {
       signal: AbortSignal.timeout(10_000),
     });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    // n8n vergibt die fortlaufende Nummer (A-1001, A-1002 …), sonst bleibt die eigene.
+    const daten = await r.json().catch(() => ({}));
+    if (typeof daten.nummer === "string" && /^A-\d{1,6}$/.test(daten.nummer)) nummer = daten.nummer;
   } catch (error) {
     console.error(`Bestellungs-Webhook fehlgeschlagen: ${error.message}`);
     return antwort(502, { ok: false, fehler: `Das hat leider nicht geklappt. Versuch es gleich noch einmal oder ruf uns an unter ${TELEFON}.` });

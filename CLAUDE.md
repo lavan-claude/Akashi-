@@ -167,8 +167,15 @@ bar oder mit Karte bei Übergabe, keine Online-Zahlung.
   Neue Schreibweisen in der Karte dort prüfen.
 - Die Funktion `bestellung.mjs` rechnet alles aus `daten/speisekarte.json`
   neu, Browserpreise zählen nicht. Weiter an `BESTELLUNG_WEBHOOK_URL` (n8n,
-  Workflow „Akashi Bestellung“, Importdatei außerhalb des Repos). Gebündelt mit
+  Workflow „Akashi Bestellung“ auf lavan-claude.app.n8n.cloud). Gebündelt mit
   esbuild (`netlify.toml`).
+- n8n (02.10.2026): „Akashi Bestellung“ speichert in der Tabelle „Akashi
+  Bestellungen“, vergibt die Nummer A-1000 + Zeilen-ID (die Funktion übernimmt
+  sie aus der Antwort) und schickt die Restaurant-Mail mit Annehmen/Ablehnen.
+  „Akashi Bestellung annehmen“ zeigt dazu eine Bestätigungsseite (erst deren
+  Knopf löst etwas aus, wegen Link-Vorschauen) und schickt dem Gast die zweite
+  Mail. „Akashi Reservierung“ wie gehabt. Restaurant-Mails gehen zur Vorführung
+  an Lavan, Absender ist Lavans Gmail.
 - Lieferadresse: Felder oder „Meinen Standort verwenden“ (Geolocation, Adresse
   über Nominatim/OpenStreetMap, erst nach Klick, steht in der Datenschutzerklärung).
 - Öffnungszeiten stehen jetzt dreimal: `js/reservierung.js`,
