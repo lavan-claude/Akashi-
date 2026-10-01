@@ -5,6 +5,8 @@
 
 [functions]
   directory = "netlify/functions"
+  # esbuild packt daten/speisekarte.json und site/js/bestellung-regeln.mjs in die Bestellfunktion
+  node_bundler = "esbuild"
 
 # Bis zum Livegang nicht in Suchmaschinen auftauchen. Vor dem Umzug auf
 # akashi-bremen.de entfernen.

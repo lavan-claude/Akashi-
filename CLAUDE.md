@@ -26,11 +26,14 @@ site/                 wird veröffentlicht (netlify.toml: publish = "site")
   js/karte.js         markiert die sichtbare Kategorie der Speisekarte
   js/aufdecken.js     blendet .aufdeck-Elemente beim Scrollen ein
   js/anfahrt.js       markiert den heutigen Tag, lädt Google Maps erst nach Klick (Datenschutz)
+  js/menue.js         Handy-Menü mit Katana-Knopf
+  js/bestellen.mjs    Warenkorb und Kasse auf der Speisekarte
+  js/bestellung-regeln.mjs  Preise, Optionen, Zeiten, Liefergebiet; auch vom Server genutzt
   assets/logo/        freigestellter Akashi-Schriftzug für die Kopfzeile
   assets/raeume/      eigene Fotos des Restaurants, bearbeitet, als WebP
   assets/hero/        Samurai aus Kling: samurai.jpg (Standbild), samurai.mp4 + samurai.webm (Video)
   fonts/              selbst gehostete Schriften, keine Google-Fonts-Einbindung
-netlify/functions/    reservierung.mjs: Serverfunktion unter /api/reservierung
+netlify/functions/    reservierung.mjs (/api/reservierung), bestellung.mjs (/api/bestellung)
 docs/                 Schnittstelle der Reservierung
 daten/                speisekarte.json
 tools/                speisekarte.py erzeugt Karte und Kacheln
@@ -148,6 +151,29 @@ den n8n-Workflow weiter. Die Webhook-Adresse landet dadurch nie im Browser.
 Felder an n8n: `name`, `email`, `telefon`, `datum`, `uhrzeit`, `beginn`,
 `personen`, `grosse_gruppe`, `nachricht`, `quelle`, `einwilligung`. Änderungen
 müssen zum n8n-Workflow passen.
+
+## Online-Bestellung (01.10.2026, zunächst zur Vorführung)
+
+Eigener Warenkorb auf `speisekarte.html` statt FoodAmigos (die alte
+akashi-bremen.de ist ein FoodAmigos-Shop). Abholen oder Lieferung, bezahlt wird
+bar oder mit Karte bei Übergabe, keine Online-Zahlung.
+
+- `js/bestellung-regeln.mjs` ist die einzige Quelle für Preise, Optionen,
+  Zeitfenster und `EINSTELLUNGEN` (Mindestwert 20 €, Liefergebühr 2,50 €,
+  PLZ-Liste). Diese Werte sind **Platzhalter**, mit dem Wirt festlegen.
+- Optionen werden aus dem Text in `speisekarte.json` gelesen (`optionLesen`):
+  „A oder B (+x)“ = Pflichtwahl, „… +x“ = Extra, Zahl ohne Plus über dem
+  Grundpreis = Endpreis, „Kein roher Fisch“/„Weiches Ei“ = nur Hinweis.
+  Neue Schreibweisen in der Karte dort prüfen.
+- Die Funktion `bestellung.mjs` rechnet alles aus `daten/speisekarte.json`
+  neu, Browserpreise zählen nicht. Weiter an `BESTELLUNG_WEBHOOK_URL` (n8n,
+  Workflow „Akashi Bestellung“, Importdatei außerhalb des Repos). Gebündelt mit
+  esbuild (`netlify.toml`).
+- Öffnungszeiten stehen jetzt dreimal: `js/reservierung.js`,
+  `netlify/functions/reservierung.mjs`, `js/bestellung-regeln.mjs`.
+- Vor echtem Betrieb fehlen: Allergene und Zusatzstoffe je Gericht (Pflicht
+  beim Online-Verkauf von Lebensmitteln), echte Liefer-PLZ, Mindestwert,
+  Gebühr, wer die Bestellungen annimmt, Entscheidung zu FoodAmigos.
 
 ## Hero-Video
 

@@ -2430,3 +2430,255 @@ a:hover > .extern { transform: translate(2px, -2px); }
   font-weight: 700;
   color: var(--washi);
 }
+
+/* ── Online-Bestellung auf der Speisekarte (01.10.2026) ────────────────────
+   „+“ an jedem Gericht, Leiste mit Warenkorb unten, Dialoge auf Washi-Papier.
+   Verhalten in js/bestellen.mjs, Regeln in js/bestellung-regeln.mjs. */
+.karte__bestellen {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  max-width: 34rem;
+  margin: var(--space-m) 0 0;
+  padding: var(--space-s) var(--space-m);
+  border: 1.5px solid var(--sumi);
+  border-radius: var(--radius-m);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+.karte__plus {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--shu);
+  color: var(--washi);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+/* Ohne JavaScript gibt es keinen Warenkorb, also auch keinen Hinweis */
+html:not(.js) .karte__bestellen { display: none; }
+
+.gericht__dazu {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-left: var(--space-2xs);
+  align-self: center;
+  border: 1.5px solid var(--sumi);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sumi);
+  font: 700 1.2rem/1 var(--font-body);
+  cursor: pointer;
+  transition: background-color 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.gericht__dazu:hover,
+.gericht__dazu:focus-visible { background: var(--shu); border-color: var(--shu); color: var(--washi); }
+.gericht__dazu:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+.gericht__dazu:active { transform: scale(0.92); }
+.gericht__dazu--ok { background: var(--sumi); color: var(--washi); }
+
+/* Leiste unten */
+.korbleiste {
+  position: fixed;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 30;
+  width: min(30rem, calc(100% - 2rem));
+  translate: -50% 0;
+}
+.korbleiste__knopf {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.5rem 1.25rem 0.5rem 0.6rem;
+  border: 0;
+  border-radius: var(--radius-round);
+  background: var(--sumi);
+  color: var(--washi);
+  box-shadow: 0 0 0 1.5px var(--shu), 0 18px 40px -12px rgb(0 0 0 / 0.55);
+  font: 700 var(--step-0) / 1 var(--font-body);
+  cursor: pointer;
+}
+.korbleiste__zahl {
+  display: grid;
+  place-items: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.4rem;
+  border-radius: var(--radius-round);
+  background: var(--shu);
+  font-variant-numeric: tabular-nums;
+}
+.korbleiste__text { flex: 1; text-align: left; }
+.korbleiste__summe { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: no-preference) {
+  .korbleiste:not([hidden]) { animation: leiste-rein 420ms var(--ease-out); }
+  .korbleiste--hupf .korbleiste__zahl { animation: hupf 380ms var(--ease-out); }
+}
+@keyframes leiste-rein { from { opacity: 0; translate: -50% 1.5rem; } }
+@keyframes hupf { 40% { transform: scale(1.25); } }
+/* Platz am Seitenende, damit die Leiste nichts verdeckt */
+.papier--seite { padding-bottom: 6rem; }
+
+/* Dialoge */
+.bestelldialog {
+  width: min(34rem, calc(100% - 1.5rem));
+  max-height: min(92svh, 52rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-m);
+  background: var(--washi);
+  color: var(--sumi);
+  box-shadow: var(--shadow-paper);
+}
+.bestelldialog::backdrop { background: rgb(21 18 15 / 0.7); }
+.bestelldialog__inhalt {
+  position: relative;
+  max-height: inherit;
+  overflow-y: auto;
+  padding: clamp(1.25rem, 1rem + 2vw, 2.25rem);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bestelldialog[open] { animation: dialog-rein 320ms var(--ease-out); }
+}
+@keyframes dialog-rein { from { opacity: 0; transform: translateY(1rem); } }
+.dialog__zu {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sumi);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.dialog__zu:hover { background: var(--sumi-hauch); }
+.bestelldialog__nr { margin: 0; font-size: var(--step--1); color: var(--sabi-on-paper); }
+.bestelldialog__titel { margin: 0 2.5rem var(--space-m) 0; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.15; }
+.bestelldialog__optionen { display: grid; gap: var(--space-m); }
+.bestelldialog__fuss { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s); margin-top: var(--space-l); }
+.bestelldialog__dazu { flex: 1; min-width: 12rem; }
+
+.wahl { display: grid; gap: var(--space-2xs); margin: 0; padding: 0; border: 0; }
+.wahl legend { margin-bottom: var(--space-2xs); padding: 0; font-weight: 700; }
+.wahl__punkt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 3rem;
+  padding: 0 var(--space-s);
+  border: 1.5px solid var(--washi-line);
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+.wahl__punkt:has(input:checked) { border-color: var(--sumi); background: var(--sumi-hauch); }
+.wahl__punkt input { width: 1.15rem; height: 1.15rem; margin: 0; accent-color: var(--shu); }
+.wahl__punkt span:first-of-type { flex: 1; }
+.wahl__preis { font-weight: 700; font-variant-numeric: tabular-nums; }
+.wahl__hinweis { margin: 0; font-size: var(--step--1); color: var(--sabi-on-paper); }
+
+.menge { display: inline-flex; align-items: center; border: 1.5px solid var(--sumi); border-radius: var(--radius-round); }
+.menge__knopf {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sumi);
+  font: 700 1.2rem/1 var(--font-body);
+  cursor: pointer;
+}
+.menge__knopf:hover { background: var(--sumi-hauch); }
+.menge__zahl { min-width: 1.6rem; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.menge--klein .menge__knopf { width: 2.2rem; height: 2.2rem; font-size: 1rem; }
+
+/* Warenkorb */
+.korb__liste { display: grid; margin: 0; padding: 0; list-style: none; }
+.korb__posten {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-s) 0;
+  border-bottom: 1px solid var(--washi-line);
+}
+.korb__name { display: grid; gap: 0.15rem; }
+.korb__name span { font-size: var(--step--1); color: var(--sabi-on-paper); }
+.korb__preis { min-width: 4.5rem; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.korb__leer { color: var(--sabi-on-paper); }
+.korb__summen {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2xs) var(--space-s);
+  margin: var(--space-m) 0;
+  font-variant-numeric: tabular-nums;
+}
+.korb__summen dt,
+.korb__summen dd { margin: 0; }
+.korb__summen dd { text-align: right; }
+.korb__gesamt { padding-top: var(--space-2xs); border-top: 1.5px solid var(--sumi); font-size: var(--step-1); font-weight: 700; }
+.korb__mindest { grid-column: 1 / -1; margin: var(--space-2xs) 0 0; color: var(--shu-deep); font-size: var(--step--1); font-weight: 500; }
+.korb__weiter,
+.kasse__absenden { width: 100%; }
+.korb__zurueck {
+  justify-self: start;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--sabi-on-paper);
+  font: inherit;
+  font-size: var(--step--1);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+/* Kasse */
+.korb__kasse { display: grid; gap: var(--space-m); }
+.korb__kasse[hidden] { display: none; }
+.korb__kasse .bestelldialog__titel { margin-bottom: 0; }
+.kasse__raster { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-m) var(--space-s); }
+.kasse__raster[hidden] { display: none; }
+.kasse__voll { grid-column: 1 / -1; }
+.umschalter { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; margin: 0; padding: 0; border: 1.5px solid var(--sumi); border-radius: var(--radius-m); overflow: hidden; }
+.umschalter--klein { grid-template-columns: 1fr 1fr; grid-auto-flow: row; gap: var(--space-xs); border: 0; overflow: visible; }
+.umschalter--klein legend { grid-column: 1 / -1; padding: 0 0 var(--space-2xs); font-weight: 500; font-size: var(--step--1); }
+.umschalter label { position: relative; }
+.umschalter input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.umschalter span { display: grid; place-items: center; min-height: 3rem; font-weight: 700; }
+.umschalter label + label span { border-left: 1px solid var(--washi-line); }
+.umschalter input:checked + span { background: var(--sumi); color: var(--washi); }
+.umschalter input:focus-visible + span { outline: 2px solid var(--shu); outline-offset: -4px; }
+.umschalter--klein span,
+.umschalter--klein label + label span { border: 1.5px solid var(--sumi); border-radius: var(--radius-m); }
+.einwilligung { display: grid; grid-template-columns: auto 1fr; gap: var(--space-xs); align-items: start; font-size: var(--step--1); line-height: 1.5; }
+.einwilligung input { width: 1.15rem; height: 1.15rem; margin: 0.15rem 0 0; accent-color: var(--shu); }
+.einwilligung:has([aria-invalid="true"]) { color: var(--shu-deep); }
+.kasse__fehler { margin: 0; padding: var(--space-xs) var(--space-s); border-left: 3px solid var(--shu); background: var(--shu-hauch); color: var(--shu-deep); font-weight: 500; }
+.kasse__fehler[hidden] { display: none; }
+.korb__danke { display: grid; justify-items: start; gap: var(--space-s); outline: none; }
+.korb__danke[hidden] { display: none; }
+.korb__danke-text { margin: 0; line-height: 1.6; }
+
+@media (max-width: 34rem) {
+  .kasse__raster { grid-template-columns: 1fr; }
+  .bestelldialog { width: 100%; max-width: none; max-height: 94svh; margin: auto 0 0; border-radius: var(--radius-m) var(--radius-m) 0 0; }
+  .gericht__dazu { width: 2.5rem; height: 2.5rem; }
+}
+/* Summen: durchgehende Linie über „Gesamt“ */
+.korb__summen { column-gap: 0; }
+.korb__summen dd { padding-left: var(--space-s); }
