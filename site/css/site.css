@@ -2388,3 +2388,45 @@ section[id],
 @media (max-width: 24rem) {
   .kopf--mitte .kopf__knopf { padding-inline: 0.85rem; font-size: 0.8rem; }
 }
+
+/* ── Online bestellen (01.10.2026) ─────────────────────────────────────────
+   Führt zum FoodAmigos-Shop auf www.akashi-bremen.de/speisekarte, neuer Tab. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.extern { display: inline-block; margin-left: 0.35em; font-size: 0.9em; transition: transform 200ms var(--ease-out); }
+a:hover > .extern { transform: translate(2px, -2px); }
+.hero__karte { flex-basis: 100%; font-size: var(--step--1); color: var(--washi); text-underline-offset: 0.25em; }
+.izakaya__bestellen { margin: var(--space-m) 0 0; }
+.karte__bestellen { margin: var(--space-m) 0 0; }
+.schwertmenue__bestellen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-m);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-round);
+  background: var(--shu);
+  color: var(--washi);
+  font-weight: 700;
+  text-decoration: none;
+}
+/* Externer Link im Hero: nur der Schrägpfeil, nicht zusätzlich der Pfeil nach rechts */
+.hero .knopf.knopf--hell[target="_blank"]::after { content: none; }
+.hero .knopf.knopf--hell[target="_blank"] .extern { display: inline-block; }
+/* Bestell-Knopf im Handy-Menü nicht wie die großen Menü-Einträge setzen */
+.schwertmenue > a.schwertmenue__bestellen {
+  min-height: 0;
+  padding: 0.85rem 1rem;
+  border-bottom: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 700;
+  color: var(--washi);
+}
