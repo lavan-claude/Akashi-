@@ -196,6 +196,10 @@ korbDialog.innerHTML = `
       </div>
 
       <div class="kasse__raster kasse__adresse" hidden>
+        <div class="kasse__voll kasse__ortung">
+          <button type="button" class="kasse__standort">Meinen Standort verwenden</button>
+          <p class="feld__hilfe kasse__standort-hinweis" aria-live="polite"></p>
+        </div>
         <div class="feld kasse__voll"><label for="b-strasse">Straße und Hausnummer</label><input id="b-strasse" name="strasse" autocomplete="street-address"></div>
         <div class="feld"><label for="b-plz">PLZ</label><input id="b-plz" name="plz" inputmode="numeric" autocomplete="postal-code" maxlength="5"></div>
         <div class="feld"><label for="b-ort">Ort</label><input id="b-ort" name="ort" autocomplete="address-level2" value="Bremen"></div>
@@ -336,6 +340,54 @@ kasse.addEventListener("change", (e) => {
   if (e.target.name === "art") artGeaendert();
 });
 kasse.elements.plz.addEventListener("input", gebietPruefen);
+
+// „Meinen Standort verwenden“: Position vom Gerät, Adresse dazu von OpenStreetMap
+// (Nominatim). Beides passiert erst nach dem Klick.
+function standortHinweis(text) {
+  $(".kasse__standort-hinweis").textContent = text;
+}
+
+function geraetePosition() {
+  return new Promise((ok, fehlschlag) =>
+    navigator.geolocation.getCurrentPosition(ok, fehlschlag, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }),
+  );
+}
+
+$(".kasse__standort").addEventListener("click", async () => {
+  const knopf = $(".kasse__standort");
+  if (!("geolocation" in navigator)) return standortHinweis("Dein Browser kann den Standort nicht teilen. Gib deine Adresse bitte ein.");
+  knopf.disabled = true;
+  standortHinweis("Standort wird gesucht …");
+  try {
+    const { coords } = await geraetePosition();
+    const url = new URL("https://nominatim.openstreetmap.org/reverse");
+    url.search = new URLSearchParams({ format: "jsonv2", lat: coords.latitude.toFixed(6), lon: coords.longitude.toFixed(6), addressdetails: "1", zoom: "18", "accept-language": "de" });
+    const antwort = await fetch(url, { signal: AbortSignal.timeout(10000) });
+    if (!antwort.ok) throw new Error("dienst");
+    const a = (await antwort.json()).address ?? {};
+    const strasse = a.road ?? a.pedestrian ?? a.footway ?? a.square ?? "";
+    if (!strasse && !a.postcode) throw new Error("dienst");
+    const f = kasse.elements;
+    f.strasse.value = [strasse, a.house_number].filter(Boolean).join(" ");
+    if (a.postcode) f.plz.value = a.postcode;
+    f.ort.value = a.city ?? a.town ?? a.village ?? f.ort.value;
+    gebietPruefen();
+    if (!a.house_number) {
+      standortHinweis("Ergänz bitte noch die Hausnummer.");
+      f.strasse.focus();
+    } else {
+      standortHinweis("Adresse übernommen. Prüf sie bitte kurz.");
+    }
+  } catch (err) {
+    standortHinweis(
+      err?.code === 1
+        ? "Standort nicht freigegeben. Gib deine Adresse bitte ein."
+        : "Standort konnte nicht ermittelt werden. Gib deine Adresse bitte ein.",
+    );
+  } finally {
+    knopf.disabled = false;
+  }
+});
 
 function fehler(text) {
   const f = $(".kasse__fehler");

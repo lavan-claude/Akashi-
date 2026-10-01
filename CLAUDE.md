@@ -169,6 +169,8 @@ bar oder mit Karte bei Übergabe, keine Online-Zahlung.
   neu, Browserpreise zählen nicht. Weiter an `BESTELLUNG_WEBHOOK_URL` (n8n,
   Workflow „Akashi Bestellung“, Importdatei außerhalb des Repos). Gebündelt mit
   esbuild (`netlify.toml`).
+- Lieferadresse: Felder oder „Meinen Standort verwenden“ (Geolocation, Adresse
+  über Nominatim/OpenStreetMap, erst nach Klick, steht in der Datenschutzerklärung).
 - Öffnungszeiten stehen jetzt dreimal: `js/reservierung.js`,
   `netlify/functions/reservierung.mjs`, `js/bestellung-regeln.mjs`.
 - Vor echtem Betrieb fehlen: Allergene und Zusatzstoffe je Gericht (Pflicht
