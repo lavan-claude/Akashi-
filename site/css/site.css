@@ -2682,3 +2682,69 @@ html:not(.js) .karte__bestellen { display: none; }
 /* Summen: durchgehende Linie über „Gesamt“ */
 .korb__summen { column-gap: 0; }
 .korb__summen dd { padding-left: var(--space-s); }
+
+/* ── Hero: Reservieren und Bestellen gleichrangig (01.10.2026) ─────────────
+   Zwei gleich große Knöpfe in Klingenform, darunter leise der Weg zur Karte
+   mit お品書き. Bestellen ist ein heller Rahmen auf Lack, beim Überfahren
+   wischt Papier herein. */
+.hero .hero__handlung {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: var(--space-s) var(--space-xs);
+  align-items: stretch;
+}
+.hero .hero__handlung .knopf {
+  display: inline-grid;
+  place-items: center;
+  min-width: 12.5rem;
+  min-height: 3.4rem;
+  padding-block: 0.9rem;
+  text-align: center;
+}
+.hero .knopf.knopf--bestellen {
+  background: rgb(21 18 15 / 0.45);
+  box-shadow: inset 0 0 0 1.5px var(--washi);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.hero .knopf.knopf--bestellen:hover,
+.hero .knopf.knopf--bestellen:focus-visible { background: rgb(21 18 15 / 0.45); color: var(--sumi); }
+
+.hero .hero__karte {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  justify-self: start;
+  margin-top: var(--space-2xs);
+  padding: 0.35rem 0;
+  color: var(--washi);
+  font-size: var(--step--1);
+  font-weight: 600;
+  text-decoration: none;
+  flex-basis: auto;
+}
+.hero__karte-zeichen {
+  font-family: var(--font-pinsel);
+  font-size: 1.15em;
+  font-weight: 400;
+  color: var(--shu-on-dark);
+  letter-spacing: 0.05em;
+}
+.hero .hero__karte::after {
+  content: "→";
+  transition: transform 200ms var(--ease-out);
+}
+.hero .hero__karte:hover::after { transform: translateX(4px); }
+.hero .hero__karte:hover { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+.hero .hero__karte:focus-visible { outline: 2px solid var(--washi); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero__karte::after { transition: none; }
+}
+
+/* Handy: beide Knöpfe nebeneinander über die volle Breite */
+@media (max-width: 34rem) {
+  .hero .hero__handlung { grid-template-columns: 1fr 1fr; gap: var(--space-s) 0.6rem; }
+  .hero .hero__handlung .knopf,
+  .hero .hero__handlung .knopf:not(.knopf--hell) { min-width: 0; padding-inline: 0.6rem; font-size: 0.95rem; flex: none; }
+}
