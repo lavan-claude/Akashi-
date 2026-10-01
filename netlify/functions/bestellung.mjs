@@ -1,6 +1,6 @@
 // Nimmt eine Online-Bestellung entgegen, rechnet sie mit der Speisekarte aus
 // daten/speisekarte.json komplett neu und reicht sie an n8n weiter
-// (BESTELLUNG_WEBHOOK_URL, nur in Netlify). Preise aus dem Browser zählen nicht.
+// (BESTELLUNG_WEBHOOK_URL, nur in Netlify, n8n-Workflow „Akashi Bestellung“). Preise aus dem Browser zählen nicht.
 //
 // Fehlermeldungen aus dieser Funktion zeigt der Warenkorb dem Gast an.
 

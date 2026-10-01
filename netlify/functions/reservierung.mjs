@@ -1,5 +1,5 @@
 // Nimmt eine Reservierungsanfrage aus dem Formular entgegen und reicht sie an
-// den n8n-Workflow weiter – nach demselben Prinzip wie das Leadflow-Formular.
+// den n8n-Workflow „Akashi Reservierung“ weiter – nach demselben Prinzip wie das Leadflow-Formular.
 //
 // Der Aufruf läuft bewusst über den Server: So landet die Webhook-Adresse nie
 // im Browser und kann von außen weder ausgelesen noch direkt beschickt werden.
